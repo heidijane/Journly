@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journly", "Journly\Journly.csproj", "{10106660-3DB2-41ED-B661-9371C4CB26CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10106660-3DB2-41ED-B661-9371C4CB26CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10106660-3DB2-41ED-B661-9371C4CB26CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10106660-3DB2-41ED-B661-9371C4CB26CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10106660-3DB2-41ED-B661-9371C4CB26CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CAD9EF63-02B6-4A68-8666-063D6F2D4FF7}
+	EndGlobalSection
+EndGlobal
