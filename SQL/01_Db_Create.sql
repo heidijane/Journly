@@ -58,7 +58,7 @@ CREATE TABLE [Post] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [UserId] int NOT NULL,
   [CreateDate] datetime NOT NULL,
-  [Mood] int NOT NULL,
+  [MoodId] int NOT NULL,
   [Content] text,
   [EditTime] datetime,
   [Flagged] bit NOT NULL,
@@ -100,7 +100,7 @@ GO
 ALTER TABLE [Post] ADD FOREIGN KEY ([TherapistId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [Post] ADD FOREIGN KEY ([Mood]) REFERENCES [MoodType] ([Id])
+ALTER TABLE [Post] ADD FOREIGN KEY ([MoodId]) REFERENCES [MoodType] ([Id])
 GO
 
 ALTER TABLE [User] ADD CONSTRAINT df_userType DEFAULT 0 FOR UserType
