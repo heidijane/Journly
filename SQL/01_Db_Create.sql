@@ -7,101 +7,101 @@ GO
 USE [Journly]
 GO
 
-DROP TABLE IF EXISTS [post];
-DROP TABLE IF EXISTS [flaggedWord];
-DROP TABLE IF EXISTS [userRelationship];
-DROP TABLE IF EXISTS [therapist];
-DROP TABLE IF EXISTS [user];
-DROP TABLE IF EXISTS [userType];
-DROP TABLE IF EXISTS [moodType];
+DROP TABLE IF EXISTS [Post];
+DROP TABLE IF EXISTS [FlaggedWord];
+DROP TABLE IF EXISTS [UserRelationship];
+DROP TABLE IF EXISTS [Therapist];
+DROP TABLE IF EXISTS [User];
+DROP TABLE IF EXISTS [UserType];
+DROP TABLE IF EXISTS [MoodType];
 GO
 
-CREATE TABLE [user] (
-  [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [firebaseUserId] varchar(50) NOT NULL,
-  [firstName] varchar(50) NOT NULL,
-  [lastName] varchar(50) NOT NULL,
-  [nickName] varchar(50) NOT NULL,
-  [birthday] datetime NOT NULL,
-  [email] varchar(255) NOT NULL,
-  [avatar] varchar(255),
-  [createDate] datetime NOT NULL,
-  [userType] int NOT NULL
+CREATE TABLE [User] (
+  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [FirebaseUserId] varchar(50) NOT NULL,
+  [FirstName] varchar(50) NOT NULL,
+  [LastName] varchar(50) NOT NULL,
+  [NickName] varchar(50) NOT NULL,
+  [Birthday] datetime NOT NULL,
+  [Email] varchar(255) NOT NULL,
+  [Avatar] varchar(255),
+  [CreateDate] datetime NOT NULL,
+  [UserType] int NOT NULL
 )
 GO
 
-CREATE TABLE [therapist] (
-  [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [userId] int NOT NULL,
-  [verified] bit NOT NULL,
-  [company] varchar(255) NOT NULL,
-  [code] varchar(50) NOT NULL
+CREATE TABLE [Therapist] (
+  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [UserId] int NOT NULL,
+  [Verified] bit NOT NULL,
+  [Company] varchar(255) NOT NULL,
+  [Code] varchar(50) NOT NULL
 )
 GO
 
-CREATE TABLE [userType] (
-  [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [name] varchar(50) NOT NULL
+CREATE TABLE [UserType] (
+  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Name] varchar(50) NOT NULL
 )
 GO
 
-CREATE TABLE [userRelationship] (
-  [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [therapistId] int NOT NULL,
-  [clientId] int NOT NULL,
-  [startDate] datetime NOT NULL,
-  [endDate] datetime NULL
+CREATE TABLE [UserRelationship] (
+  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [TherapistId] int NOT NULL,
+  [ClientId] int NOT NULL,
+  [StartDate] datetime NOT NULL,
+  [EndDate] datetime NULL
 )
 GO
 
-CREATE TABLE [post] (
-  [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [userId] int NOT NULL,
-  [createDate] datetime NOT NULL,
-  [mood] int NOT NULL,
-  [content] text,
-  [editTime] datetime,
-  [flagged] bit NOT NULL,
-  [therapistId] int,
-  [viewTime] datetime,
-  [comment] text,
-  [deleted] bit NOT NULL
+CREATE TABLE [Post] (
+  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [UserId] int NOT NULL,
+  [CreateDate] datetime NOT NULL,
+  [Mood] int NOT NULL,
+  [Content] text,
+  [EditTime] datetime,
+  [Flagged] bit NOT NULL,
+  [TherapistId] int,
+  [ViewTime] datetime,
+  [Comment] text,
+  [Deleted] bit NOT NULL
 )
 GO
 
-CREATE TABLE [moodType] (
-  [id] int PRIMARY KEY IDENTITY(1, 1),
-  [name] varchar(50) NOT NULL,
-  [image] varchar(255) NOT NULL
+CREATE TABLE [MoodType] (
+  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Name] varchar(50) NOT NULL,
+  [Image] varchar(255) NOT NULL
 )
 GO
 
-CREATE TABLE [flaggedWord] (
-  [id] int PRIMARY KEY IDENTITY(1, 1),
-  [word] varchar(50) NOT NULL
+CREATE TABLE [FlaggedWord] (
+  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Word] varchar(50) NOT NULL
 )
 GO
 
-ALTER TABLE [userRelationship] ADD FOREIGN KEY ([therapistId]) REFERENCES [user] ([id])
+ALTER TABLE [UserRelationship] ADD FOREIGN KEY ([TherapistId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [userRelationship] ADD FOREIGN KEY ([clientId]) REFERENCES [user] ([id])
+ALTER TABLE [UserRelationship] ADD FOREIGN KEY ([ClientId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [user] ADD FOREIGN KEY ([userType]) REFERENCES [userType] ([id])
+ALTER TABLE [User] ADD FOREIGN KEY ([UserType]) REFERENCES [UserType] ([Id])
 GO
 
-ALTER TABLE [therapist] ADD FOREIGN KEY ([userId]) REFERENCES [user] ([id])
+ALTER TABLE [Therapist] ADD FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [post] ADD FOREIGN KEY ([userId]) REFERENCES [user] ([id])
+ALTER TABLE [Post] ADD FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [post] ADD FOREIGN KEY ([therapistId]) REFERENCES [user] ([id])
+ALTER TABLE [Post] ADD FOREIGN KEY ([TherapistId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [post] ADD FOREIGN KEY ([mood]) REFERENCES [moodType] ([id])
+ALTER TABLE [Post] ADD FOREIGN KEY ([Mood]) REFERENCES [MoodType] ([Id])
 GO
 
-ALTER TABLE [user] ADD CONSTRAINT df_userType DEFAULT 0 FOR userType
+ALTER TABLE [User] ADD CONSTRAINT df_userType DEFAULT 0 FOR UserType
 GO
