@@ -8,7 +8,7 @@ USE [Journly]
 GO
 
 DROP TABLE IF EXISTS [post];
-DROP TABLE IF EXISTS [flaggedWords];
+DROP TABLE IF EXISTS [flaggedWord];
 DROP TABLE IF EXISTS [userRelationship];
 DROP TABLE IF EXISTS [therapist];
 DROP TABLE IF EXISTS [user];
@@ -76,7 +76,7 @@ CREATE TABLE [moodType] (
 )
 GO
 
-CREATE TABLE [flaggedWords] (
+CREATE TABLE [flaggedWord] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [word] varchar(50) NOT NULL
 )

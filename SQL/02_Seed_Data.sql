@@ -1,6 +1,6 @@
 --clear out all old data
 DELETE FROM [post];
-DELETE FROM [flaggedWords];
+DELETE FROM [flaggedWord];
 DELETE FROM [userRelationship];
 DELETE FROM [therapist];
 DELETE FROM [user];
@@ -12,7 +12,7 @@ SET IDENTITY_INSERT [userType] OFF
 SET IDENTITY_INSERT [user] OFF
 SET IDENTITY_INSERT [therapist] OFF
 SET IDENTITY_INSERT [userRelationship] OFF
-SET IDENTITY_INSERT [flaggedWords] OFF
+SET IDENTITY_INSERT [flaggedWord] OFF
 SET IDENTITY_INSERT [post] OFF
 
 --create user types
@@ -74,14 +74,14 @@ INSERT INTO [moodType] ([id], [name], [image]) VALUES
 SET IDENTITY_INSERT [moodType] OFF
 
 --add the red flag words
-SET IDENTITY_INSERT [flaggedWords] ON
-INSERT INTO [flaggedWords] ([id], [word]) VALUES
+SET IDENTITY_INSERT [flaggedWord] ON
+INSERT INTO [flaggedWord] ([id], [word]) VALUES
 (1, '11:11'), (2, '800 mg'), (3, '800mg'), (4, 'acetaminophen'), (5, 'antifreeze'), (6, 'bathtub'), (7, 'bridge'),
 (8, 'cop'), (9, 'cut'), (10, 'die'), (11, 'disappear'), (12, 'electrocution'), (13, 'excedrin'), (14, 'harm'), (15, 'hopeless'),
 (16, 'hurt'), (17, 'ibuprofen'), (18, 'ibuprofens'), (19, 'kill'), (20, 'kill myself'), (21, 'looney'), (22, 'midnight'), (23, 'nightstand'),
 (24, 'vampire'), (25, 'noose'), (26, 'railroad'), (27, 'revolver'), (28, 'slice'), (29, 'suicide'), (30, 'tablets'),
 (31, 'train'), (32, 'vampire'), (33, 'pill'), (34, 'knife');
-SET IDENTITY_INSERT [flaggedWords] OFF
+SET IDENTITY_INSERT [flaggedWord] OFF
 
 --create some therapists
 SET IDENTITY_INSERT [user] ON
