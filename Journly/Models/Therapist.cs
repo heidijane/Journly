@@ -13,6 +13,8 @@ namespace Journly.Models
         [Required]
         public int UserId { get; set; }
 
+        public User User { get; set; }
+
         [Required]
         public bool Verified { get; set; }
 

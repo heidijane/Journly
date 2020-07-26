@@ -13,6 +13,8 @@ namespace Journly.Models
         [Required]
         public int UserId { get; set; }
 
+        public User User { get; set; }
+
         [Required]
         public DateTime CreateDate { get; set; }
 
@@ -28,6 +30,8 @@ namespace Journly.Models
         public bool Flagged { get; set; }
 
         public int TherapistId { get; set; }
+
+        public User Therapist { get; set; }
 
         public DateTime ViewTime { get; set; }
 

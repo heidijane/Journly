@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS [MoodType];
 GO
 
 CREATE TABLE [User] (
-  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Id] int PRIMARY KEY NOT NULL IDENTITY,
   [FirebaseUserId] varchar(50) NOT NULL,
   [FirstName] varchar(50) NOT NULL,
   [LastName] varchar(50) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE [User] (
 GO
 
 CREATE TABLE [Therapist] (
-  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Id] int PRIMARY KEY NOT NULL IDENTITY,
   [UserId] int NOT NULL,
   [Verified] bit NOT NULL,
   [Company] varchar(255) NOT NULL,
@@ -40,13 +40,13 @@ CREATE TABLE [Therapist] (
 GO
 
 CREATE TABLE [UserType] (
-  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Id] int PRIMARY KEY NOT NULL IDENTITY,
   [Name] varchar(50) NOT NULL
 )
 GO
 
 CREATE TABLE [UserRelationship] (
-  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Id] int PRIMARY KEY NOT NULL IDENTITY,
   [TherapistId] int NOT NULL,
   [ClientId] int NOT NULL,
   [StartDate] datetime NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE [UserRelationship] (
 GO
 
 CREATE TABLE [Post] (
-  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Id] int PRIMARY KEY NOT NULL IDENTITY,
   [UserId] int NOT NULL,
   [CreateDate] datetime NOT NULL,
   [MoodId] int NOT NULL,
@@ -70,14 +70,14 @@ CREATE TABLE [Post] (
 GO
 
 CREATE TABLE [MoodType] (
-  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Id] int PRIMARY KEY IDENTITY,
   [Name] varchar(50) NOT NULL,
   [Image] varchar(255) NOT NULL
 )
 GO
 
 CREATE TABLE [FlaggedWord] (
-  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Id] int PRIMARY KEY IDENTITY,
   [Word] varchar(50) NOT NULL
 )
 GO
