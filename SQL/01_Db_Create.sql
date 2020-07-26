@@ -26,7 +26,7 @@ CREATE TABLE [User] (
   [Email] varchar(255) NOT NULL,
   [Avatar] varchar(255),
   [CreateDate] datetime NOT NULL,
-  [UserType] int NOT NULL
+  [UserTypeId] int NOT NULL
 )
 GO
 
@@ -88,7 +88,7 @@ GO
 ALTER TABLE [UserRelationship] ADD FOREIGN KEY ([ClientId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [User] ADD FOREIGN KEY ([UserType]) REFERENCES [UserType] ([Id])
+ALTER TABLE [User] ADD FOREIGN KEY ([UserTypeId]) REFERENCES [UserType] ([Id])
 GO
 
 ALTER TABLE [Therapist] ADD FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
@@ -103,5 +103,5 @@ GO
 ALTER TABLE [Post] ADD FOREIGN KEY ([MoodId]) REFERENCES [MoodType] ([Id])
 GO
 
-ALTER TABLE [User] ADD CONSTRAINT df_userType DEFAULT 0 FOR UserType
+ALTER TABLE [User] ADD CONSTRAINT df_userType DEFAULT 0 FOR UserTypeId
 GO
