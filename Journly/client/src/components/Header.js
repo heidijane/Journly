@@ -13,15 +13,15 @@ import { UserContext } from "../providers/UserProvider";
 
 export default function Header() {
     const { isLoggedIn, logout } = useContext(UserContext);
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
+    const [collapsed, setCollapsed] = useState(true);
+    const toggleNavbar = () => setCollapsed(!collapsed);
 
     return (
         <div>
             <Navbar color="success" dark expand="md">
                 <NavbarBrand tag={RRNavLink} to="/">Journly</NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
+                <NavbarToggler onClick={toggleNavbar} />
+                <Collapse isOpen={!collapsed} navbar>
                     <Nav className="mr-auto" navbar>
                         {isLoggedIn &&
                             <>

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
-import Login from "./Login";
+import Start from "./Start";
 import RegisterClient from "./RegisterClient";
 import RegisterCounselor from "./RegisterCounselor";
 import Dashboard from "./Dashboard";
@@ -13,11 +13,11 @@ export default function ApplicationViews() {
         <main>
             <Switch>
                 <Route path="/" exact>
-                    {isLoggedIn ? <Dashboard /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <Dashboard /> : <Redirect to="/start" />}
                 </Route>
 
-                <Route path="/login">
-                    <Login />
+                <Route path="/start">
+                    <Start />
                 </Route>
 
                 <Route path="/registerclient">
