@@ -20,7 +20,7 @@ export default function ApplicationViews() {
                     <Start />
                 </Route>
 
-                <Route path="/registerclient">
+                <Route path="/registerclient/:code">
                     <RegisterClient />
                 </Route>
 
