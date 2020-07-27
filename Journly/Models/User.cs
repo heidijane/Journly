@@ -35,7 +35,7 @@ namespace Journly.Models
         public string Avatar { get; set; }
 
         [Required]
-        public string CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         [Required]
         public int UserTypeId { get; set; }
