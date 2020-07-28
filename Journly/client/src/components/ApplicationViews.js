@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 import Start from "./Start";
-import RegisterClient from "./RegisterClient";
-import RegisterCounselor from "./RegisterCounselor";
+import RegisterClient from "./auth/RegisterClient";
+import RegisterCounselor from "./auth/RegisterCounselor";
 import Dashboard from "./Dashboard";
 import { TherapistInfoProvider } from "../providers/TherapistInfoProvider";
 

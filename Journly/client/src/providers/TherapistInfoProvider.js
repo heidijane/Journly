@@ -7,7 +7,18 @@ export const TherapistInfoProvider = (props) => {
 
     const apiUrl = '/api/user/therapist/'
 
-    const getTherapist = code => fetch(`${apiUrl}/${code}`).then((res) => res.json()).then(setTherapistInfo);
+    const getTherapist = code => {
+        return fetch(`${apiUrl}/${code}`)
+            .then(response => {
+                console.log(response);
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            })
+            .then(setTherapistInfo)
+    };
 
     return (
         <TherapistInfoContext.Provider value={{

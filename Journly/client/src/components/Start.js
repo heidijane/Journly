@@ -1,6 +1,6 @@
 import React from "react"
 import { useHistory } from "react-router-dom";
-import Login from "./Login";
+import Login from "./auth/Login";
 import { Button, Alert } from "reactstrap";
 
 export default () => {

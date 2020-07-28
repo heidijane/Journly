@@ -51,7 +51,7 @@ namespace Journly.Controllers
             var therapist = _userRepository.GetByCounselorCode(counselorCode);
             if (therapist == null)
             {
-                return NotFound();
+                return NoContent();
             }
             return Ok(therapist);
         }
