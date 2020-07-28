@@ -6,6 +6,8 @@ import DatePicker from "reactstrap-date-picker";
 import Errors from "../Errors";
 import validateEmail from "../../utilities/validateEmail";
 import { TherapistInfoContext } from "../../providers/TherapistInfoProvider";
+import TherapistPreview from "./TherapistPreview";
+import debounce from "../../utilities/debounce";
 
 export default function RegisterClient() {
     const history = useHistory();
@@ -19,7 +21,13 @@ export default function RegisterClient() {
         getTherapist(code).then(setLoading(false));
     }, []);
 
-    console.log(therapistInfo);
+    const updateTherapistPreview = debounce(() => {
+        if (cCode.current.value !== "") {
+            setLoading(true);
+            getTherapist(cCode.current.value)
+                .then(setLoading(false))
+        }
+    }, 800);
 
     const firstName = useRef();
     const lastName = useRef();
@@ -136,35 +144,23 @@ export default function RegisterClient() {
                                 ?
                                 <Spinner color="sucess"></Spinner>
                                 :
-                                (therapistInfo === null
-                                    ?
-                                    <div>No matching therapist found</div>
-                                    :
-                                    <Row className="text-center text-sm-left">
-                                        <Col sm="3" className="align-self-center">
-                                            <img src={therapistInfo.avatar} alt={therapistInfo.nickName + "'s avatar"} className="avatar avatar-large mb-2" />
-                                        </Col>
-                                        <Col sm="auto" className="align-self-center">
-                                            {therapistInfo.nickName !== therapistInfo.firstName
-                                                ?
-                                                <>
-                                                    <h4>{therapistInfo.nickName}</h4>
-                                                    <h5>{therapistInfo.firstName} {therapistInfo.lastName}</h5>
-                                                </>
-                                                :
-                                                <h4>{therapistInfo.firstName} {therapistInfo.lastName}</h4>
-                                            }
-                                            <h5 className="font-italic">{therapistInfo.company}</h5>
-                                        </Col>
-                                    </Row>
-                                )
+                                <TherapistPreview therapistInfo={therapistInfo} />
                         }
                     </Col>
                     <Col lg="6" className="align-self-center">
                         <FormGroup>
                             <hr className="d-lg-none" />
                             <Label for="cCode">Counselor Code</Label>
-                            <Input type="cCode" id="cCode" name="cCode" className="text-uppercase" bsSize="lg" defaultValue={code} innerRef={cCode} />
+                            <Input
+                                type="cCode"
+                                id="cCode"
+                                name="cCode"
+                                className="text-uppercase"
+                                bsSize="lg"
+                                defaultValue={code}
+                                innerRef={cCode}
+                                onChange={updateTherapistPreview}
+                            />
                         </FormGroup>
                     </Col>
                 </Row>

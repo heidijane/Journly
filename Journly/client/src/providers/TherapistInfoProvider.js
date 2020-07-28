@@ -10,7 +10,6 @@ export const TherapistInfoProvider = (props) => {
     const getTherapist = code => {
         return fetch(`${apiUrl}/${code}`)
             .then(response => {
-                console.log(response);
                 if (response.status === 200) {
                     return response.json();
                 } else {
