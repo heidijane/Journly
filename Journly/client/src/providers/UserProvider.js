@@ -35,9 +35,9 @@ export function UserProvider(props) {
             });
     };
 
-    const register = (userData, password) => {
+    const register = (userData, password, therapistId) => {
         return firebase.auth().createUserWithEmailAndPassword(userData.email, password)
-            .then((createResponse) => saveUser({ ...userData, firebaseUserId: createResponse.user.uid }))
+            .then((createResponse) => saveUser({ ...userData, firebaseUserId: createResponse.user.uid }, therapistId))
             .then((savedUserProfile) => {
                 sessionStorage.setItem("userData", JSON.stringify(savedUserProfile))
                 setIsLoggedIn(true);
@@ -56,7 +56,7 @@ export function UserProvider(props) {
             }).then(resp => resp.json()));
     };
 
-    const saveUser = (userData) => {
+    const saveUser = (userData, therapistId) => {
         return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",

@@ -5,6 +5,7 @@ using Journly.Models;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Journly.Repositories
 {
@@ -150,10 +151,21 @@ namespace Journly.Repositories
         }
 
 
-        public void Add(User user)
+        public void AddClient(User user, int therapistId)
         {
             _context.Add(user);
             _context.SaveChanges();
+
+            //create a new user relationship between the user and the therapist
+            UserRelationship userRel = new UserRelationship
+            {
+                TherapistId = therapistId,
+                ClientId = user.Id,
+                StartDate = DateTime.Now
+            };
+            _context.Add(userRel);
+            _context.SaveChanges();
         }
+
     }
 }

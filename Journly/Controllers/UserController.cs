@@ -4,6 +4,7 @@ using Journly.Data;
 using Journly.Models;
 using Journly.Repositories;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Journly.Controllers
 {
@@ -58,9 +59,11 @@ namespace Journly.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(User user, int therapistId)
         {
-            _userRepository.Add(user);
+            user.CreateDate = DateTime.Now;
+            user.UserTypeId = 0;
+            _userRepository.AddClient(user, therapistId);
             return CreatedAtAction(
                 nameof(GetByFirebaseUserId), new { firebaseUserId = user.FirebaseUserId }, user);
         }
