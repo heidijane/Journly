@@ -56,7 +56,7 @@ export function UserProvider(props) {
             }).then(resp => resp.json()));
     };
 
-    const saveUser = (userData, therapistId) => {
+    const saveUser = (user, therapistId) => {
         return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",
@@ -64,7 +64,7 @@ export function UserProvider(props) {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(userData)
+                body: JSON.stringify({ user, therapistId })
             }).then(resp => resp.json()));
     };
 

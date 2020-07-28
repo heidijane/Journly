@@ -59,8 +59,11 @@ namespace Journly.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Register(User user, int therapistId)
+        public IActionResult Register(UserWithTherapistId userData)
         {
+            User user = userData.User;
+            int therapistId = userData.TherapistId;
+
             user.CreateDate = DateTime.Now;
             user.UserTypeId = 0;
             _userRepository.AddClient(user, therapistId);

@@ -21,11 +21,11 @@ export default function RegisterClient() {
     }, []);
 
     const updateTherapistPreview = () => {
-        if (cCode === "") {
+        if (cCode.current.value === "") {
             setTherapistInfo(null);
         } else {
             setLoading(true);
-            getTherapist(cCode)
+            getTherapist(cCode.current.value)
                 .then(setLoading(false))
         }
     };
@@ -41,7 +41,7 @@ export default function RegisterClient() {
     const email = useRef();
     const password1 = useRef();
     const password2 = useRef();
-    const [cCode, setCCode] = useState(code); //counselor/therapist code
+    const cCode = useRef(); //counselor/therapist code
 
     const [errors, setErrors] = useState([]);
 
@@ -116,9 +116,6 @@ export default function RegisterClient() {
             birthday: birthday,
             email: email.current.value
         }
-
-        console.log(userData);
-        console.log(therapistInfo.id);
 
         register(userData, password1.current.value, therapistInfo.id)
             .then(confirmModalToggle)
@@ -211,7 +208,7 @@ export default function RegisterClient() {
                                     bsSize="lg"
                                     defaultValue={code}
                                     innerRef={cCode}
-                                    onChange={(e) => { setCCode(e.target.value); updateTherapistPreview() }}
+                                    onChange={updateTherapistPreview}
                                 />
                                 <FormText>
                                     This code helps confirm that your account is associated with the correct therapist.
@@ -225,41 +222,41 @@ export default function RegisterClient() {
                     </FormGroup>
                 </Form>
             </div>
-            <Modal isOpen={confirmModal} toggle={confirmModalToggle}>
-                <ModalHeader toggle={confirmModalToggle}>
-                    Confirm Permissions
+            {
+                loading
+                    ?
+                    <Spinner color="sucess"></Spinner>
+                    :
+                    <Modal isOpen={confirmModal} toggle={confirmModalToggle}>
+                        <ModalHeader toggle={confirmModalToggle}>
+                            Confirm Permissions
                 </ModalHeader>
-                {
-                    loading
-                        ?
-                        <Spinner color="sucess"></Spinner>
-                        :
-                        <>
-                            <ModalBody>
-                                <TherapistPreview therapistInfo={therapistInfo} code={cCode} />
-                                <hr />
-                                Please confirm that {therapistInfo.firstName} {therapistInfo.lastName} is your counselor or therapist
+
+                        <ModalBody>
+                            <TherapistPreview therapistInfo={therapistInfo} code={cCode} />
+                            <hr />
+                                Please confirm that {therapistInfo?.firstName} {therapistInfo?.lastName} is your counselor or therapist
                             and that you give them permission to view all your journal entries, mood check-ins, and other Journly content.
                             </ModalBody>
-                            <ModalFooter>
-                                <Form onSubmit={registerUser}>
-                                    <FormGroup>
-                                        <Button
-                                            type="button"
-                                            color="secondary"
-                                            onClick={confirmModalToggle}
-                                        >Cancel</Button>
-                                        <Button
-                                            type="submit"
-                                            color="primary"
-                                            className="ml-2"
-                                        >Confirm</Button>
-                                    </FormGroup>
-                                </Form>
-                            </ModalFooter>
-                        </>
-                }
-            </Modal>
+                        <ModalFooter>
+                            <Form onSubmit={registerUser}>
+                                <FormGroup>
+                                    <Button
+                                        type="button"
+                                        color="secondary"
+                                        onClick={confirmModalToggle}
+                                    >Cancel</Button>
+                                    <Button
+                                        type="submit"
+                                        color="primary"
+                                        className="ml-2"
+                                    >Confirm</Button>
+                                </FormGroup>
+                            </Form>
+                        </ModalFooter>
+
+                    </Modal>
+            }
         </>
     );
 }
