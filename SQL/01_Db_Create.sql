@@ -105,3 +105,6 @@ GO
 
 ALTER TABLE [User] ADD CONSTRAINT df_userType DEFAULT 0 FOR UserTypeId
 GO
+
+ALTER TABLE [Therapist] ADD UNIQUE (Code);
+GO

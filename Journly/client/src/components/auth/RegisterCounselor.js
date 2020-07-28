@@ -63,17 +63,20 @@ export default function RegisterClient() {
             errorTrigger = true;
         }
 
-        const userData = {
-            firstName: firstName.current.value,
-            lastName: lastName.current.value,
-            nickName: (nickName.current.value === "" ? firstName.current.value : nickName.current.value),
-            birthday: birthday,
-            email: email.current.value
+        if (!errorTrigger) {
+            const userData = {
+                firstName: firstName.current.value,
+                lastName: lastName.current.value,
+                nickName: (nickName.current.value === "" ? firstName.current.value : nickName.current.value),
+                birthday: birthday,
+                email: email.current.value
+            }
+            // register(userData, password1.current.value)
+            //     .then(confirmModalToggle)
+            //     .then(() => history.push("/"));
         }
 
-        // register(userData, password1.current.value)
-        //     .then(confirmModalToggle)
-        //     .then(() => history.push("/"));
+
 
     }
 
@@ -140,7 +143,7 @@ export default function RegisterClient() {
                     </Col>
                 </Row>
 
-                <FormGroup className="text-right mt-4">
+                <FormGroup className="text-right">
                     <Button type="submit" color="primary">Create Account</Button>
                 </FormGroup>
             </Form>
