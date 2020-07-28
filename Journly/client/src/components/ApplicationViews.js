@@ -5,6 +5,7 @@ import Start from "./Start";
 import RegisterClient from "./RegisterClient";
 import RegisterCounselor from "./RegisterCounselor";
 import Dashboard from "./Dashboard";
+import { TherapistInfoProvider } from "../providers/TherapistInfoProvider";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserContext);
@@ -12,7 +13,7 @@ export default function ApplicationViews() {
     return (
         <main>
             <Switch>
-                <Route path="/" exact>
+                <Route exact path="/">
                     {isLoggedIn ? <Dashboard /> : <Redirect to="/start" />}
                 </Route>
 
@@ -20,8 +21,16 @@ export default function ApplicationViews() {
                     <Start />
                 </Route>
 
+                <Route exact path="/registerclient">
+                    <TherapistInfoProvider>
+                        <RegisterClient />
+                    </TherapistInfoProvider>
+                </Route>
+
                 <Route path="/registerclient/:code">
-                    <RegisterClient />
+                    <TherapistInfoProvider>
+                        <RegisterClient />
+                    </TherapistInfoProvider>
                 </Route>
 
                 <Route path="/registercounselor">

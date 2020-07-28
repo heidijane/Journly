@@ -1,16 +1,25 @@
-import React, { useState, useContext, useRef } from "react";
-import { Button, Form, FormGroup, Label, Input, Row, Col, FormText } from 'reactstrap';
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { Button, Form, FormGroup, Label, Input, Row, Col, FormText, Spinner } from 'reactstrap';
 import { useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 import DatePicker from "reactstrap-date-picker";
 import Errors from "./Errors";
 import validateEmail from "../utilities/validateEmail";
+import { TherapistInfoContext } from "../providers/TherapistInfoProvider";
 
 export default function RegisterClient() {
     const history = useHistory();
     const { register } = useContext(UserContext);
+    const { therapistInfo, getTherapist } = useContext(TherapistInfoContext);
+    const [loading, setLoading] = useState(true);
 
     const { code } = useParams();
+
+    useEffect(() => {
+        getTherapist(code).then(setLoading(false));
+    }, []);
+
+    console.log(therapistInfo);
 
     const firstName = useRef();
     const lastName = useRef();
@@ -120,12 +129,30 @@ export default function RegisterClient() {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row className="bg-light text-dark border pt-2 mt-2 mx-0">
-                    <Col></Col>
-                    <Col>
+                <Row className="bg-light text-dark border rounded pt-2 mt-2 mx-0">
+                    <Col lg="6">
+                        {
+                            loading
+                                ?
+                                <Spinner color="sucess"></Spinner>
+                                :
+                                <Row className="text-center text-sm-left">
+                                    <Col sm="2" className="m-4 align-self-center">
+                                        <img src={therapistInfo.avatar} alt={therapistInfo.nickName + "'s avatar"} className="avatar avatar-large" />
+                                    </Col>
+                                    <Col sm="auto" className="align-self-center">
+                                        {therapistInfo.nickName !== therapistInfo.firstName ? <h4>{therapistInfo.nickName}</h4> : ""}
+                                        <h5>{therapistInfo.firstName} {therapistInfo.lastName}</h5>
+                                        <h5 className="font-italic">{therapistInfo.company}</h5>
+                                    </Col>
+                                </Row>
+                        }
+                    </Col>
+                    <Col lg="6" className="align-self-center">
                         <FormGroup>
+                            <hr className="d-lg-none" />
                             <Label for="cCode">Counselor Code</Label>
-                            <Input type="cCode" id="cCode" name="cCode" className="text-uppercase" defaultValue={code} innerRef={cCode} />
+                            <Input type="cCode" id="cCode" name="cCode" className="text-uppercase" bsSize="lg" defaultValue={code} innerRef={cCode} />
                         </FormGroup>
                     </Col>
                 </Row>
