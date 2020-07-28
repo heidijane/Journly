@@ -12,7 +12,7 @@ import debounce from "../../utilities/debounce";
 export default function RegisterClient() {
     const history = useHistory();
     const { register } = useContext(UserContext);
-    const { therapistInfo, getTherapist } = useContext(TherapistInfoContext);
+    const { therapistInfo, setTherapistInfo, getTherapist } = useContext(TherapistInfoContext);
     const [loading, setLoading] = useState(true);
 
     const { code } = useParams();
@@ -21,13 +21,15 @@ export default function RegisterClient() {
         getTherapist(code).then(setLoading(false));
     }, []);
 
-    const updateTherapistPreview = debounce(() => {
-        if (cCode.current.value !== "") {
+    const updateTherapistPreview = () => {
+        if (cCode.current.value === "") {
+            setTherapistInfo(null);
+        } else {
             setLoading(true);
             getTherapist(cCode.current.value)
                 .then(setLoading(false))
         }
-    }, 800);
+    };
 
     const firstName = useRef();
     const lastName = useRef();
@@ -74,6 +76,10 @@ export default function RegisterClient() {
         }
         if (cCode.current.value === "") {
             const error = "The Counselor Code field is required.";
+            setErrors(errors => [...errors, error]);
+        }
+        if (therapistInfo === null) {
+            const error = "Please enter a valid Counselor Code. If you do not know your therapist's code, please contact them.";
             setErrors(errors => [...errors, error]);
         }
 
@@ -144,7 +150,7 @@ export default function RegisterClient() {
                                 ?
                                 <Spinner color="sucess"></Spinner>
                                 :
-                                <TherapistPreview therapistInfo={therapistInfo} />
+                                <TherapistPreview therapistInfo={therapistInfo} code={cCode.current.value} />
                         }
                     </Col>
                     <Col lg="6" className="align-self-center">

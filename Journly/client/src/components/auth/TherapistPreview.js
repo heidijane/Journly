@@ -1,10 +1,11 @@
 import React from "react";
 import { Row, Col } from 'reactstrap';
 
-export default ({ therapistInfo }) => {
-
-    if (therapistInfo === null) {
-        return <div>No matching therapist found</div>
+export default ({ therapistInfo, code }) => {
+    if (code === "") {
+        return <div className="h-100 d-flex align-items-center">Please type in a counselor code.</div>
+    } else if (therapistInfo === null) {
+        return <div className="h-100 d-flex align-items-center">No matching therapist found</div>
     } else {
         return (
             <Row className="text-center text-sm-left">

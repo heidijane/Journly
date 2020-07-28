@@ -21,7 +21,7 @@ export const TherapistInfoProvider = (props) => {
 
     return (
         <TherapistInfoContext.Provider value={{
-            therapistInfo, getTherapist
+            therapistInfo, setTherapistInfo, getTherapist
         }}>
             {props.children}
         </TherapistInfoContext.Provider>
