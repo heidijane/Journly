@@ -6,6 +6,8 @@ import RegisterClient from "./auth/RegisterClient";
 import RegisterCounselor from "./auth/RegisterCounselor";
 import Dashboard from "./Dashboard";
 import { TherapistInfoProvider } from "../providers/TherapistInfoProvider";
+import MyEntries from "./posts/MyEntries";
+import NewEntry from "./posts/NewEntry";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserContext);
@@ -35,6 +37,14 @@ export default function ApplicationViews() {
 
                 <Route path="/registercounselor">
                     <RegisterCounselor />
+                </Route>
+
+                <Route path="/myentries">
+                    <MyEntries />
+                </Route>
+
+                <Route path="/newentry">
+                    <NewEntry />
                 </Route>
 
             </Switch>

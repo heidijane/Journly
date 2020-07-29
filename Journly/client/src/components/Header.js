@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { NavLink as RRNavLink } from "react-router-dom";
+import { NavLink as RRNavLink, Link } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -11,7 +11,8 @@ import {
     Dropdown,
     DropdownToggle,
     DropdownItem,
-    DropdownMenu
+    DropdownMenu,
+    Button
 } from 'reactstrap';
 import { UserContext } from "../providers/UserProvider";
 
@@ -51,6 +52,8 @@ export default function Header() {
                                             <DropdownItem header>Account Settings</DropdownItem>
                                             <DropdownItem>Change Avatar</DropdownItem>
                                             <DropdownItem>Permissions</DropdownItem>
+                                            <DropdownItem divider />
+                                            <DropdownItem onClick={logout}>Logout</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
                                 </NavItem>
@@ -58,8 +61,12 @@ export default function Header() {
                                     <NavLink tag={RRNavLink} to="/">Home</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <a aria-current="page" className="nav-link"
-                                        style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
+                                    <NavLink tag={RRNavLink} to="/myentries">My Journal</NavLink>
+                                </NavItem>
+                                <NavItem className="d-flex align-items-center ml-1">
+                                    <Link to="/newentry">
+                                        <Button color="info" size="sm">New Entry</Button>
+                                    </Link>
                                 </NavItem>
                             </>
                         }

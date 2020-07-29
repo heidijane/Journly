@@ -16,7 +16,9 @@ export default function Dashboard() {
         return (
             <div className="container mt-4">
                 <WelcomeMessage nickname={currentUser.nickName} className="mb-4" />
-                <ClientPostList />
+                <h3>My Recent Entries</h3>
+                <hr />
+                <ClientPostList limit="3" start="0" />
             </div>
         );
     }

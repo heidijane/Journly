@@ -3,12 +3,12 @@ import { PostContext } from "../../providers/PostProvider";
 import { Spinner } from "reactstrap";
 import PostList from "./PostList";
 
-export default function ClientPostList() {
+export default function ClientPostList({ limit = 0, start = 0 }) {
     const { posts, getCurrentUserPosts } = useContext(PostContext);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getCurrentUserPosts(3).then(setLoading(false));
+        getCurrentUserPosts(limit, start).then(setLoading(false));
     }, []);
 
     if (loading) {
@@ -17,11 +17,7 @@ export default function ClientPostList() {
         );
     } else {
         return (
-            <>
-                <h2>My Recent Entries</h2>
-                <hr />
-                <PostList posts={posts} />
-            </>
+            <PostList posts={posts} />
         );
     }
 

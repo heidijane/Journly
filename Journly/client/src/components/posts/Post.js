@@ -19,7 +19,7 @@ export default function Post({ post }) {
                 {
                     post.content
                         ?
-                        <div className="content">{truncate(post.content, (post.viewTime ? 300 : 400))}</div>
+                        <div className="content">{truncate(post.content, 400)}</div>
                         :
                         <img src={"/emoji/" + post.mood.image + ".svg"} alt={post.mood.name} className="mood-large" />
                 }
