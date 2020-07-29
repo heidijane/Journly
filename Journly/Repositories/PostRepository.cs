@@ -31,6 +31,7 @@ namespace Journly.Repositories
         {
             return _context.Post
                 .Include(p => p.User)
+                .Include(p => p.Mood)
                 .Where(p => p.UserId == id)
                 .OrderByDescending(p => p.CreateDate)
                 .ToList();

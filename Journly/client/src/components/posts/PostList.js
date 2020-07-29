@@ -7,7 +7,7 @@ export default function PostList({ posts }) {
     return (
         <div className="PostList">
             {
-                posts.map(post => <Post post={post} />)
+                posts.map(post => <Post post={post} key={"post-" + post.id} />)
             }
             <Card className="invisible"></Card>
             <Card className="invisible"></Card>
