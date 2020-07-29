@@ -25,11 +25,11 @@ namespace Journly.Models
 
         public string Content { get; set; }
 
-        public DateTime EditTime { get; set; }
+        public DateTime? EditTime { get; set; }
 
         public bool Flagged { get; set; }
 
-        public int TherapistId { get; set; }
+        public int? TherapistId { get; set; }
 
         public User Therapist { get; set; }
 
