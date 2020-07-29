@@ -1,0 +1,33 @@
+.moodWrapper {
+    margin: 0 -20px 0 -20px;
+    padding: 0;
+}
+
+.mood {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: -40px;
+    left: 40%;
+}
+
+.mood-large {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card {
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.card-body {
+    overflow: hidden;
+}
+
+.content {}
+
+.checkmark {
+    width: 30px;
+}

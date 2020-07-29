@@ -15,7 +15,7 @@ export default function Dashboard() {
     } else {
         return (
             <div className="container mt-4">
-                <WelcomeMessage nickname={currentUser.nickName} />
+                <WelcomeMessage nickname={currentUser.nickName} className="mb-4" />
                 <ClientPostList />
             </div>
         );

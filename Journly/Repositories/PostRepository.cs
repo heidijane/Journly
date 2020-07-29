@@ -30,7 +30,7 @@ namespace Journly.Repositories
         public List<Post> GetPostsByUserId(int id)
         {
             return _context.Post
-                .Include(p => p.User)
+                .Include(p => p.Therapist)
                 .Include(p => p.Mood)
                 .Where(p => p.UserId == id)
                 .OrderByDescending(p => p.CreateDate)
