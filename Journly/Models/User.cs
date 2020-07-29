@@ -43,5 +43,7 @@ namespace Journly.Models
         public UserType UserType { get; set; }
 
         public Therapist TherapistInfo { get; set; }
+
+        public UserRelationship UserRelationship { get; set; }
     }
 }

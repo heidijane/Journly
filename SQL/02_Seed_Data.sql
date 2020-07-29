@@ -129,26 +129,26 @@ SET IDENTITY_INSERT [Therapist] OFF
 
 --create the client/therapist relationships
 SET IDENTITY_INSERT [UserRelationship] ON
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (1, 1, 6, '2020-05-21T12:59:44Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (2, 2, 7, '2020-05-01T10:45:03Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (3, 3, 8, '2020-05-20T06:09:33Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (4, 4, 9, '2020-05-26T09:33:10Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (5, 5, 10, '2020-05-11T09:20:11Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (6, 1, 11, '2020-05-22T17:56:46Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (7, 2, 12, '2020-05-22T21:59:28Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (8, 3, 13, '2020-05-07T08:46:03Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (9, 4, 14, '2020-05-13T22:15:40Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (10, 5, 15, '2020-05-15T00:54:10Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (11, 1, 16, '2020-05-23T04:36:27Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (12, 2, 17, '2020-05-24T15:06:43Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (13, 3, 18, '2020-05-27T21:03:59Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (14, 4, 19, '2020-05-12T16:06:09Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (15, 5, 20, '2020-05-07T12:58:42Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (16, 1, 21, '2020-05-09T10:55:27Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (17, 2, 22, '2020-05-20T11:57:14Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (18, 3, 23, '2020-05-02T15:33:00Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (19, 4, 24, '2020-05-01T14:24:05Z', null);
-insert into userRelationship (Id, TherapistId, ClientId, StartDate, EndDate) values (20, 5, 25, '2020-05-25T03:48:53Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (1, 1, 6, '2020-05-21T12:59:44Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (2, 2, 7, '2020-05-01T10:45:03Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (3, 3, 8, '2020-05-20T06:09:33Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (4, 4, 9, '2020-05-26T09:33:10Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (5, 5, 10, '2020-05-11T09:20:11Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (6, 1, 11, '2020-05-22T17:56:46Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (7, 2, 12, '2020-05-22T21:59:28Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (8, 3, 13, '2020-05-07T08:46:03Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (9, 4, 14, '2020-05-13T22:15:40Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (10, 5, 15, '2020-05-15T00:54:10Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (11, 1, 16, '2020-05-23T04:36:27Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (12, 2, 17, '2020-05-24T15:06:43Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (13, 3, 18, '2020-05-27T21:03:59Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (14, 4, 19, '2020-05-12T16:06:09Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (15, 5, 20, '2020-05-07T12:58:42Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (16, 1, 21, '2020-05-09T10:55:27Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (17, 2, 22, '2020-05-20T11:57:14Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (18, 3, 23, '2020-05-02T15:33:00Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (19, 4, 24, '2020-05-01T14:24:05Z', null);
+insert into userRelationship (Id, TherapistId, UserId, StartDate, EndDate) values (20, 5, 25, '2020-05-25T03:48:53Z', null);
 SET IDENTITY_INSERT [UserRelationship] OFF
 
 --create some posts and therapist comments

@@ -114,10 +114,12 @@ export default function RegisterClient() {
             lastName: lastName.current.value,
             nickName: (nickName.current.value === "" ? firstName.current.value : nickName.current.value),
             birthday: birthday,
-            email: email.current.value
+            email: email.current.value,
+            userTypeId: 0,
+            userRelationship: { therapistId: therapistInfo.id }
         }
 
-        register(userData, password1.current.value, therapistInfo.id)
+        register(userData, password1.current.value)
             .then(confirmModalToggle)
             .then(() => history.push("/"));
     }

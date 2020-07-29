@@ -14,6 +14,15 @@ namespace Journly.Data
         public DbSet<UserRelationship> UserRelationship { get; set; }
         public DbSet<UserType> UserType { get; set; }
 
+        //manually establishes the foreign key between User and UserRelationship
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasOne(a => a.UserRelationship)
+                .WithOne(b => b.User)
+                .HasForeignKey<UserRelationship>(b => b.UserId);
+        }
+
     }
 }
 

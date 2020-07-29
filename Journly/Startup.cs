@@ -50,15 +50,20 @@ namespace Journly
                 });
 
             services.AddControllers();
+
+            //this allows the sending of nested JSON objects, before installing this package
+            //CreatedAtAction would return a 500 error even though the POST worked properly
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+            app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 

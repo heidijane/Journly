@@ -35,13 +35,25 @@ export function UserProvider(props) {
             });
     };
 
-    const register = (userData, password, therapistId) => {
-        return firebase.auth().createUserWithEmailAndPassword(userData.email, password)
-            .then((createResponse) => saveUser({ ...userData, firebaseUserId: createResponse.user.uid }, therapistId))
+    const register = (userProfile, password) => {
+        return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
+            .then((createResponse) => saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid }))
             .then((savedUserProfile) => {
-                sessionStorage.setItem("userData", JSON.stringify(savedUserProfile))
+                sessionStorage.setItem("userProfile", JSON.stringify(savedUserProfile))
                 setIsLoggedIn(true);
             });
+    };
+
+    const saveUser = (userProfile) => {
+        return getToken().then((token) =>
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userProfile)
+            }).then(resp => resp.json()));
     };
 
     const getToken = () => firebase.auth().currentUser.getIdToken();
@@ -53,18 +65,6 @@ export function UserProvider(props) {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then(resp => resp.json()));
-    };
-
-    const saveUser = (user, therapistId) => {
-        return getToken().then((token) =>
-            fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ user, therapistId })
             }).then(resp => resp.json()));
     };
 

@@ -22,8 +22,6 @@ namespace Journly.Models
         [MaxLength(255)]
         public string Company { get; set; }
 
-        [Required]
-        [MaxLength(50)]
         public string Code { get; set; }
     }
 }

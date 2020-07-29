@@ -59,14 +59,24 @@ namespace Journly.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Register(UserWithTherapistId userData)
+        public IActionResult Register(User user)
         {
-            User user = userData.User;
-            int therapistId = userData.TherapistId;
-
             user.CreateDate = DateTime.Now;
-            user.UserTypeId = 0;
-            _userRepository.AddClient(user, therapistId);
+
+            if (user.UserTypeId == 1)
+            {
+                //register user as a therapist
+                user.TherapistInfo.Verified = true;
+                user.TherapistInfo.Code = RandomString.Generate();
+            } else
+            {
+                //register user as a client
+                user.UserRelationship.StartDate = DateTime.Now;
+                user.UserRelationship.EndDate = null;                
+            }
+
+            _userRepository.Add(user);
+
             return CreatedAtAction(
                 nameof(GetByFirebaseUserId), new { firebaseUserId = user.FirebaseUserId }, user);
         }

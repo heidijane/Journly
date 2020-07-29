@@ -48,7 +48,7 @@ GO
 CREATE TABLE [UserRelationship] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY,
   [TherapistId] int NOT NULL,
-  [ClientId] int NOT NULL,
+  [UserId] int NOT NULL,
   [StartDate] datetime NOT NULL,
   [EndDate] datetime NULL
 )
@@ -85,7 +85,7 @@ GO
 ALTER TABLE [UserRelationship] ADD FOREIGN KEY ([TherapistId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [UserRelationship] ADD FOREIGN KEY ([ClientId]) REFERENCES [User] ([Id])
+ALTER TABLE [UserRelationship] ADD FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
 GO
 
 ALTER TABLE [User] ADD FOREIGN KEY ([UserTypeId]) REFERENCES [UserType] ([Id])

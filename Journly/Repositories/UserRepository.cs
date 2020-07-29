@@ -150,20 +150,9 @@ namespace Journly.Repositories
             }
         }
 
-
-        public void AddClient(User user, int therapistId)
+        public void Add(User user)
         {
             _context.Add(user);
-            _context.SaveChanges();
-            //create a new user relationship between the user and the therapist
-            UserRelationship userRel = new UserRelationship
-            {
-                TherapistId = therapistId,
-                ClientId = user.Id,
-                StartDate = DateTime.Now,
-                EndDate = null
-            };
-            _context.Add(userRel);
             _context.SaveChanges();
         }
 

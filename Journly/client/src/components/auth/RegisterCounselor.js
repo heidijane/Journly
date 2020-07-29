@@ -43,6 +43,11 @@ export default function RegisterClient() {
             setErrors(errors => [...errors, error]);
             errorTrigger = true;
         }
+        if (company.current.value === "") {
+            const error = "Please input your school, company, or organization.";
+            setErrors(errors => [...errors, error]);
+            errorTrigger = true;
+        }
         if (email.current.value === "") {
             const error = "Please enter your e-mail address.";
             setErrors(errors => [...errors, error]);
@@ -69,15 +74,14 @@ export default function RegisterClient() {
                 lastName: lastName.current.value,
                 nickName: (nickName.current.value === "" ? firstName.current.value : nickName.current.value),
                 birthday: birthday,
-                email: email.current.value
+                email: email.current.value,
+                userTypeId: 1,
+                therapistInfo: { company: company.current.value }
             }
-            // register(userData, password1.current.value)
-            //     .then(confirmModalToggle)
-            //     .then(() => history.push("/"));
+
+            register(userData, password1.current.value)
+                .then(() => history.push("/"));
         }
-
-
-
     }
 
     return (
