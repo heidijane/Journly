@@ -1,0 +1,10 @@
+.PostList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.PostList .card {
+    flex-basis: 300px;
+    flex-grow: 1;
+}

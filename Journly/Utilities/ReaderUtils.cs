@@ -29,7 +29,7 @@ namespace Journly
             return reader.GetInt32(ordinal);
         }
 
-        public static DateTime GetNullableDateTime(SqlDataReader reader, string columnName)
+        public static DateTime? GetNullableDateTime(SqlDataReader reader, string columnName)
         {
             int ordinal = reader.GetOrdinal(columnName);
 

@@ -1,5 +1,6 @@
 import React from "react";
 import WelcomeMessage from "./WelcomeMessage";
+import ClientPostList from "./posts/ClientPostList";
 
 export default function Dashboard() {
 
@@ -15,6 +16,7 @@ export default function Dashboard() {
         return (
             <div className="container mt-4">
                 <WelcomeMessage nickname={currentUser.nickName} />
+                <ClientPostList />
             </div>
         );
     }

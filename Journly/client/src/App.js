@@ -4,13 +4,16 @@ import './App.css';
 import { UserProvider } from "./providers/UserProvider";
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
+import { PostProvider } from './providers/PostProvider';
 
 function App() {
   return (
     <Router>
       <UserProvider>
-        <Header />
-        <ApplicationViews />
+        <PostProvider>
+          <Header />
+          <ApplicationViews />
+        </PostProvider>
       </UserProvider>
     </Router>
   );

@@ -33,7 +33,7 @@ namespace Journly.Models
 
         public User Therapist { get; set; }
 
-        public DateTime ViewTime { get; set; }
+        public DateTime? ViewTime { get; set; }
 
         public string Comment { get; set; }
 
