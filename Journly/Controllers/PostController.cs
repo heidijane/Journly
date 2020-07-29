@@ -24,14 +24,14 @@ namespace Journly.Controllers
 
         [Authorize]
         [HttpGet("current")]
-        public IActionResult GetCurrentUserPosts()
+        public IActionResult GetCurrentUserPosts(int limit, int start)
         {
             User currentUser = GetCurrentUserProfile();
             if (currentUser == null)
             {
                 return Unauthorized();
             }
-            List <Post> posts = _postRepository.GetPostsByUserId(currentUser.Id);
+            List <Post> posts = _postRepository.GetPostsByUserId(currentUser.Id, limit, start);
             return Ok(posts);
         }
 

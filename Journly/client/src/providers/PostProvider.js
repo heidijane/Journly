@@ -9,9 +9,9 @@ export const PostProvider = (props) => {
 
     const apiUrl = '/api/post'
 
-    const getCurrentUserPosts = () => {
+    const getCurrentUserPosts = (limit = 6, start = 0) => {
         return getToken().then((token) =>
-            fetch(`${apiUrl}/current`, {
+            fetch(`${apiUrl}/current?limit=${limit}&start=${start}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`

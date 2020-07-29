@@ -1,7 +1,6 @@
 import React from "react";
 import Post from "./Post";
 import "./PostList.css";
-import { Card } from "reactstrap";
 
 export default function PostList({ posts }) {
     return (

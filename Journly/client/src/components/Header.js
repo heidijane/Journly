@@ -43,7 +43,7 @@ export default function Header() {
                                                     ?
                                                     <img src={currentUser.avatar} alt="my avatar" className="avatar avatar-small mr-1" />
                                                     :
-                                                    <img className="avatar avatar-small mr-1"></img>
+                                                    <img className="avatar avatar-small mr-1" alt="my avatar"></img>
                                             }
 
                                         </DropdownToggle>

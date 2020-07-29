@@ -5,7 +5,7 @@ import "./Post.css";
 import { truncate } from "../../utilities/truncate";
 
 export default function Post({ post }) {
-    console.log(post)
+
     return (
         <Card color="light">
             {
@@ -13,7 +13,7 @@ export default function Post({ post }) {
                 <div className="moodWrapper"><img src={"/emoji/" + post.mood.image + ".svg"} alt={post.mood.name} className="mood" /></div>
             }
             <ModalHeader className="d-flex justify-content-center">
-                <h5 className="mb-0">{moment(post.createDate).format('MMMM Do YYYY, h:mm a')}</h5>
+                <span className="mb-0">{moment(post.createDate).format('MMMM Do YYYY, h:mm a')}</span>
             </ModalHeader>
             <CardBody>
                 {

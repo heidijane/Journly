@@ -8,7 +8,7 @@ export default function ClientPostList() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getCurrentUserPosts().then(setLoading(false));
+        getCurrentUserPosts(3).then(setLoading(false));
     }, []);
 
     if (loading) {
@@ -17,7 +17,11 @@ export default function ClientPostList() {
         );
     } else {
         return (
-            <PostList posts={posts} />
+            <>
+                <h2>My Recent Entries</h2>
+                <hr />
+                <PostList posts={posts} />
+            </>
         );
     }
 

@@ -27,15 +27,17 @@ namespace Journly.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
-        public List<Post> GetPostsByUserId(int id)
+        public List<Post> GetPostsByUserId(int id, int limit, int start)
         {
-            return _context.Post
-                .Include(p => p.Therapist)
-                .Include(p => p.Mood)
-                .Where(p => p.UserId == id)
-                .OrderByDescending(p => p.CreateDate)
-                .ToList();
-            
+            var query = _context.Post
+                        .Include(p => p.Therapist)
+                        .Include(p => p.Mood)
+                        .Where(p => p.UserId == id)
+                        .OrderByDescending(p => p.CreateDate)
+                        .Skip(start);
+            return limit > 0
+                ? query.Take(limit).ToList()
+                : query.ToList();
         }
 
         public List<Post> GetPostsByTherapistId(int id)
