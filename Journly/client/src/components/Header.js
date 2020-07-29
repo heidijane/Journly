@@ -25,6 +25,7 @@ export default function Header() {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
+
     return (
         <div>
             <Navbar color="success" dark expand="md">
@@ -37,7 +38,14 @@ export default function Header() {
                                 <NavItem>
                                     <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
                                         <DropdownToggle caret className="btn btn-success">
-                                            <img src={currentUser.avatar} alt="my avatar" className="avatar avatar-small mr-1" />
+                                            {
+                                                currentUser.avatar
+                                                    ?
+                                                    <img src={currentUser.avatar} alt="my avatar" className="avatar avatar-small mr-1" />
+                                                    :
+                                                    <img className="avatar avatar-small mr-1"></img>
+                                            }
+
                                         </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem header>Account Settings</DropdownItem>

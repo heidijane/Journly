@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Row, Col, Spinner } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
 import DatePicker from "reactstrap-date-picker";
@@ -9,6 +9,8 @@ import validateEmail from "../../utilities/validateEmail";
 export default function RegisterClient() {
     const history = useHistory();
     const { register } = useContext(UserContext);
+
+    const [buttonText, setButtonText] = useState("Create Account");
 
     const firstName = useRef();
     const lastName = useRef();
@@ -69,6 +71,8 @@ export default function RegisterClient() {
         }
 
         if (!errorTrigger) {
+            setButtonText(<Spinner size="sm" />);
+
             const userData = {
                 firstName: firstName.current.value,
                 lastName: lastName.current.value,
@@ -148,7 +152,7 @@ export default function RegisterClient() {
                 </Row>
 
                 <FormGroup className="text-right">
-                    <Button type="submit" color="primary">Create Account</Button>
+                    <Button type="submit" color="primary">{buttonText}</Button>
                 </FormGroup>
             </Form>
         </div>

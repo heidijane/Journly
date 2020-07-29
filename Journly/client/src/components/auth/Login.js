@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
 
@@ -10,8 +10,11 @@ export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
+    const [buttonText, setButtonText] = useState("Sign In");
+
     const loginSubmit = (e) => {
         e.preventDefault();
+        setButtonText(<Spinner size="sm" />);
         login(email, password)
             .then(() => history.push("/"))
             .catch(() => alert("Invalid email or password"));
@@ -28,7 +31,7 @@ export default function Login() {
                 <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
             </FormGroup>
             <FormGroup>
-                <Button color="primary" block>Sign In</Button>
+                <Button color="primary" block>{buttonText}</Button>
             </FormGroup>
         </Form>
     );

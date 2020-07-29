@@ -14,6 +14,8 @@ export default function RegisterClient() {
     const { therapistInfo, setTherapistInfo, getTherapist } = useContext(TherapistInfoContext);
     const [loading, setLoading] = useState(true);
 
+    const [buttonText, setButtonText] = useState("Confirm");
+
     const { code } = useParams();
 
     useEffect(() => {
@@ -108,6 +110,7 @@ export default function RegisterClient() {
     const registerUser = (e) => {
         e.preventDefault(); //keep the form from refreshing the page
         setErrors([]); //clear out any old errors
+        setButtonText(<Spinner size="sm" />);
 
         const userData = {
             firstName: firstName.current.value,
@@ -252,7 +255,7 @@ export default function RegisterClient() {
                                         type="submit"
                                         color="primary"
                                         className="ml-2"
-                                    >Confirm</Button>
+                                    >{buttonText}</Button>
                                 </FormGroup>
                             </Form>
                         </ModalFooter>

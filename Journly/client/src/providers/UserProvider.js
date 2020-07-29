@@ -24,6 +24,7 @@ export function UserProvider(props) {
             .then((userData) => {
                 sessionStorage.setItem("userData", JSON.stringify(userData));
                 setIsLoggedIn(true);
+                console.log(userData);
             });
     };
 
@@ -39,7 +40,7 @@ export function UserProvider(props) {
         return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
             .then((createResponse) => saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid }))
             .then((savedUserProfile) => {
-                sessionStorage.setItem("userProfile", JSON.stringify(savedUserProfile))
+                sessionStorage.setItem("userData", JSON.stringify(savedUserProfile))
                 setIsLoggedIn(true);
             });
     };
