@@ -16,6 +16,12 @@ code {
   background-color: white;
 }
 
+.avatar.avatar-small {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
 .avatar.avatar-large {
   width: 100px;
   height: 100px;

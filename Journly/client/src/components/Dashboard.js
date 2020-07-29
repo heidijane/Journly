@@ -1,8 +1,22 @@
 import React from "react";
+import WelcomeMessage from "./WelcomeMessage";
 
 export default function Dashboard() {
 
-    return (
-        <div>Welcome to the dashboard!</div>
-    );
+    const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
+
+    if (currentUser.userTypeId === 1) {
+        return (
+            <div className="container mt-4">
+                <WelcomeMessage nickname={currentUser.nickName} />
+            </div>
+        );
+    } else {
+        return (
+            <div className="container mt-4">
+                <WelcomeMessage nickname={currentUser.nickName} />
+            </div>
+        );
+    }
+
 }

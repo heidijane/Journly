@@ -5,6 +5,7 @@ using Journly.Models;
 using Journly.Repositories;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Security.Claims;
 
 namespace Journly.Controllers
 {
@@ -80,5 +81,6 @@ namespace Journly.Controllers
             return CreatedAtAction(
                 nameof(GetByFirebaseUserId), new { firebaseUserId = user.FirebaseUserId }, user);
         }
+
     }
 }
