@@ -17,10 +17,12 @@ namespace Journly.Controllers
     {
         private readonly PostRepository _postRepository;
         private readonly UserRepository _userRepository;
+        private readonly FlaggedWordRepository _flaggedWordRepository;
         public PostController(ApplicationDbContext context, IConfiguration configuration)
         {
             _postRepository = new PostRepository(context, configuration);
             _userRepository = new UserRepository(context, configuration);
+            _flaggedWordRepository = new FlaggedWordRepository(context);
         }
 
         [HttpGet]
@@ -74,6 +76,12 @@ namespace Journly.Controllers
             }
             post.UserId = currentUser.Id;
             post.CreateDate = DateTime.Now;
+
+            //check for flagged words
+            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
+            {
+                post.Flagged = true;
+            }
 
             _postRepository.Add(post);
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
