@@ -7,7 +7,7 @@ import Errors from "../Errors";
 import { PostContext } from "../../providers/PostProvider";
 
 export default function EditEntryForm() {
-    const { getCurrentUserPostById } = useContext(PostContext);
+    const { editPost, getCurrentUserPostById } = useContext(PostContext);
     const [post, setPost] = useState(null);
     const [selectedMood, setSelectedMood] = useState(null);
     const [errors, setErrors] = useState([]);
@@ -42,20 +42,21 @@ export default function EditEntryForm() {
             const error = "You must select a mood icon to represent how you are feeling!";
             setErrors(errors => [...errors, error]);
         } else {
-            const post = {
+            const editedPost = {
+                id: post.id,
                 moodId: selectedMood.id,
                 content: (content.current.value === "" ? null : content.current.value)
             };
 
-            // addPost(post)
-            //     .then(resp => {
-            //         //check for a flagged entry
-            //         if (resp.flagged === true) {
-            //             toggle();
-            //         } else {
-            //             history.push("/myentries")
-            //         }
-            //     })
+            editPost(editedPost)
+                .then(resp => {
+                    //check for a flagged entry
+                    if (resp.flagged === true) {
+                        toggle();
+                    } else {
+                        history.push(`/myjournal/${resp.createDate}`)
+                    }
+                })
         }
 
     }
@@ -87,7 +88,7 @@ export default function EditEntryForm() {
                         </FormGroup>
                         <Errors errors={errors} />
                         <FormGroup className="text-right">
-                            <Button type="submit" color="primary">Create New Entry</Button>
+                            <Button type="submit" color="primary">Edit Journal Entry</Button>
                         </FormGroup>
                     </Form>
                 </div>
@@ -97,7 +98,7 @@ export default function EditEntryForm() {
                         List of mental health resources.
         </ModalBody>
                     <ModalFooter className="text-right">
-                        <Button color="primary" onClick={() => history.push("/myentries")}>Continue</Button>
+                        <Button color="primary" onClick={() => history.push(`/myjournal/${post.createDate}`)}>Continue</Button>
                     </ModalFooter>
                 </Modal>
             </>

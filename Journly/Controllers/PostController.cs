@@ -87,6 +87,36 @@ namespace Journly.Controllers
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
         }
 
+        [HttpPut]
+        public IActionResult Edit(Post newPost)
+        {
+            Post post = _postRepository.GetById(newPost.Id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            //check to make sure that the user is autorized to edit the post
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser.Id != post.UserId)
+            {
+                return Unauthorized();
+            }
+            //update the post object to deleted status
+
+            post.ViewTime = DateTime.Now;
+            post.Content = newPost.Content;
+            post.MoodId = newPost.MoodId;
+
+            //check for flagged words
+            if (_flaggedWordRepository.HasFlaggedWord(newPost.Content))
+            {
+                post.Flagged = true;
+            }
+
+            _postRepository.Update(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

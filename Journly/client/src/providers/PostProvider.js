@@ -65,6 +65,23 @@ export const PostProvider = (props) => {
         )
     };
 
+    const editPost = (post) => {
+        return getToken().then((token) =>
+            fetch(apiUrl, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(post)
+            })
+                .then(resp => {
+                    getCurrentUserPosts(0)
+                    return resp.json();
+                })
+        )
+    };
+
     const deletePost = (id) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${id}`, {
@@ -80,7 +97,7 @@ export const PostProvider = (props) => {
 
     return (
         <PostContext.Provider value={{
-            posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById, addPost, deletePost
+            posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById, addPost, editPost, deletePost
         }}>
             {props.children}
         </PostContext.Provider>
