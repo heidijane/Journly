@@ -11,7 +11,7 @@ export const MoodProvider = (props) => {
 
     const getMoods = (criterion = "") => {
         return getToken().then((token) =>
-            fetch(apiUrl + (criterion === "" ? "" : `criterion=${criterion}`), {
+            fetch(apiUrl + (criterion === "" ? "" : `?criterion=${criterion}`), {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`

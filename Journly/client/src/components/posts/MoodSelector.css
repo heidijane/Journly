@@ -1,6 +1,8 @@
 .MoodIcon__Container {
     overflow-y: auto;
     max-height: 370px;
+    min-height: 100px;
+    /*if the height is too small it will make the tooltip go crazy! */
 }
 
 .MoodIcon {
