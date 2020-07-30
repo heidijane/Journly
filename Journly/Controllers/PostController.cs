@@ -87,6 +87,26 @@ namespace Journly.Controllers
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
         }
 
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            Post post = _postRepository.GetById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            //check to make sure that the user is autorized to delete the post
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser.Id != post.UserId)
+            {
+                return Unauthorized();
+            }
+            //update the post object to deleted status
+            post.Deleted = true;
+            _postRepository.Update(post);
+            return NoContent();
+        }
+
         private User GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
