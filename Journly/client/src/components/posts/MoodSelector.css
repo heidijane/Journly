@@ -1,0 +1,22 @@
+.MoodIcon__Container {
+    overflow-y: auto;
+    max-height: 370px;
+}
+
+.MoodIcon {
+    width: 60px;
+    height: 60px;
+    padding: .25rem;
+}
+
+.tooltip-inner {
+    background-color: #137d8d;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before, .tooltip.bs-tooltip-top .arrow::before {
+    border-top-color: #137d8d;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .tooltip.bs-tooltip-bottom .arrow::before {
+    border-bottom-color: #137d8d;
+}

@@ -8,7 +8,7 @@ import { truncate } from "../../utilities/truncate";
 export default function Post({ post }) {
 
     return (
-        <Link to={"/myjournal/" + post.createDate} className="text-decoration-none text-reset">
+        <Link to={`/myjournal/${post.createDate}#${post.id}`} className="text-decoration-none text-reset">
             <Card color="light">
                 {
                     post.content &&
