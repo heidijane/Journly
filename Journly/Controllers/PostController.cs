@@ -108,7 +108,7 @@ namespace Journly.Controllers
             post.MoodId = newPost.MoodId;
 
             //check for flagged words
-            if (_flaggedWordRepository.HasFlaggedWord(newPost.Content))
+            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
             {
                 post.Flagged = true;
             }

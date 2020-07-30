@@ -31,7 +31,7 @@ namespace Journly.Repositories
             }
             List<FlaggedWord> words = GetFlaggedWords();
 
-            if (words.Any(word => content.Contains(word.Word)))
+            if (words.Any(word => content.ToLower().Contains(word.Word)))
             {
                 return true;
             } else
