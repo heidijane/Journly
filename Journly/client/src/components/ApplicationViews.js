@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard";
 import { TherapistInfoProvider } from "../providers/TherapistInfoProvider";
 import MyEntries from "./posts/MyEntries";
 import NewEntry from "./posts/NewEntry";
+import MyJournal from "./posts/MyJournal";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserContext);
@@ -40,11 +41,15 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/myentries">
-                    <MyEntries />
+                    {isLoggedIn ? <MyEntries /> : <Redirect to="/start" />}
                 </Route>
 
                 <Route path="/newentry">
-                    <NewEntry />
+                    {isLoggedIn ? <NewEntry /> : <Redirect to="/start" />}
+                </Route>
+
+                <Route path="/myjournal/:date">
+                    {isLoggedIn ? <MyJournal /> : <Redirect to="/start" />}
                 </Route>
 
             </Switch>

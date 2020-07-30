@@ -1,0 +1,9 @@
+.JournalPage {
+    padding: 1.25rem;
+}
+
+.JournalPage__Mood {
+    width: 75px;
+    height: 75px;
+    position: unset;
+}

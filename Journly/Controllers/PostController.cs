@@ -35,6 +35,19 @@ namespace Journly.Controllers
             return Ok(posts);
         }
 
+        [Authorize]
+        [HttpGet("current/{date}")]
+        public IActionResult GetCurrentUserEntriesByDate(DateTime date)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            List<Post> posts = _postRepository.GetPostsByUserIdAndDate(currentUser.Id, date);
+            return Ok(posts);
+        }
+
         private User GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

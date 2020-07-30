@@ -20,9 +20,20 @@ export const PostProvider = (props) => {
                 .then(setPosts));
     };
 
+    const getCurrentUserPostsByDate = (date) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/current/${date}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(resp => resp.json())
+                .then(setPosts));
+    };
+
     return (
         <PostContext.Provider value={{
-            posts, getCurrentUserPosts
+            posts, getCurrentUserPosts, getCurrentUserPostsByDate
         }}>
             {props.children}
         </PostContext.Provider>

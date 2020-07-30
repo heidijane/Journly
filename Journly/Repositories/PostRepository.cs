@@ -40,6 +40,20 @@ namespace Journly.Repositories
                 : query.ToList();
         }
 
+        public List<Post> GetPostsByUserIdAndDate(int id, DateTime date)
+        {
+            return _context.Post
+                        .Include(p => p.Therapist)
+                        .Include(p => p.Mood)
+                        .Where
+                        (
+                            p => p.UserId == id && 
+                            date.Date == p.CreateDate.Date
+                        )
+                        .OrderBy(p => p.CreateDate)
+                        .ToList();
+        }
+
         public List<Post> GetPostsByTherapistId(int id)
         {
             using (SqlConnection conn = Connection)
