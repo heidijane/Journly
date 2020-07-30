@@ -25,7 +25,7 @@ namespace Journly.Controllers
             _flaggedWordRepository = new FlaggedWordRepository(context);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var post = _postRepository.GetById(id);
@@ -33,7 +33,7 @@ namespace Journly.Controllers
             {
                 return NotFound();
             }
-            //check to make sure that the user is autorized to see the post
+            //check to make sure that the user is authorized to see the post
             User currentUser = GetCurrentUserProfile();
             if (currentUser.Id != post.UserId)
             {
