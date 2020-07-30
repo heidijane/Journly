@@ -1,13 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { MoodContext } from "../../providers/MoodProvider";
-import { Spinner, UncontrolledTooltip } from "reactstrap";
+import { Spinner, UncontrolledTooltip, Label, Input } from "reactstrap";
 import "./MoodSelector.css"
 
 export default function MoodSelector({ selectedMood, setSelectedMood }) {
     const { moods, getMoods } = useContext(MoodContext);
     const [loading, setLoading] = useState(true);
-
-    console.log(moods)
 
     useEffect(() => {
         getMoods().then(setLoading(false));
@@ -24,7 +22,10 @@ export default function MoodSelector({ selectedMood, setSelectedMood }) {
                     moods.map(mood => {
                         return (
                             <div key={"moodwrapper-" + mood.id}>
-                                <img src={"emoji/" + mood.image + ".svg"} id={"mood-" + mood.id} alt={mood.name} className="MoodIcon" style={{ cursor: "pointer" }} />
+                                <Label check>
+                                    <Input type="radio" name="moodRadio" onClick={() => setSelectedMood(mood)} />{' '}
+                                    <img src={"emoji/" + mood.image + ".svg"} id={"mood-" + mood.id} alt={mood.name} className="MoodIcon" style={{ cursor: "pointer" }} />
+                                </Label>
                                 <UncontrolledTooltip placement="top" target={"mood-" + mood.id}>
                                     {mood.name}
                                 </UncontrolledTooltip>

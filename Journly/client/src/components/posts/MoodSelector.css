@@ -20,3 +20,26 @@
 .tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .tooltip.bs-tooltip-bottom .arrow::before {
     border-bottom-color: #137d8d;
 }
+
+/* HIDE RADIO */
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+
+[type=radio]+img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+
+[type=radio]:checked+img {
+    background: rgba(0, 0, 0, .15);
+    border-radius: 1.25em;
+    /* outline: 2px solid #f00; */
+}
