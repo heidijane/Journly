@@ -15,6 +15,12 @@ export default function JournalPageEntry({ post }) {
                 <div className="content">{!post.deleted ? post.content : <span className="font-italic text-muted">This entry has been deleted.</span>}</div>
             }
             {
+                post.editTime &&
+                <div className="mt-3">
+                    <span className="font-italic text-muted">This entry was edited on {moment(post.editTime).format('MMMM Do YYYY [at] h:mm a')}.</span>
+                </div>
+            }
+            {
                 post.viewTime &&
                 <div className="TherapistComment rounded p-2 mt-2">
                     <div className="d-flex justify-content-start align-items-center py-0 flex-nowrap">

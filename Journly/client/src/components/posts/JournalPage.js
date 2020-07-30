@@ -11,7 +11,7 @@ export default function JournalPage({ posts }) {
                 <div className="bg-light rounded border">
                     {
                         posts.map(post => <JournalPageEntry post={post} key={"post-" + post.id} />)
-                            .reduce((acc, x) => acc === null ? [x] : [acc, <hr className="m-0" />, x], null)
+                            .reduce((acc, x) => acc === null ? [x] : [acc, <hr className="m-0" key={"posthr-" + x} />, x], null)
                     }
                 </div>
             </div>
