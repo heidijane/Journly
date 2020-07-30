@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 namespace Journly.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
@@ -22,7 +23,23 @@ namespace Journly.Controllers
             _userRepository = new UserRepository(context, configuration);
         }
 
-        [Authorize]
+        [HttpGet]
+        public IActionResult Get(int id)
+        {
+            var post = _postRepository.GetById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            //check to make sure that the user is autorized to see the post
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser.Id != post.UserId)
+            {
+                return Unauthorized();
+            }
+            return Ok(post);
+        }
+
         [HttpGet("current")]
         public IActionResult GetCurrentUserPosts(int limit, int start)
         {
@@ -35,7 +52,6 @@ namespace Journly.Controllers
             return Ok(posts);
         }
 
-        [Authorize]
         [HttpGet("current/{date}")]
         public IActionResult GetCurrentUserEntriesByDate(DateTime date)
         {
@@ -46,6 +62,21 @@ namespace Journly.Controllers
             }
             List<Post> posts = _postRepository.GetPostsByUserIdAndDate(currentUser.Id, date);
             return Ok(posts);
+        }
+
+        [HttpPost]
+        public IActionResult Post(Post post)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            post.UserId = currentUser.Id;
+            post.CreateDate = DateTime.Now;
+
+            _postRepository.Add(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
         }
 
         private User GetCurrentUserProfile()

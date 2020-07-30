@@ -27,6 +27,15 @@ namespace Journly.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
+        public Post GetById(int id)
+        {
+            return _context.Post
+                        .Include(p => p.Therapist)
+                        .Include(p => p.Mood)
+                        .Include(p => p.User)
+                        .FirstOrDefault(p => p.Id == id);
+        }
+
         public List<Post> GetPostsByUserId(int id, int limit, int start)
         {
             var query = _context.Post
@@ -99,6 +108,12 @@ namespace Journly.Repositories
                     return posts;
                 }
             }
+        }
+
+        public void Add(Post post)
+        {
+            _context.Add(post);
+            _context.SaveChanges();
         }
 
     }

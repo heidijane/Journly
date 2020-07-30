@@ -31,9 +31,22 @@ export const PostProvider = (props) => {
                 .then(setPosts));
     };
 
+    const addPost = (post) => {
+        return getToken().then((token) =>
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(post)
+            }).then(resp => resp.json()).then(getCurrentUserPosts(0))
+        );
+    };
+
     return (
         <PostContext.Provider value={{
-            posts, getCurrentUserPosts, getCurrentUserPostsByDate
+            posts, getCurrentUserPosts, getCurrentUserPostsByDate, addPost
         }}>
             {props.children}
         </PostContext.Provider>
