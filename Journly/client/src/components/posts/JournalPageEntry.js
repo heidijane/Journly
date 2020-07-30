@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import "./JournalPageEntry.css"
+import { Button } from "reactstrap";
 
 export default function JournalPageEntry({ post }) {
 
@@ -10,6 +11,8 @@ export default function JournalPageEntry({ post }) {
             <div className="d-flex flex-nowrap justify-content-start align-items-center">
                 <img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="JournalPage__Mood mr-1" />
                 <h4>{moment(post.createDate).format('h:mm a')}</h4>
+                <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit post" /></Button>
+                <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete post" /></Button>
             </div>
             {
                 post.content &&
