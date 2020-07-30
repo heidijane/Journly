@@ -12,7 +12,7 @@ export default function Post({ post }) {
             <Card color="light">
                 {
                     post.content &&
-                    <div className="moodWrapper"><img src={"/emoji/" + post.mood.image + ".svg"} alt={post.mood.name} className="mood" /></div>
+                    <div className="moodWrapper"><img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood" /></div>
                 }
                 <ModalHeader className="d-flex justify-content-center">
                     <span className="mb-0">{moment(post.createDate).format('MMMM Do YYYY, h:mm a')}</span>
@@ -21,9 +21,11 @@ export default function Post({ post }) {
                     {
                         post.content
                             ?
-                            <div className="content">{truncate(post.content, 400)}</div>
+                            <div className="content">
+                                {!post.deleted ? truncate(post.content, 400) : <span className="font-italic text-muted">This entry has been deleted.</span>}
+                            </div>
                             :
-                            <img src={"/emoji/" + post.mood.image + ".svg"} alt={post.mood.name} className="mood-large" />
+                            <img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood-large" />
                     }
                 </CardBody>
                 {

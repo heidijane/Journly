@@ -1,9 +1,13 @@
 .JournalPage {
-    padding: 1.25rem;
+    padding: .5rem 1.25rem 1.25rem 1.25rem;
 }
 
 .JournalPage__Mood {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
     position: unset;
+}
+
+.JournalPage .TherapistComment {
+    background-color: rgba(0, 0, 0, .05);
 }
