@@ -87,7 +87,7 @@ namespace Journly.Controllers
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             Post post = _postRepository.GetById(id);

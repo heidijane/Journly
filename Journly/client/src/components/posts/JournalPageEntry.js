@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import moment from "moment";
 import "./JournalPageEntry.css"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { PostContext } from "../../providers/PostProvider";
+import { useHistory, useLocation } from 'react-router-dom'
 
 export default function JournalPageEntry({ post }) {
+
+    const { deletePost } = useContext(PostContext);
+
+    let location = useLocation();
+    const history = useHistory();
 
     //modal states for the delete modal
     const [deleteModal, setDeleteModal] = useState(false)
     const deleteModalToggle = () => setDeleteModal(!deleteModal)
+
+    const deleteEntry = () => {
+        deletePost(post.id)
+            .then(deleteModalToggle)
+            .then(() => {
+                //refreshes the current route to reflect the deletion
+                history.push({ pathname: "/empty" });
+                history.replace({ pathname: location.pathname })
+            });
+    }
 
     return (
         <>
@@ -16,8 +33,14 @@ export default function JournalPageEntry({ post }) {
                 <div className="d-flex flex-nowrap justify-content-start align-items-center">
                     <img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="JournalPage__Mood mr-1" />
                     <h4>{moment(post.createDate).format('h:mm a')}</h4>
-                    <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit post" /></Button>
-                    <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete post" onClick={deleteModalToggle} /></Button>
+                    {
+                        !post.deleted &&
+                        <>
+                            <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit post" /></Button>
+                            <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete post" onClick={deleteModalToggle} /></Button>
+
+                        </>
+                    }
                 </div>
                 {
                     post.content &&
@@ -66,6 +89,7 @@ export default function JournalPageEntry({ post }) {
                         type="submit"
                         color="danger"
                         className="ml-2"
+                        onClick={deleteEntry}
                     >Delete Entry</Button>
                 </ModalFooter>
             </Modal>
