@@ -40,7 +40,11 @@ export const PostProvider = (props) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(post)
-            }).then(resp => resp.json()).then(getCurrentUserPosts(0))
+            })
+                .then(resp => {
+                    getCurrentUserPosts(0)
+                    return resp.json();
+                })
         );
     };
 
