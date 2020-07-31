@@ -141,7 +141,8 @@ namespace Journly.Repositories
                             .Where(p => p.ViewTime == null)
                             .Where(p => p.UserId == id)
                             .Where(p => p.Deleted == false)
-                            .OrderByDescending(p => p.CreateDate)
+                            .OrderByDescending(p => p.Flagged)
+                            .ThenByDescending(p => p.CreateDate)
                             .Skip(start);
             return limit > 0
                     ? query.Take(limit).ToList()

@@ -19,7 +19,7 @@ export default function Post({ post }) {
                     `/userjournal/${post.userId}/${post.createDate}#${post.id}`
             }
             className="text-decoration-none text-reset">
-            <Card color={post.flagged && currentUser.userTypeId === 1 ? "danger" : "light"} className="Post">
+            <Card className={"Post" + (post.flagged && currentUser.userTypeId === 1 ? " card-flagged" : " bg-light")}>
                 {
                     post.content &&
                     <div className="moodWrapper"><img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood" /></div>
