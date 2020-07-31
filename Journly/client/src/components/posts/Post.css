@@ -29,3 +29,10 @@
 .checkmark {
     width: 30px;
 }
+
+.Post .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin: .25em;
+}

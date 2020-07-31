@@ -42,7 +42,7 @@ export default function MoodSelector({ selectedMood, setSelectedMood }) {
                                             type="radio"
                                             name="moodRadio"
                                             onClick={() => setSelectedMood(mood)}
-                                            defaultChecked={selectedMood.id === mood.id ? true : false}
+                                            defaultChecked={selectedMood?.id === mood.id ? true : false}
                                         />{' '}
                                         <img src={"/emoji/" + mood.image + ".svg"} id={"mood-" + mood.id} alt={mood.name} className="MoodIcon" style={{ cursor: "pointer" }} />
                                     </Label>
