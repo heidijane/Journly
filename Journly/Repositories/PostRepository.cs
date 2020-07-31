@@ -131,24 +131,31 @@ namespace Journly.Repositories
                         .FirstOrDefault(p => p.UserId == id);
         }
 
-        public List<Post> UnreadPostsByUser(int id)
+        public List<Post> UnreadPostsByUser(int id, int limit, int start)
         {
-            return _context.Post
-                        .Where(p => p.ViewTime == null)
-                        .Where(p => p.UserId == id)
-                        .Where(p => p.Deleted == false)
-                        .ToList();
+            var query = _context.Post
+                            .Include(p => p.Mood)
+                            .Where(p => p.ViewTime == null)
+                            .Where(p => p.UserId == id)
+                            .Where(p => p.Deleted == false)
+                            .Skip(start);
+            return limit > 0
+                    ? query.Take(limit).ToList()
+                    : query.ToList();
         }
 
-        public List<Post> UnreadPostsByTherapist(int id)
+        public List<Post> UnreadPostsByTherapist(int id, int limit, int start)
         {
-            List<Post> posts = (from p in _context.Post
+            var query = (from p in _context.Post
                          join ur in _context.UserRelationship on p.UserId equals ur.UserId
                          where ur.TherapistId == id
                          where p.ViewTime == null
                          where p.Deleted == false
                          select p
-                        ).ToList();
+                        ).Include(p => p.Mood).Skip(start);
+            List<Post> posts =  limit > 0
+                                ? query.Take(limit).ToList()
+                                : query.ToList();
             return posts;
         }
 
@@ -157,8 +164,7 @@ namespace Journly.Repositories
             return _context.Post
                         .Where(p => p.ViewTime == null)
                         .Where(p => p.Deleted == false)
-                        .Count(p => p.UserId == id);
-                    
+                        .Count(p => p.UserId == id);     
         }
 
         public int CountUnreadByTherapist(int id)

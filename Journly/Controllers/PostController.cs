@@ -126,19 +126,19 @@ namespace Journly.Controllers
         }
 
         [HttpGet("unread")]
-        public IActionResult GetUnread()
+        public IActionResult GetUnread(int limit, int start)
         {
             User currentUser = GetCurrentUserProfile();
             if (currentUser == null)
             {
                 return Unauthorized();
             }
-            var result = _postRepository.UnreadPostsByTherapist(currentUser.Id);
+            var result = _postRepository.UnreadPostsByTherapist(currentUser.Id, limit, start);
             return Ok(result);
         }
 
         [HttpGet("unread/{id}")]
-        public IActionResult GetUnreadByUser(int id)
+        public IActionResult GetUnreadByUser(int id, int limit, int start)
         {
             User currentUser = GetCurrentUserProfile();
             if (currentUser == null)
@@ -156,7 +156,7 @@ namespace Journly.Controllers
             {
                 return Unauthorized();
             }
-            var result = _postRepository.UnreadPostsByUser(id);
+            var result = _postRepository.UnreadPostsByUser(id, limit, start);
             return Ok(result);
         }
 

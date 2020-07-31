@@ -65,6 +65,17 @@ export const PostProvider = (props) => {
         )
     }
 
+    const getUnreadPosts = (limit = 6, start = 0) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/unread?limit=${limit}&start=${start}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(resp => resp.json())
+                .then(setPosts));
+    };
+
     const getUnreadCountByUser = (id) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/unreadcount/${id}`, {
@@ -132,7 +143,7 @@ export const PostProvider = (props) => {
     return (
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
-            addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser
+            addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts
         }}>
             {props.children}
         </PostContext.Provider>
