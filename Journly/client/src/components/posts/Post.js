@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import { Card, CardBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Card, CardBody, CardFooter, CardHeader } from "reactstrap";
 import moment from "moment";
 import "./Post.css";
 import { truncate } from "../../utilities/truncate";
@@ -9,14 +9,14 @@ export default function Post({ post }) {
 
     return (
         <Link to={`/myjournal/${post.createDate}#${post.id}`} className="text-decoration-none text-reset">
-            <Card color="light">
+            <Card color="light" className="Post">
                 {
                     post.content &&
                     <div className="moodWrapper"><img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood" /></div>
                 }
-                <ModalHeader className="d-flex justify-content-center">
-                    <span className="mb-0">{moment(post.createDate).format('MMMM Do YYYY, h:mm a')}</span>
-                </ModalHeader>
+                <CardHeader className="d-flex justify-content-center">
+                    <h5 className="mt-1 mb-0">{moment(post.createDate).format('MMMM Do YYYY, h:mm a')}</h5>
+                </CardHeader>
                 <CardBody>
                     {
                         post.content
@@ -30,14 +30,14 @@ export default function Post({ post }) {
                 </CardBody>
                 {
                     post.viewTime &&
-                    <ModalFooter className="d-flex justify-content-start align-items-center py-0 flex-nowrap">
+                    <CardFooter className="d-flex justify-content-start align-items-center py-0 flex-nowrap">
                         <img src={"/emoji/2714.svg"} alt="entry has been read" className="checkmark" />
                         <div>
                             <div className="text-muted font-italic overflow-hidden" style={{ fontSize: "small" }}>
                                 Viewed by {post.therapist.nickName} on {moment(post.viewDate).format('MMMM Do YYYY [at] h:mm a')}
                             </div>
                         </div>
-                    </ModalFooter>
+                    </CardFooter>
                 }
             </Card>
         </Link>

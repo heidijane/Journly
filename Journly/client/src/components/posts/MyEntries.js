@@ -1,5 +1,5 @@
 import React from "react";
-import ClientPostList from "./ClientPostList";
+import UserPostList from "./UserPostList";
 
 export default function MyEntries() {
 
@@ -7,7 +7,7 @@ export default function MyEntries() {
         <div className="container mt-4">
             <h3>My Journal Entries</h3>
             <hr />
-            <ClientPostList limit="0" start="0" />
+            <UserPostList limit="0" start="0" />
         </div>
     );
 }

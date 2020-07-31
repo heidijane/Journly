@@ -1,0 +1,27 @@
+/*This CSS file should be paired with PostList.js*/
+
+/* The wrapper class allows for the flex boxes to have a gutter */
+
+/* prevents the list from overlapping the content above it */
+
+.ClientList__Wrapper {
+    margin-top: 25px;
+}
+
+.ClientList {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -25px 0 0 -25px;
+}
+
+.ClientList .wrapper {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+    padding-left: 25px;
+    padding-top: 25px;
+}
+
+/* .ClientList .card {
+    height: 200px;
+} */

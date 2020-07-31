@@ -1,6 +1,8 @@
 import React from "react";
 import WelcomeMessage from "./WelcomeMessage";
-import ClientPostList from "./posts/ClientPostList";
+import UserPostList from "./posts/UserPostList";
+import ClientList from "./clients/ClientList";
+import { ClientProvider } from "../providers/ClientProvider";
 
 export default function Dashboard() {
 
@@ -10,6 +12,9 @@ export default function Dashboard() {
         return (
             <div className="container mt-4">
                 <WelcomeMessage nickname={currentUser.nickName} />
+                <ClientProvider>
+                    <ClientList />
+                </ClientProvider>
             </div>
         );
     } else {
@@ -18,7 +23,7 @@ export default function Dashboard() {
                 <WelcomeMessage nickname={currentUser.nickName} className="mb-4" />
                 <h3>My Recent Entries</h3>
                 <hr />
-                <ClientPostList limit="3" start="0" />
+                <UserPostList limit="3" start="0" />
             </div>
         );
     }

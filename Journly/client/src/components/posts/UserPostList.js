@@ -3,7 +3,7 @@ import { PostContext } from "../../providers/PostProvider";
 import { Spinner } from "reactstrap";
 import PostList from "./PostList";
 
-export default function ClientPostList({ limit = 0, start = 0 }) {
+export default function UserPostList({ limit = 0, start = 0 }) {
     const { posts, getCurrentUserPosts } = useContext(PostContext);
     const [loading, setLoading] = useState(true);
 
