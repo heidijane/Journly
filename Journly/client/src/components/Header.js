@@ -60,14 +60,29 @@ export default function Header() {
                                 <NavItem>
                                     <NavLink tag={RRNavLink} to="/">Home</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} to="/myentries">My Journal</NavLink>
-                                </NavItem>
-                                <NavItem className="d-flex align-items-center ml-1">
-                                    <Link to="/newentry">
-                                        <Button color="info" size="sm">New Entry</Button>
-                                    </Link>
-                                </NavItem>
+                                {
+                                    currentUser.userTypeId === 0
+                                        ?
+                                        <>
+                                            <NavItem>
+                                                <NavLink tag={RRNavLink} to="/myentries">My Journal</NavLink>
+                                            </NavItem>
+                                            <NavItem className="d-flex align-items-center ml-1">
+                                                <Link to="/newentry">
+                                                    <Button color="info" size="sm">New Entry</Button>
+                                                </Link>
+                                            </NavItem>
+                                        </>
+                                        :
+                                        <>
+                                            <NavItem>
+                                                <NavLink tag={RRNavLink} to="/">My Clients</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink tag={RRNavLink} to="/">Journal Entries</NavLink>
+                                            </NavItem>
+                                        </>
+                                }
                             </>
                         }
                         {!isLoggedIn &&
