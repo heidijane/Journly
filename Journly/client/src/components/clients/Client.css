@@ -1,0 +1,12 @@
+.Client__Mood {
+    align-self: start;
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: -35px;
+    left: -25px;
+}
+
+.Avatar__Wrapper {
+    position: relative;
+}

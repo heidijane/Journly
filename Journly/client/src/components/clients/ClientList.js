@@ -16,7 +16,6 @@ export default function ClientList() {
     if (loading) {
         return <Spinner />
     } else {
-        console.log(clients)
         return (
             <div className="ClientList__Wrapper">
                 <div className="ClientList">

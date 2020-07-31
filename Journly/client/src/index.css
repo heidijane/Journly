@@ -25,5 +25,11 @@ code {
 .avatar.avatar-large {
   width: 100px;
   height: 100px;
-  border-radius: 100px;
+  border-radius: 50px;
+}
+
+.avatar.avatar-x-large {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
 }
