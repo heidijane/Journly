@@ -138,6 +138,7 @@ namespace Journly.Repositories
                             .Where(p => p.ViewTime == null)
                             .Where(p => p.UserId == id)
                             .Where(p => p.Deleted == false)
+                            .OrderByDescending(p => p.CreateDate)
                             .Skip(start);
             return limit > 0
                     ? query.Take(limit).ToList()
@@ -152,7 +153,9 @@ namespace Journly.Repositories
                          where p.ViewTime == null
                          where p.Deleted == false
                          select p
-                        ).Include(p => p.Mood).Skip(start);
+                        ).Include(p => p.Mood)
+                         .OrderByDescending(p => p.CreateDate)
+                         .Skip(start);
             List<Post> posts =  limit > 0
                                 ? query.Take(limit).ToList()
                                 : query.ToList();
