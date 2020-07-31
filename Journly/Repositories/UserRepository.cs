@@ -44,6 +44,12 @@ namespace Journly.Repositories
                 .FirstOrDefault(u => u.Id == id);
         }
 
+        public bool IsTherapistForUser(int userId, int currentUserId)
+        {
+            bool result = _context.UserRelationship.Any(ur => ur.UserId == userId && ur.TherapistId == currentUserId);
+            return result;
+        }
+
         public TherapistConfirmationInfo GetByCounselorCode(string cCode)
         {
             using (SqlConnection conn = Connection)

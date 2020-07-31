@@ -122,5 +122,55 @@ namespace Journly.Repositories
             _context.SaveChanges();
         }
 
+        public Post MostRecentPost(int id)
+        {
+            return _context.Post
+                        .Where(p => p.Deleted == false)
+                        .OrderByDescending(p => p.CreateDate)
+                        .FirstOrDefault(p => p.UserId == id);
+        }
+
+        public List<Post> UnreadPostsByUser(int id)
+        {
+            return _context.Post
+                        .Where(p => p.ViewTime == null)
+                        .Where(p => p.UserId == id)
+                        .Where(p => p.Deleted == false)
+                        .ToList();
+        }
+
+        public List<Post> UnreadPostsByTherapist(int id)
+        {
+            List<Post> posts = (from p in _context.Post
+                         join ur in _context.UserRelationship on p.UserId equals ur.UserId
+                         where ur.TherapistId == id
+                         where p.ViewTime == null
+                         where p.Deleted == false
+                         select p
+                        ).ToList();
+            return posts;
+        }
+
+        public int CountUnreadByUser(int id)
+        {
+            return _context.Post
+                        .Where(p => p.ViewTime == null)
+                        .Where(p => p.Deleted == false)
+                        .Count(p => p.UserId == id);
+                    
+        }
+
+        public int CountUnreadByTherapist(int id)
+        {
+            int count = (from p in _context.Post
+                         join ur in _context.UserRelationship on p.UserId equals ur.UserId
+                         where ur.TherapistId == id
+                         where p.ViewTime == null
+                         where p.Deleted == false
+                         select p.Id
+                        ).Count();
+            return count;
+        }
+
     }
 }

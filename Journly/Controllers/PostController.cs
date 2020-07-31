@@ -66,6 +66,100 @@ namespace Journly.Controllers
             return Ok(posts);
         }
 
+        [HttpGet("latest/{id}")]
+        public IActionResult GetMostRecentPostByUserId(int id)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            //make sure this post belongs to current user
+            if (currentUser.UserTypeId == 0 && currentUser.Id != id)
+            {
+                return Unauthorized();
+            }
+            //or make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
+            Post post = _postRepository.MostRecentPost(id);
+            return Ok(post);
+        }
+
+        [HttpGet("unreadcount")]
+        public IActionResult GetUnreadCount()
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            int count = _postRepository.CountUnreadByTherapist(currentUser.Id);
+            return Ok(count);
+        }
+
+        [HttpGet("unreadcount/{id}")]
+        public IActionResult GetUnreadCountByUser(int id)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            //make sure this post belongs to current user
+            if (currentUser.UserTypeId == 0 && currentUser.Id != id)
+            {
+                return Unauthorized();
+            }
+            //or make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+            int count = _postRepository.CountUnreadByUser(id);
+            return Ok(count);
+        }
+
+        [HttpGet("unread")]
+        public IActionResult GetUnread()
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            var result = _postRepository.UnreadPostsByTherapist(currentUser.Id);
+            return Ok(result);
+        }
+
+        [HttpGet("unread/{id}")]
+        public IActionResult GetUnreadByUser(int id)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            //make sure this post belongs to current user
+            if (currentUser.UserTypeId == 0 && currentUser.Id != id)
+            {
+                return Unauthorized();
+            }
+            //or make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+            var result = _postRepository.UnreadPostsByUser(id);
+            return Ok(result);
+        }
+
         [HttpPost]
         public IActionResult Post(Post post)
         {
