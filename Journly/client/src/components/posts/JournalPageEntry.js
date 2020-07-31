@@ -26,15 +26,17 @@ export default function JournalPageEntry({ post }) {
             });
     }
 
+    const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
+
     return (
         <>
-            <div className="JournalPage">
+            <div className={"JournalPage" + (post.flagged && currentUser.userTypeId === 1 ? " flagged" : "")}>
                 <a id={post.id}></a>
                 <div className="d-flex flex-nowrap justify-content-start align-items-center">
                     <img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="JournalPage__Mood mr-1" />
                     <h4>{moment(post.createDate).format('h:mm a')}</h4>
                     {
-                        !post.deleted &&
+                        !post.deleted && post.userTypeId === 0 &&
                         <>
                             <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit post" onClick={() => history.push(`/editentry/${post.id}`)} /></Button>
                             <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete post" onClick={deleteModalToggle} /></Button>

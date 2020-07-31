@@ -37,10 +37,10 @@
     margin: .25em;
 }
 
-.card-flagged {
+.flagged {
     background-color: rgba(255, 0, 0, 0.3) !important;
 }
 
-.card-flagged .text-muted {
+.flagged .text-muted {
     color: brown !important;
 }
