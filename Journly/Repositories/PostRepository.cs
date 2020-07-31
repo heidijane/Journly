@@ -125,6 +125,7 @@ namespace Journly.Repositories
         public Post MostRecentPost(int id)
         {
             return _context.Post
+                        .Include(p => p.Mood)
                         .Where(p => p.Deleted == false)
                         .OrderByDescending(p => p.CreateDate)
                         .FirstOrDefault(p => p.UserId == id);
