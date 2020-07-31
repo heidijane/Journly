@@ -10,8 +10,16 @@ export default function Post({ post }) {
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
     return (
-        <Link to={`/myjournal/${post.createDate}#${post.id}`} className="text-decoration-none text-reset">
-            <Card color="light" className="Post">
+        <Link
+            to={
+                currentUser.userTypeId === 0
+                    ?
+                    `/myjournal/${post.createDate}#${post.id}`
+                    :
+                    `/userjournal/${post.userId}/${post.createDate}#${post.id}`
+            }
+            className="text-decoration-none text-reset">
+            <Card color={post.flagged && currentUser.userTypeId === 1 ? "danger" : "light"} className="Post">
                 {
                     post.content &&
                     <div className="moodWrapper"><img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood" /></div>
@@ -44,9 +52,15 @@ export default function Post({ post }) {
                 {
                     currentUser.userTypeId === 1 &&
                     <CardFooter className="d-flex justify-content-center align-items-center p-0 flex-nowrap">
-                        {/* <img src={"/emoji/2714.svg"} alt="entry has been read" className="checkmark" /> */}
                         <div>
-                            <img src={post.user.avatar} alt={post.user.nickName + "'s avatar"} className="avatar" />
+                            {
+                                post.user.avatar
+                                    ?
+                                    <img src={post.user.avatar} alt={post.user.nickName + "'s avatar"} className="avatar" />
+                                    :
+                                    <img alt={post.user.nickName + "'s avatar"} className="avatar" />
+                            }
+
                         </div>
                         <div>
                             <div className="text-muted font-italic overflow-hidden" style={{ fontSize: "small" }}>

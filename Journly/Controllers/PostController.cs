@@ -66,6 +66,24 @@ namespace Journly.Controllers
             return Ok(posts);
         }
 
+        [HttpGet("user/{id}")]
+        public IActionResult GetUserEntriesByDate(int id, DateTime date)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            //or make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+            List<Post> posts = _postRepository.GetPostsByUserIdAndDate(id, date);
+            return Ok(posts);
+        }
+
         [HttpGet("latest/{id}")]
         public IActionResult GetMostRecentPostByUserId(int id)
         {

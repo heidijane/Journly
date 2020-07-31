@@ -20,7 +20,7 @@ export default function Dashboard() {
                 </ClientProvider>
                 <h3>Unread Entries</h3>
                 <hr />
-                <UnreadEntryList limit="6" start="0" />
+                <UnreadEntryList limit="0" start="0" />
             </div>
         );
     } else {

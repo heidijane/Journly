@@ -41,6 +41,7 @@ namespace Journly.Repositories
             var query = _context.Post
                         .Include(p => p.Therapist)
                         .Include(p => p.Mood)
+                        .Include(p => p.User)
                         .Where(p => p.UserId == id)
                         .OrderByDescending(p => p.CreateDate)
                         .Skip(start);
@@ -54,6 +55,7 @@ namespace Journly.Repositories
             return _context.Post
                         .Include(p => p.Therapist)
                         .Include(p => p.Mood)
+                        .Include(p => p.User)
                         .Where
                         (
                             p => p.UserId == id && 
@@ -156,7 +158,8 @@ namespace Journly.Repositories
                          select p
                         ).Include(p => p.Mood)
                          .Include(p => p.User)
-                         .OrderByDescending(p => p.CreateDate)
+                         .OrderByDescending(p => p.Flagged)
+                         .ThenByDescending(p => p.CreateDate)
                          .Skip(start);
             List<Post> posts =  limit > 0
                                 ? query.Take(limit).ToList()

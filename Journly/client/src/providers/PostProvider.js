@@ -48,6 +48,17 @@ export const PostProvider = (props) => {
         )
     };
 
+    const getUserPostsByDate = (id, date) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/user/${id}?date=${date}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(resp => resp.json())
+                .then(setPosts));
+    };
+
     const getLatestPost = (id) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/latest/${id}`, {
@@ -143,7 +154,8 @@ export const PostProvider = (props) => {
     return (
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
-            addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts
+            addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts,
+            getUserPostsByDate
         }}>
             {props.children}
         </PostContext.Provider>
