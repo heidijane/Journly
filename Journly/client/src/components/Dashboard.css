@@ -1,0 +1,17 @@
+.AddClientButton {
+    position: relative;
+    padding-left: 50px;
+    overflow: hidden;
+}
+
+.AddClientButton img {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+}
+
+.AddClientButton:hover img {
+    content: url("/emoji/1F64B.svg");
+    bottom: -5px;
+}

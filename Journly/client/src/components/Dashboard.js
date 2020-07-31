@@ -1,27 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import WelcomeMessage from "./WelcomeMessage";
 import UserPostList from "./posts/UserPostList";
 import ClientList from "./clients/ClientList";
 import { ClientProvider } from "../providers/ClientProvider";
 import UnreadEntryList from "./posts/UnreadEntryList";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import AddClientModalContents from "./clients/AddClientModal"
+import "./Dashboard.css"
 
 export default function Dashboard() {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
+    //modal states for the add client modal
+    const [addClientModal, setAddClientModal] = useState(false);
+    const addClientModalToggle = () => setAddClientModal(!addClientModal);
 
     if (currentUser.userTypeId === 1) {
         return (
-            <div className="container mt-4">
-                <WelcomeMessage nickname={currentUser.nickName} />
-                <h3>My Clients</h3>
-                <hr />
-                <ClientProvider>
-                    <ClientList />
-                </ClientProvider>
-                <h3>Unread Entries</h3>
-                <hr />
-                <UnreadEntryList limit="6" start="0" />
-            </div>
+            <>
+                <div className="container mt-4">
+                    <WelcomeMessage nickname={currentUser.nickName} />
+                    <h3 className="d-flex justify-content-between">
+                        My Clients
+                    <Button color="success" className="AddClientButton" onClick={addClientModalToggle}>
+                            <img src={"/emoji/1F9D1.svg"} alt="add client" /> Add Client
+                    </Button>
+                    </h3>
+                    <hr />
+                    <ClientProvider>
+                        <ClientList />
+                    </ClientProvider>
+                    <h3>Unread Entries</h3>
+                    <hr />
+                    <UnreadEntryList limit="6" start="0" />
+                </div>
+                <Modal isOpen={addClientModal} toggle={addClientModalToggle}>
+                    <ModalHeader toggle={addClientModalToggle}>
+                        Add a Client
+            </ModalHeader>
+                    <ModalBody>
+                        <AddClientModalContents user={currentUser} />
+                    </ModalBody>
+                </Modal>
+            </>
         );
     } else {
         return (
