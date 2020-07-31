@@ -14,7 +14,7 @@ export default function Post({ post }) {
                     post.content &&
                     <div className="moodWrapper"><img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood" /></div>
                 }
-                <CardHeader className="d-flex justify-content-center">
+                <CardHeader className="d-flex justify-content-center pt-4" style={{ marginTop: "-15px" }}>
                     <h5 className="mt-1 mb-0">{moment(post.createDate).format('MMMM Do YYYY, h:mm a')}</h5>
                 </CardHeader>
                 <CardBody>
@@ -40,6 +40,6 @@ export default function Post({ post }) {
                     </CardFooter>
                 }
             </Card>
-        </Link>
+        </Link >
     )
 }
