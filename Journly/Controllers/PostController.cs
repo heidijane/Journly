@@ -249,6 +249,41 @@ namespace Journly.Controllers
             return NoContent();
         }
 
+        [HttpGet("search")]
+        public IActionResult Search(int? therapistId = null, int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true)
+        {
+            //make sure that either the therapistId or the clientId is filled out
+            if (therapistId == null && clientId == null)
+            {
+                return NotFound();
+            }
+            //get the current user info
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            //make sure user has permissions to see this client's posts
+            if (therapistId != null && clientId != null)
+            {
+                bool isTherapist = _userRepository.IsTherapistForUser(clientId.GetValueOrDefault(), currentUser.Id);
+                if (currentUser.UserTypeId == 1 && !isTherapist)
+                {
+                    return Unauthorized();
+                }
+            } else if (clientId != null)
+            {
+                //make sure that client can only view their own posts!
+                if (currentUser.Id != clientId)
+                {
+                    return Unauthorized();
+                }
+            }
+
+            List<Post> posts = _postRepository.Search(therapistId, clientId, viewed, flagged, orderDesc);
+            return Ok(posts);
+        }
+
         private User GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

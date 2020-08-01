@@ -149,7 +149,22 @@ export const PostProvider = (props) => {
             }));
     };
 
+    const searchPost = (therapistId = null, clientId = null, viewed = null, flagged = null, orderDesc = true) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/search?therapistId=${therapistId}&clientId=${clientId}&viewed=${viewed}&flagged=${flagged}&orderDesc=${orderDesc}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((resp) => {
+                if (resp.ok) {
+                    return resp.json();
+                }
+                throw new Error("Unauthorized");
+            })
 
+        )
+    }
 
     return (
         <PostContext.Provider value={{

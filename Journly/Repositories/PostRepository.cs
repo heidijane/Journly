@@ -188,5 +188,59 @@ namespace Journly.Repositories
             return count;
         }
 
+        //the monster query! Search through the journal posts by many variables
+        //Hey, entity framework isn't so bad after all...?
+        public List<Post> Search(int? therapistId = null, int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true)
+        {
+            //create a blank query for us to add onto
+            IQueryable<Post> query;
+
+            //if we want to search by a specific client then let's just do a simple where
+            if (clientId != null)
+            {
+                query = _context.Post
+                            .Where(p => p.UserId == clientId);
+            } else
+            {
+                //if we want to search by therapist Id we will do a query syntax join
+                query = (from p in _context.Post
+                            join ur in _context.UserRelationship on p.UserId equals ur.UserId
+                            where ur.TherapistId == therapistId
+                            select p
+                            );
+            }
+
+            //we need to include the mood data and the user data
+            query = query.Include(p => p.Mood)
+                         .Include(p => p.User);
+
+            //if viewed is not null let's add a condition for getting uread/unread posts
+            if (viewed == true)
+            {
+                query = query.Where(p => p.ViewTime != null);
+            } else if (viewed == false)
+            {
+                query = query.Where(p => p.ViewTime == null);
+            }
+
+            //if flagged is not null let's add a condition for getting flagged/unflagged posts
+            if (flagged != null)
+            {
+                query = query.Where(p => p.Flagged == flagged);
+            }
+
+            //determine the desired sort method
+            if (orderDesc == true)
+            {
+                query = query.OrderByDescending(p => p.CreateDate);
+            } else
+            {
+                query = query.OrderBy(p => p.CreateDate);
+            }
+
+            //ship it!
+            return query.ToList();
+        }
+
     }
 }

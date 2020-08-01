@@ -11,16 +11,33 @@
     padding: .25rem;
 }
 
-.tooltip-inner {
+/* .tooltip-inner {
     background-color: #137d8d;
+    border: 2px solid black;
 }
 
 .tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before, .tooltip.bs-tooltip-top .arrow::before {
     border-top-color: #137d8d;
+    border: 2px solid black;
 }
 
 .tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .tooltip.bs-tooltip-bottom .arrow::before {
     border-bottom-color: #137d8d;
+    border: 2px solid black;
+} */
+
+/* TOOLTIP STYLES */
+
+.tooltip-inner {
+    padding: .5em;
+    background: #FFFFFF;
+    color: black;
+    border: 2px solid black;
+    border-radius: 25px;
+}
+
+.tooltip.show {
+    opacity: 1;
 }
 
 /* HIDE RADIO */
