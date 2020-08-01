@@ -250,21 +250,29 @@ namespace Journly.Controllers
         }
 
         [HttpGet("search")]
-        public IActionResult Search(int? therapistId = null, int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true)
+        public IActionResult Search(int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true)
         {
-            //make sure that either the therapistId or the clientId is filled out
-            if (therapistId == null && clientId == null)
-            {
-                return NotFound();
-            }
             //get the current user info
             User currentUser = GetCurrentUserProfile();
             if (currentUser == null)
             {
                 return Unauthorized();
             }
+
+            int? therapistId = null;
+            if (currentUser.UserTypeId == 1)
+            {
+                therapistId = currentUser.Id;
+            }
+
+            //make sure that either the therapistId or the clientId is filled out
+            if (therapistId == null && clientId == null)
+            {
+                return NotFound();
+            }
+
             //make sure user has permissions to see this client's posts
-            if (therapistId != null && clientId != null)
+            if (currentUser.UserTypeId == 1 && clientId != null)
             {
                 bool isTherapist = _userRepository.IsTherapistForUser(clientId.GetValueOrDefault(), currentUser.Id);
                 if (currentUser.UserTypeId == 1 && !isTherapist)

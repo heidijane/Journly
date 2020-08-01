@@ -12,6 +12,7 @@ import AddEntryForm from "./posts/AddEntryForm";
 import { MoodProvider } from "../providers/MoodProvider";
 import EditEntryForm from "./posts/EditEntryForm";
 import UserJournal from "./posts/UserJournal";
+import FilterEntries from "./posts/FilterEntries";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserContext);
@@ -61,6 +62,10 @@ export default function ApplicationViews() {
 
                 <Route path="/userjournal/:id/:date">
                     {isLoggedIn ? <UserJournal /> : <Redirect to="/start" />}
+                </Route>
+
+                <Route path="/entries">
+                    {isLoggedIn ? <FilterEntries /> : <Redirect to="/start" />}
                 </Route>
 
             </Switch>

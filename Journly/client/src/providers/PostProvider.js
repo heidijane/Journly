@@ -149,28 +149,36 @@ export const PostProvider = (props) => {
             }));
     };
 
-    const searchPost = (therapistId = null, clientId = null, viewed = null, flagged = null, orderDesc = true) => {
-        return getToken().then((token) =>
-            fetch(`${apiUrl}/search?therapistId=${therapistId}&clientId=${clientId}&viewed=${viewed}&flagged=${flagged}&orderDesc=${orderDesc}`, {
+    const searchPost = (clientId = null, viewed = null, flagged = null, orderDesc = true) => {
+        return getToken().then((token) => {
+            let urlParams = "?";
+            if (clientId !== null) {
+                urlParams += `clientId=${clientId}`;
+            }
+            if (viewed !== null) {
+                urlParams += `&viewed=${viewed}`;
+            }
+            if (flagged !== null) {
+                urlParams += `&flagged=${flagged}`;
+            }
+            if (orderDesc !== null) {
+                urlParams += `&orderDesc=${orderDesc}`;
+            }
+            fetch(`${apiUrl}/search${urlParams}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            }).then((resp) => {
-                if (resp.ok) {
-                    return resp.json();
-                }
-                throw new Error("Unauthorized");
-            })
-
-        )
+            }).then(resp => resp.json())
+                .then(setPosts)
+        });
     }
 
     return (
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
             addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts,
-            getUserPostsByDate
+            getUserPostsByDate, searchPost
         }}>
             {props.children}
         </PostContext.Provider>
