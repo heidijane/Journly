@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NavLink as RRNavLink, Link } from "react-router-dom";
 import {
     Collapse,
@@ -12,9 +12,12 @@ import {
     DropdownToggle,
     DropdownItem,
     DropdownMenu,
-    Button
+    Button,
+    Badge,
+    Spinner
 } from 'reactstrap';
 import { UserContext } from "../providers/UserProvider";
+import { PostContext } from '../providers/PostProvider';
 
 export default function Header() {
     const { isLoggedIn, logout } = useContext(UserContext);
@@ -26,6 +29,17 @@ export default function Header() {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
+    const [unreadLoading, setUnreadLoading] = useState(true);
+    const { getUnreadCount } = useContext(PostContext);
+    const [unreadCount, setUnreadCount] = useState(0);
+
+    useEffect(() => {
+        if (currentUser.userTypeId === 1) {
+            getUnreadCount()
+                .then(setUnreadCount)
+                .then(setUnreadLoading(false));
+        }
+    }, []);
 
     return (
         <div>
@@ -79,7 +93,19 @@ export default function Header() {
                                                 <NavLink tag={RRNavLink} to="/">My Clients</NavLink>
                                             </NavItem>
                                             <NavItem>
-                                                <NavLink tag={RRNavLink} to="/entries">Journal Entries</NavLink>
+                                                <NavLink tag={RRNavLink} to="/entries">
+                                                    Journal Entries
+                                                    <Link to="/entries?viewed=false">
+                                                        <Badge href="#" className="ml-1">
+                                                            {
+                                                                unreadLoading
+                                                                    ?
+                                                                    <Spinner />
+                                                                    :
+                                                                    unreadCount
+                                                            }
+                                                        </Badge></Link>
+                                                </NavLink>
                                             </NavItem>
                                         </>
                                 }
