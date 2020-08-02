@@ -16,7 +16,7 @@ export default function AddClientModalContents({ user }) {
             <FormGroup>
                 <Label for="counselorCode" className="font-weight-bold">My Counselor Code</Label>
                 <InputGroup>
-                    <Input type="text" id="counselorCode" name="counselorCode" defaultValue={user.therapistInfo.code} size="lg" disabled />
+                    <Input type="text" id="counselorCode" name="counselorCode" defaultValue={user.therapistInfo.code} bsSize="lg" disabled />
                     <InputGroupAddon addonType="append">
                         <CopyToClipboard
                             text={user.therapistInfo.code}
@@ -38,7 +38,7 @@ export default function AddClientModalContents({ user }) {
                         id="registrationLink"
                         name="registrationLink"
                         defaultValue={window.location.protocol + "//" + window.location.hostname + "/registerclient/" + user.therapistInfo.code}
-                        size="lg"
+                        bsSize="lg"
                         disabled
                     />
                     <InputGroupAddon addonType="append">

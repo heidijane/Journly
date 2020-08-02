@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Card, Spinner } from "reactstrap";
 import "./Client.css"
 import { PostContext } from "../../providers/PostProvider";
+import { Link } from "react-router-dom";
 
 export default function Client({ client }) {
     const { getLatestPost, getUnreadCountByUser } = useContext(PostContext);
@@ -39,7 +40,7 @@ export default function Client({ client }) {
                 </div>
                 <h4>{client.user.nickName}</h4>
                 <h5 className="text-muted">{client.user.firstName} {client.user.lastName}</h5>
-                <div className="mb-2">{unread} Unread</div>
+                <div className="mb-2"><Link to={`/entries?user=${client.user.id}&viewed=false`}>{unread} Unread</Link></div>
             </Card>
         )
     }
