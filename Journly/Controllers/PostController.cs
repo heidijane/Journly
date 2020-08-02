@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Security.Claims;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Journly.Controllers
 {
@@ -263,6 +264,33 @@ namespace Journly.Controllers
 
             _postRepository.Update(post);
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
+        [HttpPut("markallread")]
+        public IActionResult MarkAllRead(int id, DateTime date)
+        {
+            User currentUser = GetCurrentUserProfile();
+            //make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
+            List<Post> posts = _postRepository.GetPostsByUserIdAndDate(id, date);
+
+            //filter out posts that have already been viewed
+            List<Post> unreadPosts = posts.Where(p => p.ViewTime == null).ToList();
+
+            foreach (Post post in unreadPosts)
+            {
+                //update the post object's view time and comment
+                post.ViewTime = DateTime.Now;
+                post.TherapistId = currentUser.Id;
+                _postRepository.Update(post);
+            }
+            
+            return Ok();
         }
 
         [HttpDelete("{id}")]

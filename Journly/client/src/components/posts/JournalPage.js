@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import JournalPageEntry from "./JournalPageEntry";
 import moment from "moment";
-import { Alert, Card } from "reactstrap";
+import { Alert, Card, Button } from "reactstrap";
+import { useHistory, useLocation } from 'react-router-dom';
+import { PostContext } from "../../providers/PostProvider";
 
 export default function JournalPage({ posts }) {
+
+    const { markAllRead } = useContext(PostContext);
+
+    let location = useLocation();
+    const history = useHistory();
+
+    //count unread posts
+    let unreadCount = 0;
+    for (let index = 0; index < posts.length; index++) {
+        if (posts[index].viewTime === null) {
+            unreadCount++;
+        }
+    }
+
+    const markAllAsRead = () => {
+        markAllRead(posts[0].userId, posts[0].createDate)
+            .then(() => {
+                //refreshes the current route to reflect the deletion
+                history.push({ pathname: "/empty" });
+                history.replace({ pathname: location.pathname });
+            });
+    }
+
+    const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
+
     if (posts.length > 0) {
 
         const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
@@ -30,6 +57,12 @@ export default function JournalPage({ posts }) {
                             .reduce((acc, x) => acc === null ? [x] : [acc, <hr className="m-0" key={"posthr-" + x} />, x], null)
                     }
                 </Card>
+                {
+                    currentUser.userTypeId === 1 && unreadCount > 0 &&
+                    <div className="mt-4">
+                        <Button color="success" onClick={markAllAsRead}>Mark all as Read</Button>
+                    </div>
+                }
             </div>
         )
     } else {

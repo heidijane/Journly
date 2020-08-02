@@ -157,6 +157,18 @@ export const PostProvider = (props) => {
         )
     };
 
+    const markAllRead = (id, date) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/markallread?id=${id}&date=${date}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            })
+        )
+    };
+
     const deletePost = (id) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${id}`, {
@@ -197,7 +209,7 @@ export const PostProvider = (props) => {
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
             addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts,
-            getUserPostsByDate, searchPost, therapistUpdate
+            getUserPostsByDate, searchPost, therapistUpdate, markAllRead
         }}>
             {props.children}
         </PostContext.Provider>

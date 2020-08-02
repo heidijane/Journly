@@ -55,12 +55,13 @@ export default function JournalPageEntry({ post }) {
                     <img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="JournalPage__Mood mr-1" />
                     <h4>{moment(post.createDate).format('h:mm a')}</h4>
                     {
-                        !post.deleted && post.userTypeId === 0 &&
-                        <>
-                            <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit post" onClick={() => history.push(`/editentry/${post.id}`)} /></Button>
-                            <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete post" onClick={deleteModalToggle} /></Button>
-
-                        </>
+                        !post.deleted && currentUser.userTypeId === 0 ?
+                            <>
+                                <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit post" onClick={() => history.push(`/editentry/${post.id}`)} /></Button>
+                                <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete post" onClick={deleteModalToggle} /></Button>
+                            </>
+                            :
+                            ""
                     }
                 </div>
                 {
