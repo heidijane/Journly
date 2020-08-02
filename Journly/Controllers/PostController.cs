@@ -39,6 +39,14 @@ namespace Journly.Controllers
             {
                 return Unauthorized();
             }
+
+            //or make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(post.UserId, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
             return Ok(post);
         }
 
@@ -62,6 +70,7 @@ namespace Journly.Controllers
             {
                 return Unauthorized();
             }
+
             List<Post> posts = _postRepository.GetPostsByUserIdAndDate(currentUser.Id, date);
             return Ok(posts);
         }
@@ -207,7 +216,7 @@ namespace Journly.Controllers
             {
                 return NotFound();
             }
-            //check to make sure that the user is autorized to edit the post
+            //check to make sure that the user is authorized to edit the post
             User currentUser = GetCurrentUserProfile();
             if (currentUser.Id != post.UserId)
             {
@@ -215,7 +224,6 @@ namespace Journly.Controllers
             }
             //update the post object to deleted status
 
-            post.ViewTime = DateTime.Now;
             post.Content = newPost.Content;
             post.MoodId = newPost.MoodId;
 
@@ -229,6 +237,34 @@ namespace Journly.Controllers
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
         }
 
+
+        [HttpPut("comment")]
+        public IActionResult TherapistUpdate(Post newPost)
+        {
+            Post post = _postRepository.GetById(newPost.Id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            User currentUser = GetCurrentUserProfile();
+            //make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(post.UserId, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
+            //update the post object's view time and comment
+
+            post.ViewTime = DateTime.Now;
+            post.TherapistId = currentUser.Id;
+            post.Comment = newPost.Comment;
+
+            _postRepository.Update(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -237,7 +273,7 @@ namespace Journly.Controllers
             {
                 return NotFound();
             }
-            //check to make sure that the user is autorized to delete the post
+            //check to make sure that the user is authorized to delete the post
             User currentUser = GetCurrentUserProfile();
             if (currentUser.Id != post.UserId)
             {

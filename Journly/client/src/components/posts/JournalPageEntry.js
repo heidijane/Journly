@@ -4,10 +4,11 @@ import "./JournalPageEntry.css"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
 import { useHistory, useLocation } from 'react-router-dom'
+import CommentForm from "./CommentForm";
 
 export default function JournalPageEntry({ post }) {
 
-    const { deletePost } = useContext(PostContext);
+    const { deletePost, therapistUpdate } = useContext(PostContext);
 
     let location = useLocation();
     const history = useHistory();
@@ -16,14 +17,32 @@ export default function JournalPageEntry({ post }) {
     const [deleteModal, setDeleteModal] = useState(false)
     const deleteModalToggle = () => setDeleteModal(!deleteModal)
 
+    //modal states for the comment modal
+    const [commentModal, setCommentModal] = useState(false)
+    const commentModalToggle = () => setCommentModal(!commentModal)
+
     const deleteEntry = () => {
         deletePost(post.id)
             .then(deleteModalToggle)
             .then(() => {
                 //refreshes the current route to reflect the deletion
                 history.push({ pathname: "/empty" });
-                history.replace({ pathname: location.pathname })
+                history.replace({ pathname: location.pathname });
             });
+    }
+
+    const markRead = () => {
+        const newPost = {
+            id: post.id,
+            comment: ""
+        }
+        therapistUpdate(newPost)
+            .then(() => {
+                //refreshes the current route to reflect the deletion
+                history.push({ pathname: "/empty" });
+                history.replace({ pathname: location.pathname });
+            });
+
     }
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
@@ -71,30 +90,51 @@ export default function JournalPageEntry({ post }) {
                         }
                     </div>
                 }
+                {
+                    !post.viewTime && currentUser.userTypeId == 1 &&
+                    <div className="mt-4">
+                        <Button color="primary" onClick={commentModalToggle}>Comment</Button>
+                        <Button color="success" className="ml-2" onClick={markRead}>Mark as Read</Button>
+                    </div>
+                }
             </div>
-            <Modal isOpen={deleteModal} toggle={deleteModalToggle}>
-                <ModalHeader toggle={deleteModalToggle}>
-                    Delete Journal Entry
-            </ModalHeader>
-                <ModalBody>
-                    <span className="lead">
-                        Are you sure you want to delete this journal entry?
+            {
+                currentUser.userTypeId == 0 &&
+                <Modal isOpen={deleteModal} toggle={deleteModalToggle}>
+                    <ModalHeader toggle={deleteModalToggle}>
+                        Delete Journal Entry
+                    </ModalHeader>
+                    <ModalBody>
+                        <span className="lead">
+                            Are you sure you want to delete this journal entry?
                     </span>
-                </ModalBody>
-                <ModalFooter>
-                    <Button
-                        type="button"
-                        color="secondary"
-                        onClick={deleteModalToggle}
-                    >Cancel</Button>
-                    <Button
-                        type="submit"
-                        color="danger"
-                        className="ml-2"
-                        onClick={deleteEntry}
-                    >Delete Entry</Button>
-                </ModalFooter>
-            </Modal>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button
+                            type="button"
+                            color="secondary"
+                            onClick={deleteModalToggle}
+                        >Cancel</Button>
+                        <Button
+                            type="submit"
+                            color="danger"
+                            className="ml-2"
+                            onClick={deleteEntry}
+                        >Delete Entry</Button>
+                    </ModalFooter>
+                </Modal>
+            }
+            {
+                currentUser.userTypeId == 1 &&
+                <Modal isOpen={commentModal} toggle={commentModalToggle}>
+                    <ModalHeader toggle={commentModalToggle}>
+                        Leave a Comment
+                    </ModalHeader>
+                    <ModalBody>
+                        <CommentForm post={post} toggle={commentModalToggle} />
+                    </ModalBody>
+                </Modal>
+            }
         </>
     )
 }

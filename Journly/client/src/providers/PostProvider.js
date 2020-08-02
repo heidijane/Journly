@@ -138,6 +138,25 @@ export const PostProvider = (props) => {
         )
     };
 
+    const therapistUpdate = (post) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/comment`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(post)
+            })
+                .then(resp => {
+                    if (resp.ok) {
+                        return resp.json();
+                    }
+                    throw new Error("Unauthorized");
+                })
+        )
+    };
+
     const deletePost = (id) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${id}`, {
@@ -178,7 +197,7 @@ export const PostProvider = (props) => {
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
             addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts,
-            getUserPostsByDate, searchPost
+            getUserPostsByDate, searchPost, therapistUpdate
         }}>
             {props.children}
         </PostContext.Provider>
