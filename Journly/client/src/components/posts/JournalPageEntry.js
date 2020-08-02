@@ -80,9 +80,22 @@ export default function JournalPageEntry({ post }) {
                             <img src={"/emoji/" + (post.comment ? "E263" : "2714") + ".svg"} alt="entry has been read" className="checkmark mr-1" />
                             <div>
                                 <div className="text-muted font-italic overflow-hidden">
-                                    Viewed by {post.therapist.nickName} on {moment(post.viewDate).format('MMMM Do YYYY [at] h:mm a')}
+                                    {
+                                        currentUser.id !== post.userId
+                                            ?
+                                            <span>You viewed</span>
+                                            :
+                                            <span>Viewed by {post.therapist.nickName}</span>
+                                    } on {moment(post.viewDate).format('MMMM Do YYYY [at] h:mm a')}
                                 </div>
                             </div>
+                            {
+                                currentUser.userTypeId == 1 &&
+                                <>
+                                    <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit comment" onClick={commentModalToggle} /></Button>
+                                    <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete comment" onClick={markRead} /></Button>
+                                </>
+                            }
                         </div>
                         {
                             post.comment &&
