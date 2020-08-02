@@ -13,6 +13,7 @@ import { MoodProvider } from "../providers/MoodProvider";
 import EditEntryForm from "./posts/EditEntryForm";
 import UserJournal from "./posts/UserJournal";
 import FilterEntries from "./posts/FilterEntries";
+import { ClientProvider } from "../providers/ClientProvider";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserContext);
@@ -65,7 +66,7 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/entries">
-                    {isLoggedIn ? <FilterEntries /> : <Redirect to="/start" />}
+                    {isLoggedIn ? <ClientProvider><FilterEntries /></ClientProvider> : <Redirect to="/start" />}
                 </Route>
 
             </Switch>
