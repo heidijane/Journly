@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import { Card, CardBody, CardFooter, CardHeader } from "reactstrap";
+import { Card, CardBody, CardFooter, CardHeader, UncontrolledTooltip } from "reactstrap";
 import moment from "moment";
 import "./Post.css";
 import { truncate } from "../../utilities/truncate";
@@ -8,7 +8,7 @@ import { truncate } from "../../utilities/truncate";
 export default function Post({ post }) {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
-
+    console.log(post)
     return (
         <Link
             to={
@@ -25,6 +25,36 @@ export default function Post({ post }) {
                     <div className="moodWrapper"><img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood" /></div>
                 }
                 <CardHeader className="d-flex justify-content-center pt-4" style={{ marginTop: "-15px" }}>
+                    {
+                        currentUser.userTypeId === 1 && post.flagged &&
+                        <div className="flagWarning">
+                            <img src="/emoji/26A0.svg" alt="read" id="warningIcon" className="warningIcon" />
+                            <UncontrolledTooltip placement="top" target="warningIcon" style={{ backgroundColor: "rgb(255, 245, 155)" }}>
+                                This post has been flagged for possibly containing concerning content.
+                                Please review it as soon as possible and follow up with your client if necessary.
+                                    </UncontrolledTooltip>
+                        </div>
+                    }
+                    {
+                        currentUser.userTypeId === 1 && post.viewTime !== null &&
+                        (
+                            post.comment === ""
+                                ?
+                                <>
+                                    <img src="/emoji/2714.svg" alt="read" id={"viewed-" + post.id} className="viewIcon" />
+                                    <UncontrolledTooltip placement="top" target={"viewed-" + post.id}>
+                                        you viewed on<br />{moment(post.viewTime).format('M/D/YY, h:mm a')}
+                                    </UncontrolledTooltip>
+                                </>
+                                :
+                                <>
+                                    <img src="/emoji/E263.svg" alt="commented" id={"viewed-" + post.id} className="viewIcon" />
+                                    <UncontrolledTooltip placement="top" target={"viewed-" + post.id}>
+                                        you commented on<br />{moment(post.viewTime).format('M/D/YY, h:mm a')}
+                                    </UncontrolledTooltip>
+                                </>
+                        )
+                    }
                     <h5 className="mt-1 mb-0">{moment(post.createDate).format('MMMM Do YYYY, h:mm a')}</h5>
                 </CardHeader>
                 <CardBody>
