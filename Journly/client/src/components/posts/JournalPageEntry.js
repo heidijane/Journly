@@ -93,8 +93,11 @@ export default function JournalPageEntry({ post }) {
                             {
                                 currentUser.userTypeId == 1 &&
                                 <>
-                                    <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/270F.svg"} alt="edit comment" onClick={commentModalToggle} /></Button>
-                                    <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete comment" onClick={markRead} /></Button>
+                                    <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/" + (post.comment === "" ? "E263" : "270F") + ".svg"} alt="edit comment" onClick={commentModalToggle} /></Button>
+                                    {
+                                        post.comment &&
+                                        <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete comment" onClick={markRead} /></Button>
+                                    }
                                 </>
                             }
                         </div>
