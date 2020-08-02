@@ -14,9 +14,9 @@ export default function Post({ post }) {
             to={
                 currentUser.userTypeId === 0
                     ?
-                    `/myjournal/${post.createDate}#${post.id}`
+                    `/myjournal/${post.createDate}`
                     :
-                    `/userjournal/${post.userId}/${post.createDate}#${post.id}`
+                    `/userjournal/${post.userId}/${post.createDate}`
             }
             className="text-decoration-none text-reset">
             <Card className={"Post" + (post.flagged && currentUser.userTypeId === 1 ? " flagged" : " bg-light")}>
