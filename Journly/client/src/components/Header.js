@@ -79,7 +79,7 @@ export default function Header() {
                                                 <NavLink tag={RRNavLink} to="/">My Clients</NavLink>
                                             </NavItem>
                                             <NavItem>
-                                                <NavLink tag={RRNavLink} to="/">Journal Entries</NavLink>
+                                                <NavLink tag={RRNavLink} to="/entries">Journal Entries</NavLink>
                                             </NavItem>
                                         </>
                                 }

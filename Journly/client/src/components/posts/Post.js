@@ -8,7 +8,7 @@ import { truncate } from "../../utilities/truncate";
 export default function Post({ post }) {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
-    console.log(post)
+
     return (
         <Link
             to={
