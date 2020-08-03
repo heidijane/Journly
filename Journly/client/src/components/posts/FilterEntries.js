@@ -99,6 +99,8 @@ export default function FilterEntries() {
         if (posts.length > 0) {
             return (
                 <div className="container mt-4">
+                    <h3>Journal Entries</h3>
+                    <hr />
                     {RenderFilterForm()}
                     <PostList posts={posts} />
                 </div>
@@ -106,6 +108,8 @@ export default function FilterEntries() {
         } else {
             return (
                 <div className="container mt-4">
+                    <h3>Journal Entries</h3>
+                    <hr />
                     {RenderFilterForm()}
                     <Alert color="info" className="mt-4">There are no entries matching your search criteria.</Alert>
                 </div>

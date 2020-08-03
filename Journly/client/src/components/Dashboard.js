@@ -7,6 +7,8 @@ import UnreadEntryList from "./posts/UnreadEntryList";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import AddClientModalContents from "./clients/AddClientModal"
 import "./Dashboard.css"
+import MoodWall from "./moodwall/MoodWall";
+import { MoodProvider } from "../providers/MoodProvider";
 
 export default function Dashboard() {
 
@@ -51,6 +53,12 @@ export default function Dashboard() {
                 <h3>My Recent Entries</h3>
                 <hr />
                 <UserPostList limit="3" start="0" />
+                <div className="bg-light border rounded px-0 py-3">
+                    <MoodProvider>
+                        <MoodWall limit="21" size="small" />
+                    </MoodProvider>
+                </div>
+
             </div>
         );
     }

@@ -5,6 +5,7 @@ import MoodSelector from "./MoodSelector";
 import "./AddEntryForm.css"
 import Errors from "../Errors";
 import { PostContext } from "../../providers/PostProvider";
+import HealthResources from "../HealthResources";
 
 export default function AddEntryForm() {
     const { addPost } = useContext(PostContext);
@@ -65,8 +66,8 @@ export default function AddEntryForm() {
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Remember we are here for you!</ModalHeader>
                 <ModalBody>
-                    List of mental health resources.
-        </ModalBody>
+                    <HealthResources />
+                </ModalBody>
                 <ModalFooter className="text-right">
                     <Button color="primary" onClick={() => history.push("/myentries")}>Continue</Button>
                 </ModalFooter>

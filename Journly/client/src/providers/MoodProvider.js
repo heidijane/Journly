@@ -20,9 +20,20 @@ export const MoodProvider = (props) => {
                 .then(setMoods));
     };
 
+    const getMoodWall = (limit = 50) => {
+        return fetch(`${apiUrl}/wall?limit=${limit}`)
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            })
+    };
+
     return (
         <MoodContext.Provider value={{
-            moods, getMoods
+            moods, getMoods, getMoodWall
         }}>
             {props.children}
         </MoodContext.Provider>

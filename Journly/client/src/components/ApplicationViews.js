@@ -15,6 +15,8 @@ import UserJournal from "./posts/UserJournal";
 import FilterEntries from "./posts/FilterEntries";
 import { ClientProvider } from "../providers/ClientProvider";
 import ClientDetails from "./clients/ClientDetails";
+import ClientList from "./clients/ClientList";
+import MoodWall from "./moodwall/MoodWall";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserContext);
@@ -47,6 +49,14 @@ export default function ApplicationViews() {
                     <RegisterCounselor />
                 </Route>
 
+                <Route path="/moodwall">
+                    <MoodProvider>
+                        <div className="container mt-4">
+                            <MoodWall limit="54" />
+                        </div>
+                    </MoodProvider>
+                </Route>
+
                 <Route path="/myentries">
                     {isLoggedIn && currentUser.userTypeId === 0 ? <MyEntries /> : <Redirect to="/start" />}
                 </Route>
@@ -73,6 +83,20 @@ export default function ApplicationViews() {
 
                 <Route path="/client/:id">
                     {isLoggedIn && currentUser.userTypeId === 1 ? <ClientProvider><ClientDetails /></ClientProvider> : <Redirect to="/start" />}
+                </Route>
+
+                <Route path="/clientlist">
+                    {isLoggedIn && currentUser.userTypeId === 1
+                        ?
+                        <ClientProvider>
+                            <div className="container mt-4">
+                                <h3>My Clients</h3>
+                                <hr />
+                                <ClientList />
+                            </div>
+                        </ClientProvider>
+                        :
+                        <Redirect to="/start" />}
                 </Route>
 
             </Switch>

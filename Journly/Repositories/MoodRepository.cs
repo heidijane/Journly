@@ -26,5 +26,14 @@ namespace Journly.Repositories
                 ? query.Where(mt => mt.Name.Contains(criterion)).ToList()
                 : query.ToList();
         }
+
+        public List<MoodType> MoodWall(int limit = 50)
+        {
+            return _context.Post
+                    .OrderByDescending(p => p.CreateDate)
+                    .Select(p => p.Mood)
+                    .Take(limit)                    
+                    .ToList();
+        }
     }
 }

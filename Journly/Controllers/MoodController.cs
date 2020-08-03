@@ -24,10 +24,16 @@ namespace Journly.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult GetCurrentUserPosts(string criterion = "")
+        public IActionResult GetMoods(string criterion = "")
         {
             List<MoodType> moods = _moodRepository.GetMoods(criterion);
             return Ok(moods);
+        }
+
+        [HttpGet("wall")]
+        public IActionResult MoodWall(int limit = 50)
+        {
+            return Ok(_moodRepository.MoodWall(limit));
         }
 
     }

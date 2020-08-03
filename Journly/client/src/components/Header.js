@@ -34,7 +34,7 @@ export default function Header() {
     const [unreadCount, setUnreadCount] = useState(0);
 
     useEffect(() => {
-        if (currentUser.userTypeId === 1) {
+        if (currentUser !== null && currentUser.userTypeId === 1) {
             getUnreadCount()
                 .then(setUnreadCount)
                 .then(setUnreadLoading(false));
@@ -64,8 +64,8 @@ export default function Header() {
                                         </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem header>Account Settings</DropdownItem>
-                                            <DropdownItem>Change Avatar</DropdownItem>
-                                            <DropdownItem>Permissions</DropdownItem>
+                                            {/* <DropdownItem>Change Avatar</DropdownItem>
+                                            <DropdownItem>Permissions</DropdownItem> */}
                                             <DropdownItem divider />
                                             <DropdownItem onClick={logout}>Logout</DropdownItem>
                                         </DropdownMenu>
@@ -73,6 +73,9 @@ export default function Header() {
                                 </NavItem>
                                 <NavItem>
                                     <NavLink tag={RRNavLink} to="/">Home</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/moodwall">Mood Wall</NavLink>
                                 </NavItem>
                                 {
                                     currentUser.userTypeId === 0
@@ -90,7 +93,7 @@ export default function Header() {
                                         :
                                         <>
                                             <NavItem>
-                                                <NavLink tag={RRNavLink} to="/">My Clients</NavLink>
+                                                <NavLink tag={RRNavLink} to="/clientlist">My Clients</NavLink>
                                             </NavItem>
                                             <NavItem className="d-flex justify-content-start align-items-center">
                                                 <NavLink tag={RRNavLink} to="/entries">

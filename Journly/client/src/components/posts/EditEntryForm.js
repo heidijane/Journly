@@ -5,6 +5,7 @@ import MoodSelector from "./MoodSelector";
 import "./AddEntryForm.css"
 import Errors from "../Errors";
 import { PostContext } from "../../providers/PostProvider";
+import HealthResources from "../HealthResources";
 
 export default function EditEntryForm() {
     const { editPost, getCurrentUserPostById } = useContext(PostContext);
@@ -95,8 +96,8 @@ export default function EditEntryForm() {
                 <Modal isOpen={modal} toggle={toggle}>
                     <ModalHeader toggle={toggle}>Remember we are here for you!</ModalHeader>
                     <ModalBody>
-                        List of mental health resources.
-        </ModalBody>
+                        <HealthResources />
+                    </ModalBody>
                     <ModalFooter className="text-right">
                         <Button color="primary" onClick={() => history.push(`/myjournal/${post.createDate}`)}>Continue</Button>
                     </ModalFooter>
