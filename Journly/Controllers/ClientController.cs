@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 namespace Journly.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientController : ControllerBase
@@ -22,7 +23,6 @@ namespace Journly.Controllers
             _userRepository = new UserRepository(context, configuration);
         }
 
-        [Authorize]
         [HttpGet("list")]
         public IActionResult GetClients()
         {
@@ -34,6 +34,24 @@ namespace Journly.Controllers
 
             List<UserRelationship> clients = _clientRepository.GetClients(currentUser.Id);
             return Ok(clients);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetClient(int id)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser.UserTypeId != 1)
+            {
+                return Unauthorized();
+            }
+            //make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
+            if (!isTherapist)
+            {
+                return Unauthorized();
+            }
+            User client = _userRepository.GetByUserId(id);
+            return Ok(client);
         }
 
         private User GetCurrentUserProfile()

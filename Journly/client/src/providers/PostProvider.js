@@ -6,6 +6,7 @@ export const PostContext = React.createContext();
 export const PostProvider = (props) => {
     const { getToken } = useContext(UserContext)
     const [posts, setPosts] = useState([]);
+    const [unreadPosts, setUnreadPosts] = useState([]);
 
     const apiUrl = '/api/post'
 
@@ -84,7 +85,7 @@ export const PostProvider = (props) => {
                     Authorization: `Bearer ${token}`
                 }
             }).then(resp => resp.json())
-                .then(setPosts));
+                .then(setUnreadPosts));
     };
 
     const getUnreadCount = () => {
@@ -197,7 +198,7 @@ export const PostProvider = (props) => {
             }));
     };
 
-    const searchPost = (clientId = null, viewed = null, flagged = null, orderDesc = true) => {
+    const searchPost = (clientId = null, viewed = null, flagged = null, orderDesc = true, limit = 0, start = 0) => {
         return getToken().then((token) => {
             let urlParams = "?";
             if (clientId !== null) {
@@ -211,6 +212,12 @@ export const PostProvider = (props) => {
             }
             if (orderDesc !== null) {
                 urlParams += `&orderDesc=${orderDesc}`;
+            }
+            if (limit !== 0) {
+                urlParams += `&limit=${limit}`;
+            }
+            if (start !== 0) {
+                urlParams += `&start=${start}`;
             }
             fetch(`${apiUrl}/search${urlParams}`, {
                 method: "GET",
@@ -226,7 +233,7 @@ export const PostProvider = (props) => {
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
             addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts,
-            getUserPostsByDate, searchPost, therapistUpdate, markAllRead, getUnreadCount
+            getUserPostsByDate, searchPost, therapistUpdate, markAllRead, getUnreadCount, unreadPosts
         }}>
             {props.children}
         </PostContext.Provider>

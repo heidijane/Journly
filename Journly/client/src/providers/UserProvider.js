@@ -24,7 +24,6 @@ export function UserProvider(props) {
             .then((userData) => {
                 sessionStorage.setItem("userData", JSON.stringify(userData));
                 setIsLoggedIn(true);
-                console.log(userData);
             });
     };
 

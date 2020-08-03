@@ -14,9 +14,11 @@ import EditEntryForm from "./posts/EditEntryForm";
 import UserJournal from "./posts/UserJournal";
 import FilterEntries from "./posts/FilterEntries";
 import { ClientProvider } from "../providers/ClientProvider";
+import ClientDetails from "./clients/ClientDetails";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserContext);
+    const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
     return (
         <main>
@@ -46,27 +48,31 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/myentries">
-                    {isLoggedIn ? <MyEntries /> : <Redirect to="/start" />}
+                    {isLoggedIn && currentUser.userTypeId === 0 ? <MyEntries /> : <Redirect to="/start" />}
                 </Route>
 
                 <Route path="/newentry">
-                    {isLoggedIn ? <MoodProvider><AddEntryForm /></MoodProvider> : <Redirect to="/start" />}
+                    {isLoggedIn && currentUser.userTypeId === 0 ? <MoodProvider><AddEntryForm /></MoodProvider> : <Redirect to="/start" />}
                 </Route>
 
                 <Route path="/editentry/:id">
-                    {isLoggedIn ? <MoodProvider><EditEntryForm /></MoodProvider> : <Redirect to="/start" />}
+                    {isLoggedIn && currentUser.userTypeId === 0 ? <MoodProvider><EditEntryForm /></MoodProvider> : <Redirect to="/start" />}
                 </Route>
 
                 <Route path="/myjournal/:date">
-                    {isLoggedIn ? <MyJournal /> : <Redirect to="/start" />}
+                    {isLoggedIn && currentUser.userTypeId === 0 ? <MyJournal /> : <Redirect to="/start" />}
                 </Route>
 
                 <Route path="/userjournal/:id/:date">
-                    {isLoggedIn ? <UserJournal /> : <Redirect to="/start" />}
+                    {isLoggedIn && currentUser.userTypeId === 1 ? <UserJournal /> : <Redirect to="/start" />}
                 </Route>
 
                 <Route path="/entries">
-                    {isLoggedIn ? <ClientProvider><FilterEntries /></ClientProvider> : <Redirect to="/start" />}
+                    {isLoggedIn && currentUser.userTypeId === 1 ? <ClientProvider><FilterEntries /></ClientProvider> : <Redirect to="/start" />}
+                </Route>
+
+                <Route path="/client/:id">
+                    {isLoggedIn && currentUser.userTypeId === 1 ? <ClientProvider><ClientDetails /></ClientProvider> : <Redirect to="/start" />}
                 </Route>
 
             </Switch>

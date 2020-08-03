@@ -20,9 +20,20 @@ export const ClientProvider = (props) => {
                 .then(setClients));
     };
 
+    const getClient = (id) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(resp => resp.json())
+        );
+    }
+
     return (
         <ClientContext.Provider value={{
-            clients, getClients
+            clients, getClients, getClient
         }}>
             {props.children}
         </ClientContext.Provider>

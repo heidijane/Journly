@@ -26,5 +26,6 @@ namespace Journly.Repositories
                 .OrderBy(ur => ur.User.LastName)
                 .ToList();
         }
+
     }
 }

@@ -5,7 +5,7 @@ import PostList from "./PostList";
 import { useHistory } from "react-router-dom";
 
 export default function UnreadEntryList({ limit = 0, start = 0 }) {
-    const { posts, getUnreadPosts, getUnreadCount } = useContext(PostContext);
+    const { unreadPosts, getUnreadPosts, getUnreadCount } = useContext(PostContext);
     const [unreadCount, setUnreadCount] = useState(0);
     const [loading, setLoading] = useState(true);
 
@@ -23,10 +23,10 @@ export default function UnreadEntryList({ limit = 0, start = 0 }) {
             <Spinner />
         );
     } else {
-        if (posts.length > 0) {
+        if (unreadPosts.length > 0) {
             return (
                 <>
-                    <PostList posts={posts} />
+                    <PostList posts={unreadPosts} />
                     {
                         unreadCount > 6 &&
                         <Button color="primary" className="mt-n4 mb-4" block onClick={() => history.push("/entries?viewed=false")}>View All Unread Entries</Button>

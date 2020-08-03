@@ -92,20 +92,21 @@ export default function Header() {
                                             <NavItem>
                                                 <NavLink tag={RRNavLink} to="/">My Clients</NavLink>
                                             </NavItem>
-                                            <NavItem>
+                                            <NavItem className="d-flex justify-content-start align-items-center">
                                                 <NavLink tag={RRNavLink} to="/entries">
                                                     Journal Entries
-                                                    <Link to="/entries?viewed=false">
-                                                        <Badge href="#" className="ml-1">
-                                                            {
-                                                                unreadLoading
-                                                                    ?
-                                                                    <Spinner />
-                                                                    :
-                                                                    unreadCount
-                                                            }
-                                                        </Badge></Link>
-                                                </NavLink>
+                                                    </NavLink>
+                                                <Link to="/entries?viewed=false">
+                                                    <Badge color="info" className="ml-1 px-2 py-1">
+                                                        {
+                                                            unreadLoading
+                                                                ?
+                                                                <Spinner />
+                                                                :
+                                                                unreadCount
+                                                        }
+                                                    </Badge>
+                                                </Link>
                                             </NavItem>
                                         </>
                                 }

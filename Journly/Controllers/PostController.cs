@@ -314,7 +314,7 @@ namespace Journly.Controllers
         }
 
         [HttpGet("search")]
-        public IActionResult Search(int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true)
+        public IActionResult Search(int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true, int limit = 0, int start = 0)
         {
             //get the current user info
             User currentUser = GetCurrentUserProfile();
@@ -352,7 +352,7 @@ namespace Journly.Controllers
                 }
             }
 
-            List<Post> posts = _postRepository.Search(therapistId, clientId, viewed, flagged, orderDesc);
+            List<Post> posts = _postRepository.Search(therapistId, clientId, viewed, flagged, orderDesc, limit, start);
             return Ok(posts);
         }
 
