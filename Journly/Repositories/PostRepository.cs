@@ -198,7 +198,7 @@ namespace Journly.Repositories
 
         //the monster query! Search through the journal posts by many variables
         //Hey, entity framework isn't so bad after all...?
-        public List<Post> Search(int? therapistId = null, int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true, int limit = 0, int start = 0)
+        public List<Post> Search(int? therapistId = null, int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true, int limit = 0, int start = 0, bool deleted = true)
         {
             //create a blank query for us to add onto
             IQueryable<Post> query;
@@ -235,6 +235,11 @@ namespace Journly.Repositories
             if (flagged != null)
             {
                 query = query.Where(p => p.Flagged == flagged);
+            }
+
+            if (deleted == false)
+            {
+                query = query.Where(p => p.Deleted == false);
             }
 
             //determine number to get and number to skip

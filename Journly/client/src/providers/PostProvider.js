@@ -212,7 +212,7 @@ export const PostProvider = (props) => {
             }));
     };
 
-    const searchPost = (clientId = null, viewed = null, flagged = null, orderDesc = true, limit = 0, start = 0) => {
+    const searchPost = (clientId = null, viewed = null, flagged = null, orderDesc = true, limit = 0, start = 0, deleted = true) => {
         return getToken().then((token) => {
             let urlParams = "?";
             if (clientId !== null) {
@@ -232,6 +232,9 @@ export const PostProvider = (props) => {
             }
             if (start !== 0) {
                 urlParams += `&start=${start}`;
+            }
+            if (deleted !== true) {
+                urlParams += `&deleted=${deleted}`;
             }
             fetch(`${apiUrl}/search${urlParams}`, {
                 method: "GET",

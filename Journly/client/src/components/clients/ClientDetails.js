@@ -34,7 +34,7 @@ export default function ClientDetails({ propId = null }) {
     }, []);
 
     useEffect(() => {
-        searchPost(id, null, null, true, 5).then(setLoadingPosts(false));
+        searchPost(id, null, null, true, 5, 0, false).then(setLoadingPosts(false));
     }, []);
 
     if (loading) {
