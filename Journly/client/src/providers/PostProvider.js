@@ -70,7 +70,12 @@ export const PostProvider = (props) => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            }).then(resp => resp.json())
+            }).then((resp) => {
+                if (resp.status === 200) {
+                    return resp.json();
+                }
+                return null;
+            })
         )
     }
 

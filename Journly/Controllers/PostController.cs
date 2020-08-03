@@ -115,6 +115,10 @@ namespace Journly.Controllers
             }
 
             Post post = _postRepository.MostRecentPost(id);
+            if (post == null)
+            {
+                return NoContent();
+            }
             return Ok(post);
         }
 
