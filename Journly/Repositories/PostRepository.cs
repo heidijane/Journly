@@ -27,6 +27,7 @@ namespace Journly.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
+        //returns a post with a specific ID
         public Post GetById(int id)
         {
             return _context.Post
@@ -36,6 +37,7 @@ namespace Journly.Repositories
                         .FirstOrDefault(p => p.Id == id);
         }
 
+        //returns posts matching a specific user ID
         public List<Post> GetPostsByUserId(int id, int limit, int start, bool deleted = true)
         {
             var query = _context.Post
@@ -54,6 +56,8 @@ namespace Journly.Repositories
                 : query.ToList();
         }
 
+        //returns posts matching a specific user ID and date
+        //if "deleted" parameter is false it will filter out deleted posts
         public List<Post> GetPostsByUserIdAndDate(int id, DateTime date, bool deleted = true)
         {
             var query = _context.Post
@@ -73,6 +77,7 @@ namespace Journly.Repositories
             return query.OrderBy(p => p.CreateDate).ToList();
         }
 
+        //returns a list of clients' posts for a therapist
         public List<Post> GetPostsByTherapistId(int id)
         {
             using (SqlConnection conn = Connection)
@@ -120,18 +125,21 @@ namespace Journly.Repositories
             }
         }
 
+        //adds a new post to the db
         public void Add(Post post)
         {
             _context.Add(post);
             _context.SaveChanges();
         }
 
+        //updates a specific post in the db
         public void Update(Post post)
         {
             _context.Entry(post).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
+        //returns the most recent post of a specified user
         public Post MostRecentPost(int id)
         {
             return _context.Post
@@ -141,6 +149,9 @@ namespace Journly.Repositories
                         .FirstOrDefault(p => p.UserId == id);
         }
 
+        //returns unread posts by a specific user
+        //limit is the max that can be returned
+        //start determines number of posts to skip
         public List<Post> UnreadPostsByUser(int id, int limit, int start)
         {
             var query = _context.Post
@@ -157,6 +168,9 @@ namespace Journly.Repositories
                     : query.ToList();
         }
 
+        //returns unread posts for a specific therapist
+        //limit is the max that can be returned
+        //start determines number of posts to skip
         public List<Post> UnreadPostsByTherapist(int id, int limit, int start)
         {
             var query = (from p in _context.Post
@@ -176,6 +190,7 @@ namespace Journly.Repositories
             return posts;
         }
 
+        //returns number of unread posts matching a user ID for a therapist
         public int CountUnreadByUser(int id)
         {
             return _context.Post
@@ -184,6 +199,7 @@ namespace Journly.Repositories
                         .Count(p => p.UserId == id);     
         }
 
+        //returns number of unread posts for a specific therapist
         public int CountUnreadByTherapist(int id)
         {
             int count = (from p in _context.Post

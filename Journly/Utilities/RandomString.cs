@@ -6,6 +6,7 @@ namespace Journly
     public static class RandomString
     {
         //returns a GUID with any special characters removed
+        //used in the generation of counselor codes
 		public static string Generate()
         {
             Guid g = Guid.NewGuid();

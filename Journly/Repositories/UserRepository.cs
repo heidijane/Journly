@@ -26,6 +26,7 @@ namespace Journly.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
+        //returns a single user by their firebase UID
         public User GetByFirebaseUserId(string firebaseUserId)
         {
             return _context.User
@@ -35,6 +36,7 @@ namespace Journly.Repositories
                 .FirstOrDefault(u => u.FirebaseUserId == firebaseUserId);
         }
 
+        //returns a single user by their user ID
         public User GetByUserId(int id)
         {
             return _context.User
@@ -44,12 +46,14 @@ namespace Journly.Repositories
                 .FirstOrDefault(u => u.Id == id);
         }
 
+        //determines if a userId has a specific therapist, returns true or false
         public bool IsTherapistForUser(int userId, int currentUserId)
         {
             bool result = _context.UserRelationship.Any(ur => ur.UserId == userId && ur.TherapistId == currentUserId);
             return result;
         }
 
+        //gets therapist info to be used to verify therapist for client registration
         public TherapistConfirmationInfo GetByCounselorCode(string cCode)
         {
             using (SqlConnection conn = Connection)
@@ -95,6 +99,7 @@ namespace Journly.Repositories
             }
         }
 
+        //add a new client or therapist to the db
         public void Add(User user)
         {
             _context.Add(user);

@@ -22,6 +22,9 @@ namespace Journly.Controllers
             _userRepository = new UserRepository(context, configuration);
         }
 
+        //returns a list of moods
+        //if criterion is left blank it will return all moods
+        //otherwise it will return moods that have a name containing the search criterion
         [Authorize]
         [HttpGet]
         public IActionResult GetMoods(string criterion = "")
@@ -30,6 +33,7 @@ namespace Journly.Controllers
             return Ok(moods);
         }
 
+        ////returns a list of mood types that have recently been used
         [HttpGet("wall")]
         public IActionResult MoodWall(int limit = 50)
         {

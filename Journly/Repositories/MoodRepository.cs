@@ -18,6 +18,9 @@ namespace Journly.Repositories
             _context = context;
         }
 
+        //returns a list of moods
+        //if criterion is left blank it will return all moods
+        //otherwise it will return moods that have a name containing the search criterion
         public List<MoodType> GetMoods(string criterion)
         {
             var query = _context.MoodType.OrderBy(mt => mt.Id);
@@ -27,6 +30,7 @@ namespace Journly.Repositories
                 : query.ToList();
         }
 
+        //returns a list of mood types that have recently been used
         public List<MoodType> MoodWall(int limit = 50)
         {
             return _context.Post

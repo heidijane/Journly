@@ -18,11 +18,13 @@ namespace Journly.Repositories
             _context = context;
         }
 
+        //returns a list of flagged words to be used to flag posts with concerning content
         public List<FlaggedWord> GetFlaggedWords()
         {
             return  _context.FlaggedWord.ToList();
         }
 
+        //determines if a provided string has flagged words in it or not
         public bool HasFlaggedWord(string content)
         {
             if (content == null)

@@ -26,6 +26,8 @@ namespace Journly.Controllers
             _flaggedWordRepository = new FlaggedWordRepository(context);
         }
 
+        //gets post by ID
+        //works for both clients and therapists
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -51,6 +53,8 @@ namespace Journly.Controllers
             return Ok(post);
         }
 
+        //gets current user's posts
+        //only works for clients
         [HttpGet("current")]
         public IActionResult GetCurrentUserPosts(int limit, int start)
         {
@@ -63,6 +67,8 @@ namespace Journly.Controllers
             return Ok(posts);
         }
 
+        //gets current user's post by date
+        //only works for clients
         [HttpGet("current/{date}")]
         public IActionResult GetCurrentUserEntriesByDate(DateTime date)
         {
@@ -76,6 +82,8 @@ namespace Journly.Controllers
             return Ok(posts);
         }
 
+        //gets posts for a specific user by date
+        //only works for therapists
         [HttpGet("user/{id}")]
         public IActionResult GetUserEntriesByDate(int id, DateTime date)
         {
@@ -94,6 +102,8 @@ namespace Journly.Controllers
             return Ok(posts);
         }
 
+        //gets the most recent post for a specific user
+        //works for therapists and clients
         [HttpGet("latest/{id}")]
         public IActionResult GetMostRecentPostByUserId(int id)
         {
@@ -122,6 +132,7 @@ namespace Journly.Controllers
             return Ok(post);
         }
 
+        //gets the number of unread posts for a therapist
         [HttpGet("unreadcount")]
         public IActionResult GetUnreadCount()
         {
@@ -134,6 +145,7 @@ namespace Journly.Controllers
             return Ok(count);
         }
 
+        //gets the number of unread posts by a specific user for a therapist
         [HttpGet("unreadcount/{id}")]
         public IActionResult GetUnreadCountByUser(int id)
         {
@@ -157,6 +169,7 @@ namespace Journly.Controllers
             return Ok(count);
         }
 
+        //gets unread posts for a therapist
         [HttpGet("unread")]
         public IActionResult GetUnread(int limit, int start)
         {
@@ -169,6 +182,7 @@ namespace Journly.Controllers
             return Ok(result);
         }
 
+        //get unread posts by a specific user for a therapist
         [HttpGet("unread/{id}")]
         public IActionResult GetUnreadByUser(int id, int limit, int start)
         {
@@ -192,162 +206,8 @@ namespace Journly.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public IActionResult Post(Post post)
-        {
-            User currentUser = GetCurrentUserProfile();
-            if (currentUser == null)
-            {
-                return Unauthorized();
-            }
-            post.UserId = currentUser.Id;
-            post.CreateDate = DateTime.Now;
-
-            //check for flagged words
-            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
-            {
-                post.Flagged = true;
-            }
-
-            _postRepository.Add(post);
-            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
-        }
-
-        [HttpPut]
-        public IActionResult Edit(Post newPost)
-        {
-            Post post = _postRepository.GetById(newPost.Id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-            //check to make sure that the user is authorized to edit the post
-            User currentUser = GetCurrentUserProfile();
-            if (currentUser.Id != post.UserId)
-            {
-                return Unauthorized();
-            }
-            //update the post object to deleted status
-
-            post.Content = newPost.Content;
-            post.MoodId = newPost.MoodId;
-            post.EditTime = DateTime.Now;
-
-            //check for flagged words
-            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
-            {
-                post.Flagged = true;
-            }
-
-            _postRepository.Update(post);
-            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
-        }
-
-
-        [HttpPut("comment")]
-        public IActionResult TherapistUpdate(Post newPost)
-        {
-            Post post = _postRepository.GetById(newPost.Id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            User currentUser = GetCurrentUserProfile();
-            //make sure that they are the therapist of this user
-            bool isTherapist = _userRepository.IsTherapistForUser(post.UserId, currentUser.Id);
-            if (currentUser.UserTypeId == 1 && !isTherapist)
-            {
-                return Unauthorized();
-            }
-
-            //update the post object's view time and comment
-
-            post.ViewTime = DateTime.Now;
-            post.TherapistId = currentUser.Id;
-            post.Comment = newPost.Comment;
-
-            _postRepository.Update(post);
-            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
-        }
-
-        [HttpPut("markallread")]
-        public IActionResult MarkAllRead(int id, DateTime date)
-        {
-            User currentUser = GetCurrentUserProfile();
-            //make sure that they are the therapist of this user
-            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
-            if (currentUser.UserTypeId == 1 && !isTherapist)
-            {
-                return Unauthorized();
-            }
-
-            List<Post> posts = _postRepository.GetPostsByUserIdAndDate(id, date);
-
-            //filter out posts that have already been viewed
-            List<Post> unreadPosts = posts.Where(p => p.ViewTime == null).ToList();
-
-            foreach (Post post in unreadPosts)
-            {
-                //update the post object's view time and comment
-                post.ViewTime = DateTime.Now;
-                post.TherapistId = currentUser.Id;
-                _postRepository.Update(post);
-            }
-            
-            return Ok();
-        }
-
-        [HttpPut("flag/{id}")]
-        public IActionResult FlagUpdate(int id)
-        {
-            Post post = _postRepository.GetById(id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            User currentUser = GetCurrentUserProfile();
-            //make sure that they are the therapist of this user
-            bool isTherapist = _userRepository.IsTherapistForUser(post.UserId, currentUser.Id);
-            if (currentUser.UserTypeId == 1 && !isTherapist)
-            {
-                return Unauthorized();
-            }
-
-            //switch post's flag status
-            if (post.Flagged == true)
-            {
-                post.Flagged = false;
-            } else
-            {
-                post.Flagged = true;
-            }
-
-            _postRepository.Update(post);
-            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            Post post = _postRepository.GetById(id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-            //check to make sure that the user is authorized to delete the post
-            User currentUser = GetCurrentUserProfile();
-            if (currentUser.Id != post.UserId)
-            {
-                return Unauthorized();
-            }
-            //update the post object to deleted status
-            post.Deleted = true;
-            _postRepository.Update(post);
-            return NoContent();
-        }
-
+        //get posts matching certain search criteria
+        //can be used by therapists and clients
         [HttpGet("search")]
         public IActionResult Search(int? clientId = null, bool? viewed = null, bool? flagged = null, bool orderDesc = true, int limit = 0, int start = 0, bool deleted = true)
         {
@@ -378,7 +238,8 @@ namespace Journly.Controllers
                 {
                     return Unauthorized();
                 }
-            } else if (clientId != null)
+            }
+            else if (clientId != null)
             {
                 //make sure that client can only view their own posts!
                 if (currentUser.Id != clientId)
@@ -389,6 +250,168 @@ namespace Journly.Controllers
 
             List<Post> posts = _postRepository.Search(therapistId, clientId, viewed, flagged, orderDesc, limit, start, deleted);
             return Ok(posts);
+        }
+
+        //add a new post to the db and checks for flagged words
+        [HttpPost]
+        public IActionResult Post(Post post)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+            post.UserId = currentUser.Id;
+            post.CreateDate = DateTime.Now;
+
+            //check for flagged words
+            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
+            {
+                post.Flagged = true;
+            }
+
+            _postRepository.Add(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
+        //edits a post in the db and checks for flagged words
+        [HttpPut]
+        public IActionResult Edit(Post newPost)
+        {
+            Post post = _postRepository.GetById(newPost.Id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            //check to make sure that the user is authorized to edit the post
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser.Id != post.UserId)
+            {
+                return Unauthorized();
+            }
+            //update the post object to deleted status
+
+            post.Content = newPost.Content;
+            post.MoodId = newPost.MoodId;
+            post.EditTime = DateTime.Now;
+
+            //check for flagged words
+            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
+            {
+                post.Flagged = true;
+            }
+
+            _postRepository.Update(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
+        //marks a post as read by a therapist and updates the comment if provided in the newPost object
+        [HttpPut("comment")]
+        public IActionResult TherapistUpdate(Post newPost)
+        {
+            Post post = _postRepository.GetById(newPost.Id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            User currentUser = GetCurrentUserProfile();
+            //make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(post.UserId, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
+            //update the post object's view time and comment
+
+            post.ViewTime = DateTime.Now;
+            post.TherapistId = currentUser.Id;
+            post.Comment = newPost.Comment;
+
+            _postRepository.Update(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
+        //marks all posts by a specific user on a specific date for a therapist
+        [HttpPut("markallread")]
+        public IActionResult MarkAllRead(int id, DateTime date)
+        {
+            User currentUser = GetCurrentUserProfile();
+            //make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(id, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
+            List<Post> posts = _postRepository.GetPostsByUserIdAndDate(id, date);
+
+            //filter out posts that have already been viewed
+            List<Post> unreadPosts = posts.Where(p => p.ViewTime == null).ToList();
+
+            foreach (Post post in unreadPosts)
+            {
+                //update the post object's view time and comment
+                post.ViewTime = DateTime.Now;
+                post.TherapistId = currentUser.Id;
+                _postRepository.Update(post);
+            }
+            
+            return Ok();
+        }
+
+        //toggles a post's flagged status
+        //only for therapists
+        [HttpPut("flag/{id}")]
+        public IActionResult FlagUpdate(int id)
+        {
+            Post post = _postRepository.GetById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            User currentUser = GetCurrentUserProfile();
+            //make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(post.UserId, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
+            //switch post's flag status
+            if (post.Flagged == true)
+            {
+                post.Flagged = false;
+            } else
+            {
+                post.Flagged = true;
+            }
+
+            _postRepository.Update(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
+        //soft-deletes a post
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Post post = _postRepository.GetById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            //check to make sure that the user is authorized to delete the post
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser.Id != post.UserId)
+            {
+                return Unauthorized();
+            }
+            //update the post object to deleted status
+            post.Deleted = true;
+            _postRepository.Update(post);
+            return NoContent();
         }
 
         private User GetCurrentUserProfile()

@@ -58,6 +58,8 @@ namespace Journly.Controllers
             return Ok(therapist);
         }
 
+        //Add a new user to the db
+        //Works for both clients and therapists depending on the user object provided
         [Authorize]
         [HttpPost]
         public IActionResult Register(User user)

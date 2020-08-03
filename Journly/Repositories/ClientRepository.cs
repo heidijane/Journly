@@ -18,6 +18,7 @@ namespace Journly.Repositories
             _context = context;
         }
 
+        //returns a list of user relationships belonging to a certain therapist
         public List<UserRelationship> GetClients(int id)
         {
             return _context.UserRelationship

@@ -23,6 +23,7 @@ namespace Journly.Controllers
             _userRepository = new UserRepository(context, configuration);
         }
 
+        //returns a list of clients belonging to the current therapist
         [HttpGet("list")]
         public IActionResult GetClients()
         {
@@ -36,6 +37,7 @@ namespace Journly.Controllers
             return Ok(clients);
         }
 
+        //returns a specific client for a therapist
         [HttpGet("{id}")]
         public IActionResult GetClient(int id)
         {
