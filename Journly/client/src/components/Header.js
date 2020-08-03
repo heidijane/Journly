@@ -52,13 +52,13 @@ export default function Header() {
                             <>
                                 <NavItem>
                                     <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
-                                        <DropdownToggle caret className="btn btn-success">
+                                        <DropdownToggle caret className="btn btn-success d-flex align-items-center">
                                             {
                                                 currentUser.avatar
                                                     ?
                                                     <img src={currentUser.avatar} alt="my avatar" className="avatar avatar-small mr-1" />
                                                     :
-                                                    <img className="avatar avatar-small mr-1" alt="my avatar"></img>
+                                                    <div className="avatar avatar-small mr-1" style={{ display: "inline-block" }}></div>
                                             }
 
                                         </DropdownToggle>

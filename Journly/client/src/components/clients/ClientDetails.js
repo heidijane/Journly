@@ -48,7 +48,7 @@ export default function ClientDetails({ propId = null }) {
                             ?
                             <img src={client.avatar} alt={client.nickName + "'s avatar"} className="avatar avatar-x-large mb-2" />
                             :
-                            <img className="avatar avatar-x-large mb-2" alt={client.nickName + "'s avatar"}></img>
+                            <div className="avatar avatar-x-large mb-2"></div>
                     }
                 </div>
                 <h4>{client.nickName}</h4>

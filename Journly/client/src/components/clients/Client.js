@@ -41,7 +41,7 @@ export default function Client({ client }) {
                                 ?
                                 <img src={client.user.avatar} alt={client.user.nickName + "'s avatar"} className="avatar avatar-x-large mb-2" />
                                 :
-                                <img className="avatar avatar-x-large mb-2" alt={client.user.nickName + "'s avatar"}></img>
+                                <div className="avatar avatar-x-large mb-2"></div>
                         }
                     </div>
                     <h4>{client.user.nickName}</h4>

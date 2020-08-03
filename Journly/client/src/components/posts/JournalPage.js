@@ -45,7 +45,7 @@ export default function JournalPage({ posts }) {
                                 ?
                                 <img src={posts[0].user.avatar} alt={posts[0].user.nickName + "'s avatar"} className="avatar" />
                                 :
-                                <img alt={posts[0].user.nickName + "'s avatar"} className="avatar" />
+                                <div className="avatar"></div>
                         }
                         <span className="ml-2">{posts[0].user.nickName}'s Journal</span>
                     </h2>

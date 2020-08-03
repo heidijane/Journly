@@ -78,7 +78,7 @@ export default function JournalPageEntry({ post }) {
                     <div className="content">{!post.deleted ? post.content : <span className="font-italic text-muted">This entry has been deleted.</span>}</div>
                 }
                 {
-                    post.editTime &&
+                    post.editTime !== null &&
                     <div className="mt-3">
                         <span className="font-italic text-muted">This entry was edited on {moment(post.editTime).format('MMMM Do YYYY [at] h:mm a')}.</span>
                     </div>
@@ -100,7 +100,7 @@ export default function JournalPageEntry({ post }) {
                                 </div>
                             </div>
                             {
-                                currentUser.userTypeId == 1 &&
+                                currentUser.userTypeId == 1 && !post.deleted &&
                                 <>
                                     <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/" + (post.comment === "" ? "E263" : "270F") + ".svg"} alt="edit comment" onClick={commentModalToggle} /></Button>
                                     {
@@ -117,7 +117,7 @@ export default function JournalPageEntry({ post }) {
                     </div>
                 }
                 {
-                    !post.viewTime && currentUser.userTypeId == 1 &&
+                    !post.viewTime && !post.deleted && currentUser.userTypeId == 1 &&
                     <div className="mt-4">
                         <Button color="primary" onClick={commentModalToggle}>Comment</Button>
                         <Button color="success" className="ml-2" onClick={markRead}>Mark as Read</Button>

@@ -59,7 +59,7 @@ namespace Journly.Controllers
             {
                 return Unauthorized();
             }
-            List <Post> posts = _postRepository.GetPostsByUserId(currentUser.Id, limit, start);
+            List <Post> posts = _postRepository.GetPostsByUserId(currentUser.Id, limit, start, false);
             return Ok(posts);
         }
 
@@ -72,7 +72,7 @@ namespace Journly.Controllers
                 return Unauthorized();
             }
 
-            List<Post> posts = _postRepository.GetPostsByUserIdAndDate(currentUser.Id, date);
+            List<Post> posts = _postRepository.GetPostsByUserIdAndDate(currentUser.Id, date, false);
             return Ok(posts);
         }
 
@@ -227,6 +227,7 @@ namespace Journly.Controllers
 
             post.Content = newPost.Content;
             post.MoodId = newPost.MoodId;
+            post.EditTime = DateTime.Now;
 
             //check for flagged words
             if (_flaggedWordRepository.HasFlaggedWord(post.Content))

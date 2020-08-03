@@ -36,33 +36,41 @@ namespace Journly.Repositories
                         .FirstOrDefault(p => p.Id == id);
         }
 
-        public List<Post> GetPostsByUserId(int id, int limit, int start)
+        public List<Post> GetPostsByUserId(int id, int limit, int start, bool deleted = true)
         {
             var query = _context.Post
                         .Include(p => p.Therapist)
                         .Include(p => p.Mood)
                         .Include(p => p.User)
-                        .Where(p => p.UserId == id)
-                        .OrderByDescending(p => p.CreateDate)
-                        .Skip(start);
+                        .Where(p => p.UserId == id);
+            if (deleted == false)
+            {
+                query = query.Where(p => p.Deleted == false);
+            }
+            query = query.OrderByDescending(p => p.CreateDate).Skip(start);
+            
             return limit > 0
                 ? query.Take(limit).ToList()
                 : query.ToList();
         }
 
-        public List<Post> GetPostsByUserIdAndDate(int id, DateTime date)
+        public List<Post> GetPostsByUserIdAndDate(int id, DateTime date, bool deleted = true)
         {
-            return _context.Post
+            var query = _context.Post
                         .Include(p => p.Therapist)
                         .Include(p => p.Mood)
                         .Include(p => p.User)
                         .Where
                         (
-                            p => p.UserId == id && 
+                            p => p.UserId == id &&
                             date.Date == p.CreateDate.Date
-                        )
-                        .OrderBy(p => p.CreateDate)
-                        .ToList();
+                        );
+            if (deleted == false)
+            {
+                query = query.Where(p => p.Deleted == false);
+            }
+
+            return query.OrderBy(p => p.CreateDate).ToList();
         }
 
         public List<Post> GetPostsByTherapistId(int id)
@@ -217,10 +225,10 @@ namespace Journly.Repositories
             //if viewed is not null let's add a condition for getting uread/unread posts
             if (viewed == true)
             {
-                query = query.Where(p => p.ViewTime != null);
+                query = query.Where(p => p.ViewTime != null).Where(p => p.Deleted == false);
             } else if (viewed == false)
             {
-                query = query.Where(p => p.ViewTime == null);
+                query = query.Where(p => p.ViewTime == null).Where(p => p.Deleted == false);
             }
 
             //if flagged is not null let's add a condition for getting flagged/unflagged posts

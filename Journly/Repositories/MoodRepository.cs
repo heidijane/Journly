@@ -31,6 +31,7 @@ namespace Journly.Repositories
         {
             return _context.Post
                     .OrderByDescending(p => p.CreateDate)
+                    .Where(p => p.Deleted == false)
                     .Select(p => p.Mood)
                     .Take(limit)                    
                     .ToList();

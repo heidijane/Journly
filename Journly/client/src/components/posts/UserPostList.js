@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
-import { Spinner } from "reactstrap";
+import { Spinner, Alert } from "reactstrap";
 import PostList from "./PostList";
+import { Link } from "react-router-dom";
 
 export default function UserPostList({ limit = 0, start = 0 }) {
     const { posts, getCurrentUserPosts } = useContext(PostContext);
@@ -16,9 +17,18 @@ export default function UserPostList({ limit = 0, start = 0 }) {
             <Spinner />
         );
     } else {
-        return (
-            <PostList posts={posts} />
-        );
+        if (posts.length > 0) {
+            return (
+                <PostList posts={posts} />
+            );
+        } else {
+            return (
+                <Alert color="info" className="lead">
+                    <div>You haven't written any journal entries yet!</div>
+                    <Link to="/newentry">Click here to write one!</Link>
+                </Alert>
+            );
+        }
     }
 
 }

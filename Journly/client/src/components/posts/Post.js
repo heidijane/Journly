@@ -88,7 +88,7 @@ export default function Post({ post }) {
                                     ?
                                     <img src={post.user.avatar} alt={post.user.nickName + "'s avatar"} className="avatar" />
                                     :
-                                    <img alt={post.user.nickName + "'s avatar"} className="avatar" />
+                                    <div className="avatar"></div>
                             }
 
                         </div>
