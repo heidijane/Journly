@@ -1,9 +1,19 @@
+/*
+    FilterEntries.js
+    This component renders a list of journal entries that match various criteria contained in the URL.
+    It can currently sort based on 
+    * clientId (stored as "user" in the URL)
+    * viewed
+    * flagged
+    * orderDesc
+*/
+
 import React, { useContext, useEffect, useState } from "react"
 import { useLocation } from 'react-router-dom'
 import { PostContext } from "../../providers/PostProvider";
 import { ClientContext } from "../../providers/ClientProvider";
 import PostList from "./PostList";
-import { Spinner, Row, Col, FormGroup, Label, Input, Alert } from "reactstrap";
+import { Spinner, Row, Col, FormGroup, Input, Alert } from "reactstrap";
 
 export default function FilterEntries() {
 

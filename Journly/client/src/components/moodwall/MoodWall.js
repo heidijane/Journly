@@ -1,3 +1,8 @@
+/*
+    MoodWall.js
+    This component renders the "Mood Wall", a list of mood emojis used by other clients recently without their user info so it remains private.
+*/
+
 import React, { useContext, useEffect, useState } from "react"
 import { MoodContext } from "../../providers/MoodProvider"
 import { Spinner } from "reactstrap";

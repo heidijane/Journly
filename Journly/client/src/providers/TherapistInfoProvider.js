@@ -1,3 +1,8 @@
+/*
+    TherapistInfoProvider.js
+    Interacts with the user API, specifically the GetByCounselorCode method which doesn't require authorization
+*/
+
 import React, { useState } from "react";
 
 export const TherapistInfoContext = React.createContext();

@@ -1,3 +1,8 @@
+/*
+    WelcomeMessage.js
+    Renders a welcome message as an alert when provided with a nickname.
+*/
+
 import React from "react";
 import { Alert } from "reactstrap";
 

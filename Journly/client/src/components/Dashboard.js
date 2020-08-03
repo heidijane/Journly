@@ -1,3 +1,12 @@
+/*
+    Dashboard.js
+    Renders a dashboard for the current user
+    Can be used by either clients or therapists
+    For a client is renders the welcome message, their recent entries, and a small version of the Mood Wall
+    For a therapist it renders the welcome message, a list of their clients, an Add Client button, and a list of recent unread entries
+*/
+
+
 import React, { useState } from "react";
 import WelcomeMessage from "./WelcomeMessage";
 import UserPostList from "./posts/UserPostList";

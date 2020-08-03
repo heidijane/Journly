@@ -1,5 +1,12 @@
+/*
+    HealthResources.js
+    Renders a list of health resources to be used on the start page and to be used in the
+    flagged post modal that is shown when a user submits an entry with concerning content.
+
+    Currently hard-coded, but could be dynamically generated in the future.
+*/
+
 import React from "react"
-import { Link } from "react-router-dom"
 
 export default function HealthResources() {
     return (

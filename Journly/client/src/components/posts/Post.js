@@ -1,3 +1,12 @@
+/*
+    Post.js
+    Renders a post preview card, to be used in conjunction with PostList.
+    Works for either a client or a therapist.
+    Post content is truncated.
+    If the post is flagged and the current user is their therapist, the card will be highlighted in red
+    If the current user is a client they will see if their therapist has viewed their post yet or not.
+*/
+
 import React from "react";
 import { Link } from 'react-router-dom'
 import { Card, CardBody, CardFooter, CardHeader, UncontrolledTooltip } from "reactstrap";

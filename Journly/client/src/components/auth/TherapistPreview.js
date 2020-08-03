@@ -1,3 +1,8 @@
+/*
+    TherapistPreview.js
+    This component renders the therapist info for RegisterClient.js
+*/
+
 import React from "react";
 import { Row, Col } from 'reactstrap';
 

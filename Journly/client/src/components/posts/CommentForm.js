@@ -1,3 +1,9 @@
+/*
+    CommentForm.js
+    This component renders a form that allows a therapist to comment on a client's post.
+    This same component is used for both adding and editing a comment.
+*/
+
 import React, { useContext, useRef, useState } from "react"
 import { Form, FormGroup, Input, Button } from "reactstrap"
 import { PostContext } from "../../providers/PostProvider"
@@ -14,6 +20,7 @@ export default ({ post, toggle }) => {
 
     const comment = useRef();
 
+    //validates form fields and sends the comment to the server
     const saveComment = (e) => {
         e.preventDefault();
         setErrors([]); //clear out any old errors

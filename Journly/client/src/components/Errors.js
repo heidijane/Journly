@@ -1,3 +1,8 @@
+/*
+    Errors.js
+    Renders a list of errors when provided an array
+*/
+
 import React from "react"
 import { Alert } from "reactstrap";
 

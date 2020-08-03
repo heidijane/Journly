@@ -1,3 +1,10 @@
+/*
+    Login.js
+    This component contains the login form. When form is submitted
+    a request is made to the server to get the firebase info and match it to the
+    info in the SQL server db
+*/
+
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import { useHistory } from "react-router-dom";

@@ -1,3 +1,10 @@
+/*
+    UnreadEntryList.js
+    Gets a list of unread entries for a therapist and renders a PostList component containing them.
+    The "limit" prop can be used to show only a certain number of posts
+    The "start" prop determines which post to start with, may be used for a future feature such as pagination
+*/
+
 import React, { useContext, useState, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { Spinner, Alert, Button } from "reactstrap";

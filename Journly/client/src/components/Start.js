@@ -1,3 +1,9 @@
+/*
+    Start.js
+    This is the default page that is shown to users that are not logged in.
+    Contains the login form, register buttons for clients and therapists, a small version of the Mood Wall, and mental health resources.
+*/
+
 import React from "react"
 import { useHistory } from "react-router-dom";
 import Login from "./auth/Login";

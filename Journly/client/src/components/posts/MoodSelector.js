@@ -1,3 +1,9 @@
+/*
+    MoodSelector.js
+    Renders a form that allows a client to select a mood for their entry on the AddEntryForm and the EditEntryForm.
+    Also contains an input that allows them to filter emojis by name
+*/
+
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { MoodContext } from "../../providers/MoodProvider";
 import { Spinner, UncontrolledTooltip, Label, Input, FormGroup } from "reactstrap";
@@ -14,6 +20,8 @@ export default function MoodSelector({ selectedMood, setSelectedMood }) {
 
     const filter = useRef();
 
+    //filter the emojis based on emoji name
+    //implements debounce to give users a bit of time to type
     const filterMoods = debounce(() => {
         if (filter.current.value === "") {
             getMoods().then(setLoading(false));

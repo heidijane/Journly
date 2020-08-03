@@ -1,3 +1,9 @@
+/*
+    RegisterCounselor.js
+    This component contains the register therapist form.
+    In the future I may want to implement some type of verification to make sure user is a real therapist, but for now this simple form will work
+*/
+
 import React, { useState, useContext, useRef } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col, Spinner } from 'reactstrap';
 import { useHistory } from "react-router-dom";
@@ -23,6 +29,7 @@ export default function RegisterClient() {
 
     const [errors, setErrors] = useState([]);
 
+    //validate the form fields and then register the therapist
     const registerUser = (e) => {
         e.preventDefault(); //keep the form from refreshing the page
         setErrors([]); //clear out any old errors

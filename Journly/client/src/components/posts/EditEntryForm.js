@@ -1,3 +1,9 @@
+/*
+    EditEntryForm.js
+    Renders a form that allows a client to edit their journal entry. It pulls the post data in from the id URL parameter.
+    Otherwise it is the same as the AddEntryForm component.
+*/
+
 import React, { useState, useRef, useContext, useEffect } from "react";
 import { Form, FormGroup, Button, Input, Modal, ModalHeader, ModalBody, ModalFooter, Spinner, Alert } from "reactstrap";
 import { useHistory, useParams } from "react-router-dom";
@@ -35,6 +41,7 @@ export default function EditEntryForm() {
 
     const content = useRef();
 
+    //validate form fields and submit the edit
     const submitForm = e => {
         e.preventDefault();
         setErrors([]); //clear out any old errors

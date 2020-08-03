@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+/*
+    Header.js
+    Renders the navigation bar to be used at the top of every page.
+    Works for both therapists and clients.
+*/
+
+import React, { useState, useContext } from 'react';
 import { NavLink as RRNavLink, Link } from "react-router-dom";
 import {
     Collapse,

@@ -1,3 +1,10 @@
+/*
+    UserPostList.js
+    To be used by a client, gets a list of the current user's posts and renders them using the PostList component
+    The "limit" prop can be used to only return a certain amount, if set to 0 it will return all
+    The "start" prop tells the component which post to start on, may be used for a future pagination feature
+*/
+
 import React, { useContext, useState, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { Spinner, Alert } from "reactstrap";

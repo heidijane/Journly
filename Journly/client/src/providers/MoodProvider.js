@@ -1,3 +1,14 @@
+/*
+    MoodProvider.js
+    Interacts with the mood API.
+
+    Users must be logged in to use getMoods, but getMoodWall will work for anyone
+
+    Methods included:
+    * getMoods - returns a list of all the mood emojis in the db, used in the MoodSelector component
+    * getMoodWall - returns list of mood emojis recently used by other clients, no user info is attatched
+*/
+
 import React, { useState, useContext } from "react";
 import { UserContext } from "../providers/UserProvider";
 
@@ -9,6 +20,8 @@ export const MoodProvider = (props) => {
 
     const apiUrl = '/api/mood'
 
+    //returns a list of all the mood emojis in the db, used in the MoodSelector component
+    //optional criterion parameter can be used to search the mood name for filtering
     const getMoods = (criterion = "") => {
         return getToken().then((token) =>
             fetch(apiUrl + (criterion === "" ? "" : `?criterion=${criterion}`), {
@@ -20,6 +33,7 @@ export const MoodProvider = (props) => {
                 .then(setMoods));
     };
 
+    //returns list of mood emojis recently used by other clients, no user info is attatched
     const getMoodWall = (limit = 50) => {
         return fetch(`${apiUrl}/wall?limit=${limit}`)
             .then(response => {

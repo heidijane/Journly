@@ -1,3 +1,10 @@
+/*
+    AddClientModal.js
+    This component shows a therapist/counselor's counselor code which is given to clients so that they can register
+    with this particular therapist. They can copy just the code or copy a registration link that they can e-mail to the client.
+    Copy to clipboard is implemented with react-copy-to-clipboard
+*/
+
 import React, { useState } from "react"
 import { FormGroup, Input, Label, Button, InputGroup, InputGroupAddon } from "reactstrap"
 import { CopyToClipboard } from 'react-copy-to-clipboard'

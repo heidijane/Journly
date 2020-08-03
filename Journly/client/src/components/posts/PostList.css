@@ -1,8 +1,11 @@
-/*This CSS file should be paired with PostList.js*/
+/*
+    PostList.css
+    Styles that apply to the PostList component
+*/
 
 /* The wrapper class allows for the flex boxes to have a gutter */
 
-/* prevents the list from overlapping the content above it */
+/* and prevents the list from overlapping the content above it */
 
 .PostList__Wrapper {
     margin-top: 25px;

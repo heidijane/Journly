@@ -1,3 +1,8 @@
+/*
+    Post.css
+    Styles that apply to the Post component which is used in rendering the PostList
+*/
+
 .Post .moodWrapper {
     margin: 0 -20px 0 -20px;
     padding: 0;

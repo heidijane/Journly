@@ -1,3 +1,8 @@
+/*
+    MyJournal.js
+    For a client, gets the posts for the date in the URL parameter then renders it.
+*/
+
 import React, { useContext, useState, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { Spinner } from "reactstrap";

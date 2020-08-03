@@ -1,3 +1,10 @@
+/*
+    JournalPage.js
+    This component renders a list of posts organized by date when provided an array of posts as a prop.
+    Therapists will see a "Mark All As Read" button at the bottom of the page if there are any unread entries.
+    When clicked this will updated the viewTime of all un-viewed posts on this date to the current server time.
+*/
+
 import React, { useContext } from "react";
 import JournalPageEntry from "./JournalPageEntry";
 import moment from "moment";
@@ -20,6 +27,7 @@ export default function JournalPage({ posts }) {
         }
     }
 
+    //makes a request to the server to update the viewTime of all un-read posts that match this date
     const markAllAsRead = () => {
         markAllRead(posts[0].userId, posts[0].createDate)
             .then(() => {

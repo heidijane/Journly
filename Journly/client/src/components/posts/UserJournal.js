@@ -1,3 +1,8 @@
+/*
+    UserJournal.js
+    To be used by a therapist, gets a list of a client's posts by date and then renders them using the JournalPage component.
+*/
+
 import React, { useContext, useState, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { Spinner } from "reactstrap";

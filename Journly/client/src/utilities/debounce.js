@@ -1,4 +1,9 @@
-//Prevents a function from being called too often
+/*
+    debounce.js
+    Utility that limits the time between function calls
+    Used in the mood filter so that a user has a bit of time to finish typing before the results are filtered
+*/
+
 //Function will only be invoked after "wait" time in milliseconds has elapsed
 export default (func, wait) => {
     let timeout;

@@ -1,3 +1,18 @@
+/*
+    UserProvider.js
+    Interacts with the user API.
+
+    Establishes an isLoggedIn state used for checking a user's loggedin status
+
+    Methods included:
+    * login - checks a users login credentials against firebase, gets their user data, adn then sets a session to log them in
+    * logout - destroys the firebase local storage variable and the user data session, which logs the user out
+    * register - creates a firebase record for the new user, calls the saveUser method to store their data in the db and then logs them in
+    * saveUser - stores user data in the db
+    * getToken - gets a firebase token for verifying authentication
+    * getUserData - gets a users data using their firebase UID
+*/
+
 import React, { useState, useEffect, createContext } from "react";
 import { Spinner } from "reactstrap";
 import * as firebase from "firebase/app";
@@ -18,6 +33,7 @@ export function UserProvider(props) {
         });
     }, []);
 
+    //checks a users login credentials against firebase, gets their user data, adn then sets a session to log them in
     const login = (email, pw) => {
         return firebase.auth().signInWithEmailAndPassword(email, pw)
             .then((signInResponse) => getUserData(signInResponse.user.uid))
@@ -27,6 +43,7 @@ export function UserProvider(props) {
             });
     };
 
+    //destroys the firebase local storage variable and the user data session, which logs the user out
     const logout = () => {
         return firebase.auth().signOut()
             .then(() => {
@@ -35,6 +52,7 @@ export function UserProvider(props) {
             });
     };
 
+    //creates a firebase record for the new user, calls the saveUser method to store their data in the db and then logs them in
     const register = (userProfile, password) => {
         return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
             .then((createResponse) => saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid }))
@@ -44,6 +62,7 @@ export function UserProvider(props) {
             });
     };
 
+    //stores user data in the db
     const saveUser = (userProfile) => {
         return getToken().then((token) =>
             fetch(apiUrl, {
@@ -56,8 +75,10 @@ export function UserProvider(props) {
             }).then(resp => resp.json()));
     };
 
+    //gets a firebase token for verifying authentication
     const getToken = () => firebase.auth().currentUser.getIdToken();
 
+    //gets a users data using their firebase UID
     const getUserData = (firebaseUserId) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${firebaseUserId}`, {

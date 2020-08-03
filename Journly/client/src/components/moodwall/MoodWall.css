@@ -1,3 +1,9 @@
+/*
+    MoodWall.css
+    These styles apply to the Mood Wall. There is a normal and a small version.
+    When the page size is adjusted the border size of the MoodWall Note changes to match the emoji icons.
+*/
+
 .MoodWall {
     display: flex;
     justify-content: center;

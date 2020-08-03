@@ -1,4 +1,10 @@
-//trim length of string to a certain number of words
+/*
+    truncates.js
+    Utility that trims a string down to a certain number of characters
+    Will not trim in the middle of a word
+    Removes any trailing punctuation at the end of the string
+*/
+
 export const truncate = (string, maxLength) => {
     if (string.length > maxLength) {
         const truncatedString = string.substr(0, maxLength);

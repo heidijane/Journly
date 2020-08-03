@@ -1,3 +1,9 @@
+/*
+    RegisterClient.js
+    This component contains the form that is used to register clients.
+    If the counselor code is included in the URL the counselor code field will be filled in automatically
+*/
+
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col, FormText, Spinner, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { useHistory, useParams } from "react-router-dom";
@@ -16,12 +22,13 @@ export default function RegisterClient() {
 
     const [buttonText, setButtonText] = useState("Confirm");
 
-    const { code } = useParams();
+    const { code } = useParams(); //pull in the counselor code from the URL
 
     useEffect(() => {
         getTherapist(code).then(setLoading(false));
     }, []);
 
+    //as the user changes the counselor code field, update the therapist info
     const updateTherapistPreview = () => {
         if (cCode.current.value === "") {
             setTherapistInfo(null);
@@ -47,6 +54,7 @@ export default function RegisterClient() {
 
     const [errors, setErrors] = useState([]);
 
+    //validate all the form data and if it checks out, open the conselor confirmation modal
     const validateForm = (e) => {
         e.preventDefault(); //keep the form from refreshing the page
         setErrors([]); //clear out any old errors

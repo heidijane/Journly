@@ -1,3 +1,12 @@
+/*
+    JournalPageEntry.js
+    This page contains renders one journal page entry and should be used with the JournalPage component.
+    This component can be used to render entries for either clients or therapists.
+    Clients will be able to see edit and delete buttons for their entries.
+    Therapists will see buttons allowing them to mark an entry as read, leave a comment, or edit/delete a comment.
+    Therapists will also see a button that allows them to flag or unflag an entry.
+*/
+
 import React, { useState, useContext } from "react";
 import moment from "moment";
 import "./JournalPageEntry.css"
@@ -21,6 +30,7 @@ export default function JournalPageEntry({ post }) {
     const [commentModal, setCommentModal] = useState(false)
     const commentModalToggle = () => setCommentModal(!commentModal)
 
+    //to be used by a client, sends a request to soft-delete a post to the server
     const deleteEntry = () => {
         deletePost(post.id)
             .then(deleteModalToggle)
@@ -31,6 +41,7 @@ export default function JournalPageEntry({ post }) {
             });
     }
 
+    //to be used by a therapist, sends a request to mark a post as read without a comment
     const markRead = () => {
         const newPost = {
             id: post.id,
@@ -45,6 +56,7 @@ export default function JournalPageEntry({ post }) {
 
     }
 
+    //to be used by a therapist, sends a request to toggle an entry's flagged status
     const toggleFlag = () => {
         flagPost(post.id)
             .then(() => {

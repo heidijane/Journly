@@ -1,3 +1,10 @@
+/*
+    AddEntryForm.js
+    This component renders the add new journal entry form.
+    When the form is submitted a new post is sent to the back end.
+    If the new post has a flagged word the mental health resources modal will be shown.
+*/
+
 import React, { useState, useRef, useContext } from "react";
 import { Form, FormGroup, Button, Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useHistory } from "react-router-dom";
@@ -19,6 +26,7 @@ export default function AddEntryForm() {
 
     const content = useRef();
 
+    //validates form fields and submits new post to the server
     const submitForm = e => {
         e.preventDefault();
         setErrors([]); //clear out any old errors
@@ -34,7 +42,8 @@ export default function AddEntryForm() {
 
             addPost(post)
                 .then(resp => {
-                    //check for a flagged entry
+                    //if the new post has been flagged by the server show the mental health resources modal
+                    //otherwise direct to their post list
                     if (resp.flagged === true) {
                         toggle();
                     } else {

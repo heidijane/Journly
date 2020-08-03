@@ -1,3 +1,8 @@
+/*
+    PostList.js
+    Renders a list of post cards when provided an array of posts. Works for both clients and therapists.
+*/
+
 import React from "react";
 import Post from "./Post";
 import "./PostList.css";
