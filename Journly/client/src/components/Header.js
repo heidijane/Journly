@@ -30,7 +30,7 @@ export default function Header() {
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
     const [unreadLoading, setUnreadLoading] = useState(true);
-    const { getUnreadCount } = useContext(PostContext);
+    const { posts, getUnreadCount } = useContext(PostContext);
     const [unreadCount, setUnreadCount] = useState(0);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function Header() {
                 .then(setUnreadCount)
                 .then(setUnreadLoading(false));
         }
-    }, []);
+    }, [posts]);
 
     return (
         <div>
