@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
 
 export const PostContext = React.createContext();
@@ -7,6 +7,9 @@ export const PostProvider = (props) => {
     const { getToken } = useContext(UserContext)
     const [posts, setPosts] = useState([]);
     const [unreadPosts, setUnreadPosts] = useState([]);
+    const [unreadCount, setUnreadCount] = useState(0);
+
+    const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
     const apiUrl = '/api/post'
 
@@ -67,13 +70,7 @@ export const PostProvider = (props) => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            }).then((resp) => {
-                if (resp.ok) {
-                    return resp.json();
-                }
-                throw new Error("Unauthorized");
-            })
-
+            }).then(resp => resp.json())
         )
     }
 
@@ -95,14 +92,8 @@ export const PostProvider = (props) => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            }).then((resp) => {
-                if (resp.ok) {
-                    return resp.json();
-                }
-                throw new Error("Unauthorized");
-            })
-
-        )
+            }).then(resp => resp.json())
+                .then(setUnreadCount));
     }
 
     const getUnreadCountByUser = (id) => {
@@ -247,11 +238,25 @@ export const PostProvider = (props) => {
         });
     }
 
+    //initial render for unread count
+    useEffect(() => {
+        if (currentUser !== null && currentUser.userTypeId === 1) {
+            getUnreadCount()
+        }
+    }, []);
+
+    //update the unread count when the posts component is changed
+    useEffect(() => {
+        if (currentUser !== null && currentUser.userTypeId === 1) {
+            getUnreadCount()
+        }
+    }, [posts]);
+
     return (
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
             addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts,
-            getUserPostsByDate, searchPost, therapistUpdate, markAllRead, getUnreadCount, unreadPosts, flagPost
+            getUserPostsByDate, searchPost, therapistUpdate, markAllRead, getUnreadCount, unreadPosts, flagPost, unreadCount
         }}>
             {props.children}
         </PostContext.Provider>

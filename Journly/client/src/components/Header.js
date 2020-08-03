@@ -29,17 +29,9 @@ export default function Header() {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
-    const [unreadLoading, setUnreadLoading] = useState(true);
-    const { posts, getUnreadCount } = useContext(PostContext);
-    const [unreadCount, setUnreadCount] = useState(0);
+    const { posts, unreadCount, getUnreadCount } = useContext(PostContext);
 
-    useEffect(() => {
-        if (currentUser !== null && currentUser.userTypeId === 1) {
-            getUnreadCount()
-                .then(setUnreadCount)
-                .then(setUnreadLoading(false));
-        }
-    }, [posts]);
+    console.log(unreadCount);
 
     return (
         <div>
@@ -99,17 +91,15 @@ export default function Header() {
                                                 <NavLink tag={RRNavLink} to="/entries">
                                                     Journal Entries
                                                     </NavLink>
-                                                <Link to="/entries?viewed=false">
-                                                    <Badge color="info" className="ml-1 px-2 py-1">
-                                                        {
-                                                            unreadLoading
-                                                                ?
-                                                                <Spinner size="sm" color="light" />
-                                                                :
-                                                                unreadCount
-                                                        }
-                                                    </Badge>
-                                                </Link>
+                                                {
+                                                    unreadCount > 0 &&
+                                                    <Link to="/entries?viewed=false">
+                                                        <Badge color="info" className="ml-1 px-2 py-1">
+                                                            {unreadCount}
+                                                        </Badge>
+                                                    </Link>
+                                                }
+
                                             </NavItem>
                                         </>
                                 }
