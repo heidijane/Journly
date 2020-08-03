@@ -104,7 +104,7 @@ export default function Header() {
                                                         {
                                                             unreadLoading
                                                                 ?
-                                                                <Spinner />
+                                                                <Spinner size="sm" color="light" />
                                                                 :
                                                                 unreadCount
                                                         }

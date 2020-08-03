@@ -8,7 +8,7 @@ import CommentForm from "./CommentForm";
 
 export default function JournalPageEntry({ post }) {
 
-    const { deletePost, therapistUpdate } = useContext(PostContext);
+    const { deletePost, therapistUpdate, flagPost } = useContext(PostContext);
 
     let location = useLocation();
     const history = useHistory();
@@ -45,6 +45,15 @@ export default function JournalPageEntry({ post }) {
 
     }
 
+    const toggleFlag = () => {
+        flagPost(post.id)
+            .then(() => {
+                //refreshes the current route to reflect the deletion
+                history.push({ pathname: "/empty" });
+                history.replace({ pathname: location.pathname });
+            });
+    }
+
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
     return (
@@ -61,7 +70,7 @@ export default function JournalPageEntry({ post }) {
                                 <Button color="light" size="sm" className="ml-1 p-0"><img src={"/emoji/E262.svg"} alt="delete post" onClick={deleteModalToggle} /></Button>
                             </>
                             :
-                            ""
+                            <Button color={post.flagged === false ? "light" : "danger"} size="sm" className="ml-1" onClick={toggleFlag}>{post.flagged === false ? "Flag" : "Unflag"}</Button>
                     }
                 </div>
                 {

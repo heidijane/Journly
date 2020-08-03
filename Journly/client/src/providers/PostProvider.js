@@ -175,6 +175,24 @@ export const PostProvider = (props) => {
         )
     };
 
+    const flagPost = (id) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/flag/${id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(resp => {
+                    if (resp.ok) {
+                        return resp.json();
+                    }
+                    throw new Error("Unauthorized");
+                })
+        )
+    };
+
     const markAllRead = (id, date) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/markallread?id=${id}&date=${date}`, {
@@ -233,7 +251,7 @@ export const PostProvider = (props) => {
         <PostContext.Provider value={{
             posts, getCurrentUserPosts, getCurrentUserPostsByDate, getCurrentUserPostById,
             addPost, editPost, deletePost, getLatestPost, getUnreadCountByUser, getUnreadPosts,
-            getUserPostsByDate, searchPost, therapistUpdate, markAllRead, getUnreadCount, unreadPosts
+            getUserPostsByDate, searchPost, therapistUpdate, markAllRead, getUnreadCount, unreadPosts, flagPost
         }}>
             {props.children}
         </PostContext.Provider>

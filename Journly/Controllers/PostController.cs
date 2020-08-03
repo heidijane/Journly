@@ -293,6 +293,36 @@ namespace Journly.Controllers
             return Ok();
         }
 
+        [HttpPut("flag/{id}")]
+        public IActionResult FlagUpdate(int id)
+        {
+            Post post = _postRepository.GetById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            User currentUser = GetCurrentUserProfile();
+            //make sure that they are the therapist of this user
+            bool isTherapist = _userRepository.IsTherapistForUser(post.UserId, currentUser.Id);
+            if (currentUser.UserTypeId == 1 && !isTherapist)
+            {
+                return Unauthorized();
+            }
+
+            //switch post's flag status
+            if (post.Flagged == true)
+            {
+                post.Flagged = false;
+            } else
+            {
+                post.Flagged = true;
+            }
+
+            _postRepository.Update(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
