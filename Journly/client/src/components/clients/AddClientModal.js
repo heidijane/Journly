@@ -11,6 +11,8 @@ export default function AddClientModalContents({ user }) {
     const [copiedLink, setCopiedLink] = useState(false)
     const [copyLinkText, setCopyLinkText] = useState("Copy")
 
+    const registrationLink = window.location.protocol + "//" + window.location.hostname + (window.location.port === "" ? "" : ":" + window.location.port) + "/registerclient/" + user.therapistInfo.code;
+
     return (
         <>
             <FormGroup>
@@ -37,13 +39,13 @@ export default function AddClientModalContents({ user }) {
                     <Input type="text"
                         id="registrationLink"
                         name="registrationLink"
-                        defaultValue={window.location.protocol + "//" + window.location.hostname + "/registerclient/" + user.therapistInfo.code}
+                        defaultValue={registrationLink}
                         bsSize="lg"
                         disabled
                     />
                     <InputGroupAddon addonType="append">
                         <CopyToClipboard
-                            text={window.location.protocol + "//" + window.location.hostname + "/registerclient/" + user.therapistInfo.code}
+                            text={registrationLink}
                             onCopy={() => {
                                 setCopiedLink({ copied: true });
                                 setCopyLinkText("Copied!");
