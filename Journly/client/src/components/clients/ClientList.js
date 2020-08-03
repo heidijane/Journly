@@ -24,6 +24,7 @@ export default function ClientList() {
                     }
                     <div className="wrapper invisible">invisible spacer</div>
                     <div className="wrapper invisible">invisible spacer</div>
+                    <div className="wrapper invisible">invisible spacer</div>
                 </div>
             </div>
         )

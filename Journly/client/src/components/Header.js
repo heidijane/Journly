@@ -13,8 +13,7 @@ import {
     DropdownItem,
     DropdownMenu,
     Button,
-    Badge,
-    Spinner
+    Badge
 } from 'reactstrap';
 import { UserContext } from "../providers/UserProvider";
 import { PostContext } from '../providers/PostProvider';
