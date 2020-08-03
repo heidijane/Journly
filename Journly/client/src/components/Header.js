@@ -29,9 +29,7 @@ export default function Header() {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
-    const { posts, unreadCount, getUnreadCount } = useContext(PostContext);
-
-    console.log(unreadCount);
+    const { unreadCount } = useContext(PostContext);
 
     return (
         <div>

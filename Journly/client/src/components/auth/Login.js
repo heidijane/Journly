@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
+import Errors from "../Errors";
 
 export default function Login() {
     const history = useHistory();
@@ -11,13 +12,19 @@ export default function Login() {
     const [password, setPassword] = useState();
 
     const [buttonText, setButtonText] = useState("Sign In");
+    const [errors, setErrors] = useState([]);
 
     const loginSubmit = (e) => {
         e.preventDefault();
+        setErrors([]); //clear out any old errors
         setButtonText(<Spinner size="sm" />);
         login(email, password)
             .then(() => history.push("/"))
-            .catch(() => alert("Invalid email or password"));
+            .catch(() => {
+                setButtonText("Sign In");
+                const error = "E-mail and password do not match. Please try again.";
+                setErrors(errors => [...errors, error]);
+            });
     };
 
     return (
@@ -30,6 +37,7 @@ export default function Login() {
                 <Label for="password">Password</Label>
                 <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
             </FormGroup>
+            <Errors errors={errors} />
             <FormGroup>
                 <Button color="primary" block>{buttonText}</Button>
             </FormGroup>
