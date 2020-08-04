@@ -8,6 +8,7 @@ using System;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
+using Journly.Services;
 
 namespace Journly.Controllers
 {
@@ -18,12 +19,15 @@ namespace Journly.Controllers
     {
         private readonly PostRepository _postRepository;
         private readonly UserRepository _userRepository;
-        private readonly FlaggedWordRepository _flaggedWordRepository;
+
+        private readonly FlaggedWordService _flaggedWordService;
+
         public PostController(ApplicationDbContext context, IConfiguration configuration)
         {
             _postRepository = new PostRepository(context, configuration);
             _userRepository = new UserRepository(context, configuration);
-            _flaggedWordRepository = new FlaggedWordRepository(context);
+
+            _flaggedWordService = new FlaggedWordService(context);
         }
 
         //gets post by ID
@@ -265,7 +269,7 @@ namespace Journly.Controllers
             post.CreateDate = DateTime.Now;
 
             //check for flagged words
-            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
+            if (_flaggedWordService.HasFlaggedWord(post.Content))
             {
                 post.Flagged = true;
             }
@@ -296,7 +300,7 @@ namespace Journly.Controllers
             post.EditTime = DateTime.Now;
 
             //check for flagged words
-            if (_flaggedWordRepository.HasFlaggedWord(post.Content))
+            if (_flaggedWordService.HasFlaggedWord(post.Content))
             {
                 post.Flagged = true;
             }
