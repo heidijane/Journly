@@ -84,5 +84,27 @@ namespace Journly.Controllers
                 nameof(GetByFirebaseUserId), new { firebaseUserId = user.FirebaseUserId }, user);
         }
 
+        //Updates a users info (name, nickname, organization, etc.)
+        [Authorize]
+        [HttpPut]
+        public IActionResult Edit(User user)
+        {
+            User currentUser = GetCurrentUserProfile();
+            if (currentUser.Id != user.Id)
+            {
+                return Unauthorized();
+            }
+
+            _userRepository.Update(user);
+
+            return CreatedAtAction(
+                nameof(GetByFirebaseUserId), new { firebaseUserId = user.FirebaseUserId }, user);
+        }
+
+        private User GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepository.GetByFirebaseUserId(firebaseUserId);
+        }
     }
 }

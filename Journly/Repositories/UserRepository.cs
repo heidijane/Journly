@@ -106,5 +106,12 @@ namespace Journly.Repositories
             _context.SaveChanges();
         }
 
+        //updates a user's info (name, avatar, etc.)
+        public void Update(User user)
+        {
+            _context.Entry(user).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
     }
 }
