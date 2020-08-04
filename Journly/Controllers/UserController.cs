@@ -87,18 +87,29 @@ namespace Journly.Controllers
         //Updates a users info (name, nickname, organization, etc.)
         [Authorize]
         [HttpPut]
-        public IActionResult Edit(User user)
+        public IActionResult Edit(User newUser)
         {
             User currentUser = GetCurrentUserProfile();
-            if (currentUser.Id != user.Id)
+            
+            if (currentUser.Id != newUser.Id)
             {
                 return Unauthorized();
             }
 
-            _userRepository.Update(user);
+            currentUser.FirstName = newUser.FirstName;
+            currentUser.LastName = newUser.LastName;
+            currentUser.NickName = newUser.NickName;
+            currentUser.Birthday = newUser.Birthday;
+
+            if (currentUser.UserTypeId == 1)
+            {
+                currentUser.TherapistInfo.Company = newUser.TherapistInfo.Company;
+            }
+
+            _userRepository.Update(currentUser);
 
             return CreatedAtAction(
-                nameof(GetByFirebaseUserId), new { firebaseUserId = user.FirebaseUserId }, user);
+                nameof(GetByFirebaseUserId), new { firebaseUserId = currentUser.FirebaseUserId }, currentUser);
         }
 
         private User GetCurrentUserProfile()

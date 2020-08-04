@@ -9,6 +9,7 @@
     * logout - destroys the firebase local storage variable and the user data session, which logs the user out
     * register - creates a firebase record for the new user, calls the saveUser method to store their data in the db and then logs them in
     * saveUser - stores user data in the db
+    * updateUser - updates user data in the db
     * getToken - gets a firebase token for verifying authentication
     * getUserData - gets a users data using their firebase UID
 */
@@ -75,6 +76,31 @@ export function UserProvider(props) {
             }).then(resp => resp.json()));
     };
 
+    //updates user data in the db
+    const updateUser = (user) => {
+        return getToken().then((token) =>
+            fetch(apiUrl, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            }).then((resp) => {
+                if (resp.ok) {
+                    //update session date with new user info
+                    return resp.json();
+                }
+                throw new Error("Unauthorized");
+            })
+                .then(resp => {
+                    sessionStorage.clear()
+                    sessionStorage.setItem("userData", JSON.stringify(resp));
+                    return resp;
+                })
+        )
+    };
+
     //gets a firebase token for verifying authentication
     const getToken = () => firebase.auth().currentUser.getIdToken();
 
@@ -90,7 +116,7 @@ export function UserProvider(props) {
     };
 
     return (
-        <UserContext.Provider value={{ isLoggedIn, login, logout, register, getToken }}>
+        <UserContext.Provider value={{ isLoggedIn, login, logout, register, updateUser, getToken, getUserData }}>
             {isFirebaseReady
                 ? props.children
                 : <Spinner className="app-spinner dark" />}
