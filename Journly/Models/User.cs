@@ -32,7 +32,11 @@ namespace Journly.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        public string Avatar { get; set; }
+        public int AvatarId { get; set; }
+
+        public Avatar Avatar { get; set; }
+
+        public string FavColor { get; set; }
 
         [Required]
         public DateTime CreateDate { get; set; }

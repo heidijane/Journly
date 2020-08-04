@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS [Therapist];
 DROP TABLE IF EXISTS [User];
 DROP TABLE IF EXISTS [UserType];
 DROP TABLE IF EXISTS [MoodType];
+DROP TABLE IF EXISTS [Avatar];
 GO
 
 CREATE TABLE [User] (
@@ -24,7 +25,8 @@ CREATE TABLE [User] (
   [NickName] varchar(50) NOT NULL,
   [Birthday] datetime NOT NULL,
   [Email] varchar(255) NOT NULL,
-  [Avatar] varchar(255),
+  [AvatarId] int NOT NULL,
+  [FavColor] char(6),
   [CreateDate] datetime NOT NULL,
   [UserTypeId] int NOT NULL
 )
@@ -76,6 +78,13 @@ CREATE TABLE [MoodType] (
 )
 GO
 
+CREATE TABLE [Avatar] (
+  [Id] int PRIMARY KEY IDENTITY,
+  [Image] varchar(50) NOT NULL,
+  [Name] varchar(100) NOT NULL
+)
+GO
+
 CREATE TABLE [FlaggedWord] (
   [Id] int PRIMARY KEY IDENTITY,
   [Word] varchar(50) NOT NULL
@@ -91,6 +100,9 @@ GO
 ALTER TABLE [User] ADD FOREIGN KEY ([UserTypeId]) REFERENCES [UserType] ([Id])
 GO
 
+ALTER TABLE [User] ADD FOREIGN KEY ([AvatarId]) REFERENCES [Avatar] ([Id])
+GO
+
 ALTER TABLE [Therapist] ADD FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
 GO
 
@@ -104,6 +116,9 @@ ALTER TABLE [Post] ADD FOREIGN KEY ([MoodId]) REFERENCES [MoodType] ([Id])
 GO
 
 ALTER TABLE [User] ADD CONSTRAINT df_userType DEFAULT 0 FOR UserTypeId
+GO
+
+ALTER TABLE [User] ADD CONSTRAINT df_avatarId DEFAULT 1 FOR AvatarId
 GO
 
 ALTER TABLE [Therapist] ADD UNIQUE (Code);

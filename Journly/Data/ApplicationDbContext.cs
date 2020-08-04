@@ -8,6 +8,7 @@ namespace Journly.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<FlaggedWord> FlaggedWord { get; set; }
         public DbSet<MoodType> MoodType { get; set; }
+        public DbSet<Avatar> Avatar { get; set; }
         public DbSet<Post> Post { get; set; }
         public DbSet<Therapist> Therapist { get; set; }
         public DbSet<User> User { get; set; }

@@ -5,8 +5,10 @@
 
 import React from "react";
 import { Row, Col } from 'reactstrap';
+import Avatar from "../users/Avatar";
 
 export default ({ therapistInfo, code }) => {
+    console.log(therapistInfo)
     if (code === "") {
         return <div className="h-100 d-flex align-items-center">Please type in a counselor code.</div>
     } else if (therapistInfo === null) {
@@ -15,7 +17,7 @@ export default ({ therapistInfo, code }) => {
         return (
             <Row className="text-center text-sm-left">
                 <Col sm="3" className="align-self-center">
-                    <img src={therapistInfo.avatar} alt={therapistInfo.nickName + "'s avatar"} className="avatar avatar-large mb-2" />
+                    <Avatar avatar={therapistInfo.avatar} color={therapistInfo.favColor} name={therapistInfo.nickName} size="large" />
                 </Col>
                 <Col sm="auto" className="align-self-center">
                     {therapistInfo.nickName !== therapistInfo.firstName

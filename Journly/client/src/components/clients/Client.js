@@ -4,6 +4,7 @@ import "./Client.css"
 import { PostContext } from "../../providers/PostProvider";
 import { Link } from "react-router-dom";
 import ClientDetails from "./ClientDetails";
+import Avatar from "../users/Avatar";
 
 export default function Client({ client }) {
     const { getLatestPost, getUnreadCountByUser } = useContext(PostContext);
@@ -36,13 +37,7 @@ export default function Client({ client }) {
                             post &&
                             <img src={`/emoji/${post.mood.image}.svg`} alt={post.mood.name} className="Client__Mood" />
                         }
-                        {
-                            client.user.avatar
-                                ?
-                                <img src={client.user.avatar} alt={client.user.nickName + "'s avatar"} className="avatar avatar-x-large mb-2" />
-                                :
-                                <div className="avatar avatar-x-large mb-2"></div>
-                        }
+                        <Avatar avatar={client.user.avatar} color={client.user.favColor} name={client.user.nickName} size="large" />
                     </div>
                     <h4>{client.user.nickName}</h4>
                     <h5 className="text-muted">{client.user.firstName} {client.user.lastName}</h5>

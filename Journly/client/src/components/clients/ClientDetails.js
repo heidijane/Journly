@@ -4,6 +4,7 @@ import { ClientContext } from "../../providers/ClientProvider";
 import { PostContext } from "../../providers/PostProvider";
 import { Spinner } from "reactstrap";
 import moment from "moment";
+import Avatar from "../users/Avatar";
 
 export default function ClientDetails({ propId = null }) {
     const { getClient } = useContext(ClientContext);
@@ -43,13 +44,7 @@ export default function ClientDetails({ propId = null }) {
         return (
             <div className="container d-flex flex-column align-items-center justify-content-center">
                 <div className="Avatar__Wrapper mt-3">
-                    {
-                        client.avatar
-                            ?
-                            <img src={client.avatar} alt={client.nickName + "'s avatar"} className="avatar avatar-x-large mb-2" />
-                            :
-                            <div className="avatar avatar-x-large mb-2"></div>
-                    }
+                    <Avatar avatar={client.avatar} color={client.favColor} name={client.nickName} size="xLarge" />
                 </div>
                 <h4>{client.nickName}</h4>
                 <h5 className="text-muted">{client.firstName} {client.lastName}</h5>

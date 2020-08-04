@@ -19,7 +19,11 @@ namespace Journly.Models
         [Required]
         public string NickName { get; set; }
 
-        public string Avatar { get; set; }
+        public int AvatarId { get; set; }
+
+        public Avatar Avatar { get; set; }
+
+        public string FavColor { get; set; }
 
         [Required]
         public bool Verified { get; set; }

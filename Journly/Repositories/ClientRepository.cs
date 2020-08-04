@@ -23,6 +23,7 @@ namespace Journly.Repositories
         {
             return _context.UserRelationship
                 .Include(ur => ur.User)
+                    .ThenInclude(u => u.Avatar)
                 .Where(ur => ur.TherapistId == id)
                 .OrderBy(ur => ur.User.LastName)
                 .ToList();

@@ -5,6 +5,7 @@
     position: absolute;
     top: -35px;
     left: -25px;
+    z-index: 100;
 }
 
 .Avatar__Wrapper {

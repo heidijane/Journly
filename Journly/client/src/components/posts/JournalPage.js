@@ -11,6 +11,7 @@ import moment from "moment";
 import { Alert, Card, Button } from "reactstrap";
 import { useHistory, useLocation } from 'react-router-dom';
 import { PostContext } from "../../providers/PostProvider";
+import Avatar from "../users/Avatar";
 
 export default function JournalPage({ posts }) {
 
@@ -48,13 +49,7 @@ export default function JournalPage({ posts }) {
                 {
                     currentUser.userTypeId === 1 &&
                     <h2 className="d-flex justify-content-start align-items-center">
-                        {
-                            posts[0].user.avatar
-                                ?
-                                <img src={posts[0].user.avatar} alt={posts[0].user.nickName + "'s avatar"} className="avatar" />
-                                :
-                                <div className="avatar"></div>
-                        }
+                        <Avatar avatar={posts[0].user.avatar} color={posts[0].user.favColor} size="med" name={posts[0].user.nickName} />
                         <span className="ml-2">{posts[0].user.nickName}'s Journal</span>
                     </h2>
                 }

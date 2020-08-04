@@ -44,6 +44,7 @@ namespace Journly.Repositories
                         .Include(p => p.Therapist)
                         .Include(p => p.Mood)
                         .Include(p => p.User)
+                            .ThenInclude(u => u.Avatar)
                         .Where(p => p.UserId == id);
             if (deleted == false)
             {
@@ -64,6 +65,7 @@ namespace Journly.Repositories
                         .Include(p => p.Therapist)
                         .Include(p => p.Mood)
                         .Include(p => p.User)
+                            .ThenInclude(u => u.Avatar)
                         .Where
                         (
                             p => p.UserId == id &&
@@ -157,6 +159,7 @@ namespace Journly.Repositories
             var query = _context.Post
                             .Include(p => p.Mood)
                             .Include(p => p.User)
+                                .ThenInclude(u => u.Avatar)
                             .Where(p => p.ViewTime == null)
                             .Where(p => p.UserId == id)
                             .Where(p => p.Deleted == false)
@@ -181,6 +184,7 @@ namespace Journly.Repositories
                          select p
                         ).Include(p => p.Mood)
                          .Include(p => p.User)
+                            .ThenInclude(u => u.Avatar)
                          .OrderByDescending(p => p.Flagged)
                          .ThenByDescending(p => p.CreateDate)
                          .Skip(start);
@@ -236,7 +240,8 @@ namespace Journly.Repositories
 
             //we need to include the mood data and the user data
             query = query.Include(p => p.Mood)
-                         .Include(p => p.User);
+                         .Include(p => p.User)
+                            .ThenInclude(u => u.Avatar);
 
             //if viewed is not null let's add a condition for getting uread/unread posts
             if (viewed == true)

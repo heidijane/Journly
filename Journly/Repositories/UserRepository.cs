@@ -33,6 +33,7 @@ namespace Journly.Repositories
                 .Include(u => u.UserType)
                 .Include(u => u.TherapistInfo)
                 .Include(u => u.UserRelationship)
+                .Include( u => u.Avatar)
                 .FirstOrDefault(u => u.FirebaseUserId == firebaseUserId);
         }
 
@@ -43,6 +44,7 @@ namespace Journly.Repositories
                 .Include(u => u.UserType)
                 .Include(u => u.TherapistInfo)
                 .Include(u => u.UserRelationship)
+                .Include(u => u.Avatar)
                 .FirstOrDefault(u => u.Id == id);
         }
 
@@ -62,10 +64,12 @@ namespace Journly.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT u.Id, u.FirstName, u.LastName, u.NickName, u.Avatar,
-                               t.Verified, t.Company
+                        SELECT u.Id, u.FirstName, u.LastName, u.NickName, u.AvatarId, u.FavColor,
+                               t.Verified, t.Company,
+                               a.Image, a.Name
                         FROM [User] u
                         JOIN Therapist t ON u.Id = t.UserId
+                        JOIN Avatar a ON a.Id = u.AvatarId
                         WHERE t.Code = @code
                     ";
 
@@ -81,11 +85,21 @@ namespace Journly.Repositories
                             FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                             LastName = reader.GetString(reader.GetOrdinal("LastName")),
                             NickName = reader.GetString(reader.GetOrdinal("NickName")),
-                            Avatar = ReaderUtils.GetNullableString(reader, "Avatar"),
+                            AvatarId = reader.GetInt32(reader.GetOrdinal("AvatarId")),
+                            FavColor = ReaderUtils.GetNullableString(reader, "FavColor"),
                             Verified = reader.GetBoolean(reader.GetOrdinal("Verified")),
                             Company = reader.GetString(reader.GetOrdinal("Company")),
                             Code = cCode
                         };
+
+                        Avatar avatar = new Avatar
+                        {
+                            Id = therapistConfirmationInfo.AvatarId,
+                            Image = reader.GetString(reader.GetOrdinal("Image")),
+                            Name = reader.GetString(reader.GetOrdinal("Name"))
+                        };
+
+                        therapistConfirmationInfo.Avatar = avatar;
 
                         reader.Close();
                         return therapistConfirmationInfo;

@@ -1,0 +1,40 @@
+.avatar, .avatar-default {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.avatar.avatar-small {
+    width: 30px;
+    height: 30px;
+}
+
+.avatar.avatar-med {
+    width: 75px;
+    height: 75px;
+}
+
+.avatar.avatar-large {
+    width: 100px;
+    height: 100px;
+}
+
+.avatar.avatar-xLarge {
+    width: 150px;
+    height: 150px;
+}
+
+.avatar img {
+    width: 135%;
+    height: 135%;
+    position: relative;
+    bottom: 12%;
+    right: 18%;
+    overflow: hidden;
+    opacity: .95;
+}
+
+.notRounded {
+    border-radius: 0;
+}

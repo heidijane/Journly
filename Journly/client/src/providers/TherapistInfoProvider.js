@@ -8,7 +8,7 @@ import React, { useState } from "react";
 export const TherapistInfoContext = React.createContext();
 
 export const TherapistInfoProvider = (props) => {
-    const [therapistInfo, setTherapistInfo] = useState({});
+    const [therapistInfo, setTherapistInfo] = useState(null);
 
     const apiUrl = '/api/user/therapist/'
 

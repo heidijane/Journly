@@ -35,13 +35,6 @@
     width: 30px;
 }
 
-.Post .avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    margin: .25em;
-}
-
 .flagged {
     background-color: rgba(255, 0, 0, 0.3) !important;
 }

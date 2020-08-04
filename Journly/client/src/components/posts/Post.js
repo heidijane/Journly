@@ -13,6 +13,7 @@ import { Card, CardBody, CardFooter, CardHeader, UncontrolledTooltip } from "rea
 import moment from "moment";
 import "./Post.css";
 import { truncate } from "../../utilities/truncate";
+import Avatar from "../users/Avatar";
 
 export default function Post({ post }) {
 
@@ -92,14 +93,7 @@ export default function Post({ post }) {
                     currentUser.userTypeId === 1 &&
                     <CardFooter className="d-flex justify-content-center align-items-center p-0 flex-nowrap">
                         <div>
-                            {
-                                post.user.avatar
-                                    ?
-                                    <img src={post.user.avatar} alt={post.user.nickName + "'s avatar"} className="avatar" />
-                                    :
-                                    <div className="avatar"></div>
-                            }
-
+                            <Avatar avatar={post.user.avatar} name={post.user.nickName} size="small" rounded={false} />
                         </div>
                         <div>
                             <div className="text-muted font-italic overflow-hidden" style={{ fontSize: "small" }}>

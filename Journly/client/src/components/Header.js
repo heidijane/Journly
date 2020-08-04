@@ -27,6 +27,7 @@ import {
 import { UserContext } from "../providers/UserProvider";
 import { PostContext } from '../providers/PostProvider';
 import UpdateUserForm from './users/UpdateUserForm';
+import Avatar from './users/Avatar';
 
 export default function Header() {
     const { isLoggedIn, logout } = useContext(UserContext);
@@ -57,14 +58,7 @@ export default function Header() {
                                     <NavItem>
                                         <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
                                             <DropdownToggle caret className="btn btn-success d-flex align-items-center">
-                                                {
-                                                    currentUser.avatar
-                                                        ?
-                                                        <img src={currentUser.avatar} alt="my avatar" className="avatar avatar-small mr-1" />
-                                                        :
-                                                        <div className="avatar avatar-small mr-1" style={{ display: "inline-block" }}></div>
-                                                }
-
+                                                <Avatar avatar={currentUser.avatar} color={currentUser.favColor} name={currentUser.nickName} size="small" />
                                             </DropdownToggle>
                                             <DropdownMenu>
                                                 <DropdownItem header>Account Settings</DropdownItem>

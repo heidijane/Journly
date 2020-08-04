@@ -73,6 +73,162 @@ INSERT INTO [MoodType] ([Id], [Name], [Image]) VALUES
 (95, 'red heart', '2764');
 SET IDENTITY_INSERT [MoodType] OFF
 
+--add the avatars
+SET IDENTITY_INSERT [Avatar] ON
+INSERT INTO [Avatar] ([Id], [Image], [Name]) VALUES
+    (1,'1F464','blank'),
+    (2,'1F9D1','person'),
+    (3,'1F9D1-1F3FB','person'),
+    (4,'1F9D1-1F3FC','person'),
+    (5,'1F9D1-1F3FD','person'),
+    (6,'1F9D1-1F3FE','person'),
+    (7,'1F9D1-1F3FF','person'),
+    (8,'1F471','person: blond'),
+    (9,'1F471-1F3FB','person: blond'),
+    (10,'1F471-1F3FC','person: blond'),
+    (11,'1F471-1F3FD','person: blond'),
+    (12,'1F471-1F3FE','person: blond'),
+    (13,'1F471-1F3FF','person: blond'),
+    (14,'1F9D1-200D-1F9B0','person: red hair'),
+    (15,'1F9D1-1F3FB-200D-1F9B0','person: red hair'),
+    (16,'1F9D1-1F3FC-200D-1F9B0','person: red hair'),
+    (17,'1F9D1-1F3FD-200D-1F9B0','person: red hair'),
+    (18,'1F9D1-1F3FE-200D-1F9B0','person: red hair'),
+    (19,'1F9D1-1F3FF-200D-1F9B0','person: red hair'),
+    (20,'1F9D1-200D-1F9B3','person: white hair'),
+    (21,'1F9D1-1F3FB-200D-1F9B3','person: white hair'),
+    (22,'1F9D1-1F3FC-200D-1F9B3','person: white hair'),
+    (23,'1F9D1-1F3FD-200D-1F9B3','person: white hair'),
+    (24,'1F9D1-1F3FE-200D-1F9B3','person: white hair'),
+    (25,'1F9D1-1F3FF-200D-1F9B3','person: white hair'),
+    (26,'1F468-200D-1F9B2','person: bald'),
+    (27,'1F468-1F3FB-200D-1F9B2','person: bald'),
+    (28,'1F468-1F3FC-200D-1F9B2','person: bald'),
+    (29,'1F468-1F3FD-200D-1F9B2','person: bald'),
+    (30,'1F468-1F3FE-200D-1F9B2','person: bald'),
+    (31,'1F468-1F3FF-200D-1F9B2','person: bald'),
+    (32,'1F9D1-200D-1F9B1','person: curly hair'),
+    (33,'1F9D1-1F3FB-200D-1F9B1','person: curly hair'),
+    (34,'1F9D1-1F3FC-200D-1F9B1','person: curly hair'),
+    (35,'1F9D1-1F3FD-200D-1F9B1','person: curly hair'),
+    (36,'1F9D1-1F3FE-200D-1F9B1','person: curly hair'),
+    (37,'1F9D1-1F3FF-200D-1F9B1','person: curly hair'),
+    (38,'1F469-200D-1F9B1','woman: curly hair'),
+    (39,'1F469-1F3FB-200D-1F9B1','woman: curly hair'),
+    (40,'1F469-1F3FC-200D-1F9B1','woman: curly hair'),
+    (41,'1F469-1F3FD-200D-1F9B1','woman: curly hair'),
+    (42,'1F469-1F3FE-200D-1F9B1','woman: curly hair'),
+    (43,'1F469-1F3FF-200D-1F9B1','woman: curly hair'),
+    (44,'1F469','woman'),
+    (45,'1F469-1F3FB','woman'),
+    (46,'1F469-1F3FC','woman'),
+    (47,'1F469-1F3FD','woman'),
+    (48,'1F469-1F3FE','woman'),
+    (49,'1F469-1F3FF','woman'),
+    (50,'1F471-200D-2640-FE0F','woman: blond hair'),
+    (51,'1F471-1F3FB-200D-2640-FE0F','woman: blond hair'),
+    (52,'1F471-1F3FC-200D-2640-FE0F','woman: blond hair'),
+    (53,'1F471-1F3FD-200D-2640-FE0F','woman: blond hair'),
+    (54,'1F471-1F3FE-200D-2640-FE0F','woman: blond hair'),
+    (55,'1F471-1F3FF-200D-2640-FE0F','woman: blond hair'),
+    (56,'1F469-200D-1F9B0','woman: red hair'),
+    (57,'1F469-1F3FB-200D-1F9B0','woman: red hair'),
+    (58,'1F469-1F3FC-200D-1F9B0','woman: red hair'),
+    (59,'1F469-1F3FD-200D-1F9B0','woman: red hair'),
+    (60,'1F469-1F3FE-200D-1F9B0','woman: red hair'),
+    (61,'1F469-1F3FF-200D-1F9B0','woman: red hair'),
+    (62,'1F469-200D-1F9B3','woman: white hair'),
+    (63,'1F469-1F3FB-200D-1F9B3','woman: white hair'),
+    (64,'1F469-1F3FC-200D-1F9B3','woman: white hair'),
+    (65,'1F469-1F3FD-200D-1F9B3','woman: white hair'),
+    (66,'1F469-1F3FE-200D-1F9B3','woman: white hair'),
+    (67,'1F469-1F3FF-200D-1F9B3','woman: white hair'),
+    (68,'1F9D5','woman with headscarf'),
+    (69,'1F9D5-1F3FB','woman with headscarf'),
+    (70,'1F9D5-1F3FC','woman with headscarf'),
+    (71,'1F9D5-1F3FD','woman with headscarf'),
+    (72,'1F9D5-1F3FE','woman with headscarf'),
+    (73,'1F9D5-1F3FF','woman with headscarf'),
+    (74,'1F468','man'),
+    (75,'1F468-1F3FB','man'),
+    (76,'1F468-1F3FC','man'),
+    (77,'1F468-1F3FD','man'),
+    (78,'1F468-1F3FE','man'),
+    (79,'1F468-1F3FF','man'),
+    (80,'1F9D4','man: beard'),
+    (81,'1F9D4-1F3FB','man: beard'),
+    (82,'1F9D4-1F3FC','man: beard'),
+    (83,'1F9D4-1F3FD','man: beard'),
+    (84,'1F9D4-1F3FE','man: beard'),
+    (85,'1F9D4-1F3FF','man: beard'),
+    (86,'1F471-200D-2642-FE0F','man: blond hair'),
+    (87,'1F471-1F3FB-200D-2642-FE0F','man: blond hair'),
+    (88,'1F471-1F3FC-200D-2642-FE0F','man: blond hair'),
+    (89,'1F471-1F3FD-200D-2642-FE0F','man: blond hair'),
+    (90,'1F471-1F3FE-200D-2642-FE0F','man: blond hair'),
+    (91,'1F471-1F3FF-200D-2642-FE0F','man: blond hair'),
+    (92,'1F468-200D-1F9B0','man: red hair'),
+    (93,'1F468-1F3FB-200D-1F9B0','man: red hair'),
+    (94,'1F468-1F3FC-200D-1F9B0','man: red hair'),
+    (95,'1F468-1F3FD-200D-1F9B0','man: red hair'),
+    (96,'1F468-1F3FE-200D-1F9B0','man: red hair'),
+    (97,'1F468-1F3FF-200D-1F9B0','man: red hair'),
+    (98,'1F468-200D-1F9B3','man: white hair'),
+    (99,'1F468-1F3FB-200D-1F9B3','man: white hair'),
+    (100,'1F468-1F3FC-200D-1F9B3','man: white hair'),
+    (101,'1F468-1F3FD-200D-1F9B3','man: white hair'),
+    (102,'1F468-1F3FE-200D-1F9B3','man: white hair'),
+    (103,'1F468-1F3FF-200D-1F9B3','man: white hair'),
+    (104,'1F473','person wearing turban'),
+    (105,'1F473-1F3FB','person wearing turban'),
+    (106,'1F473-1F3FC','person wearing turban'),
+    (107,'1F473-1F3FD','person wearing turban'),
+    (108,'1F473-1F3FE','person wearing turban'),
+    (109,'1F473-1F3FF','person wearing turban'),
+    (110,'1F473-200D-2642-FE0F','man wearking turban'),
+    (111,'1F473-1F3FB-200D-2642-FE0F','man wearking turban'),
+    (112,'1F473-1F3FC-200D-2642-FE0F','man wearking turban'),
+    (113,'1F473-1F3FD-200D-2642-FE0F','man wearking turban'),
+    (114,'1F473-1F3FE-200D-2642-FE0F','man wearking turban'),
+    (115,'1F473-1F3FF-200D-2642-FE0F','man wearking turban'),
+    (116,'1F9D2','child'),
+    (117,'1F9D2-1F3FB','child'),
+    (118,'1F9D2-1F3FC','child'),
+    (119,'1F9D2-1F3FD','child'),
+    (120,'1F9D2-1F3FE','child'),
+    (121,'1F9D2-1F3FF','child'),
+    (122,'1F466','boy'),
+    (123,'1F466-1F3FB','boy'),
+    (124,'1F466-1F3FC','boy'),
+    (125,'1F466-1F3FD','boy'),
+    (126,'1F466-1F3FE','boy'),
+    (127,'1F466-1F3FF','boy'),
+    (128,'1F467','girl'),
+    (129,'1F467-1F3FB','girl'),
+    (130,'1F467-1F3FC','girl'),
+    (131,'1F467-1F3FD','girl'),
+    (132,'1F467-1F3FE','girl'),
+    (133,'1F467-1F3FF','girl'),
+    (134,'1F9D3','older person'),
+    (135,'1F9D3-1F3FB','older person'),
+    (136,'1F9D3-1F3FC','older person'),
+    (137,'1F9D3-1F3FD','older person'),
+    (138,'1F9D3-1F3FE','older person'),
+    (139,'1F9D3-1F3FF','older person'),
+    (140,'1F474','old man'),
+    (141,'1F474-1F3FB','old man'),
+    (142,'1F474-1F3FC','old man'),
+    (143,'1F474-1F3FD','old man'),
+    (144,'1F474-1F3FE','old man'),
+    (145,'1F474-1F3FF','old man'),
+    (146,'1F475','old woman'),
+    (147,'1F475-1F3FB','old woman'),
+    (148,'1F475-1F3FC','old woman'),
+    (149,'1F475-1F3FD','old woman'),
+    (150,'1F475-1F3FE','old woman'),
+    (151,'1F475-1F3FF','old woman');
+SET IDENTITY_INSERT [Avatar] OFF
+
 --add the red flag words
 SET IDENTITY_INSERT [FlaggedWord] ON
 INSERT INTO [FlaggedWord] ([Id], [Word]) VALUES
@@ -85,36 +241,36 @@ SET IDENTITY_INSERT [FlaggedWord] OFF
 
 --create some therapists
 SET IDENTITY_INSERT [User] ON
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (1, 'Iw5dfUJIePTEkG1NSJTiq7xZOTZ2', 'Gannie', 'Dench', 'Ms. G', '1/12/1983', 'gdench0@reverbnation.com', 'https://avatars.dicebear.com/api/female/L64BuFvU9bccDMAM0Jo1.svg?m=10', '5/16/2020', 1);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (2, 'SxXtxEeErTeKg3mdvRRcIOoaLfc2', 'Mason', 'Peers', 'Mason', '6/29/1984', 'mpeers1@nymag.com', 'https://avatars.dicebear.com/api/female/SxXtxEeErTeKg3mdvRRcIOoaLfc2.svg?m=10&mood[]=happy', '4/3/2020', 1);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (3, 'LvHD53I7GmMWaOxRVsqEohbSaWD2', 'Cecile', 'Severns', 'Cecile', '7/17/1967', 'cseverns2@arizona.edu', 'https://avatars.dicebear.com/api/female/LvHD53I7GmMWaOxRVsqEohbSaWD2.svg?m=10&mood[]=happy', '3/3/2020', 1);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (4, 'nWjgc5DEITaBhmph9SD4Mrc4uj12', 'Clyve', 'Mathie', 'Mr. C', '10/18/1993', 'cmathie3@bbc.co.uk', 'https://avatars.dicebear.com/api/male/nWjgc5DEITaBhmph9SD4Mrc4uj12.svg?m=10', '1/16/2020', 1);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (5, 'Yh2hUMZtalWH8HYVVh2FttfsBVZ2', 'Bond', 'Copnar', 'Mr. Bond', '2/27/1971', 'bcopnar4@wufoo.com', 'https://avatars.dicebear.com/api/male/Yh2hUMZtalWH8HYVVh2FttfsBVZ.svg?m=10&mood[]=happy', '7/1/2019', 1);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (1, 'Iw5dfUJIePTEkG1NSJTiq7xZOTZ2', 'Gannie', 'Dench', 'Ms. G', '1/12/1983', 'gdench0@reverbnation.com', 60, '54e1b4', '5/16/2020', 1);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (2, 'SxXtxEeErTeKg3mdvRRcIOoaLfc2', 'Mason', 'Peers', 'Mason', '6/29/1984', 'mpeers1@nymag.com', 45, 'ccfe23', '4/3/2020', 1);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (3, 'LvHD53I7GmMWaOxRVsqEohbSaWD2', 'Cecile', 'Severns', 'Cecile', '7/17/1967', 'cseverns2@arizona.edu', 37, 'ff5107', '3/3/2020', 1);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (4, 'nWjgc5DEITaBhmph9SD4Mrc4uj12', 'Clyve', 'Mathie', 'Mr. C', '10/18/1993', 'cmathie3@bbc.co.uk', 26, 'ccc7cd', '1/16/2020', 1);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (5, 'Yh2hUMZtalWH8HYVVh2FttfsBVZ2', 'Bond', 'Copnar', 'Mr. Bond', '2/27/1971', 'bcopnar4@wufoo.com', 107, 'd444fa', '7/1/2019', 1);
 
 --create some users
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (6, '04CwcboEqVZAHGFzOF4y18UKqSf1', 'Eolanda', 'Stanmer', 'Eolanda', '4/4/1968', 'estanmer0@walmart.com', 'https://avatars.dicebear.com/api/female/04CwcboEqVZAHGFzOF4y18UKqSf1.svg?m=10&mood[]=happy', '2/18/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (7, '681mTpnwAEQJArsUyiDxdmHEEY92', 'Wyatan', 'Spindler', 'Wyatan', '7/22/1965', 'wspindler1@livejournal.com', 'https://avatars.dicebear.com/api/male/681mTpnwAEQJArsUyiDxdmHEEY92.svg?m=10&mood[]=happy', '8/20/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (8, 'Ag5UcQDtNURNm3ga4HQLO92NIvU2', 'Allene', 'Flamank', 'Allene', '11/4/2003', 'aflamank2@etsy.com', 'https://avatars.dicebear.com/api/female/681mTpnwAEQJArsUyiDxdmHEEY92.svg?m=10', '4/23/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (9, 'AoLs62xwhqVLOijqtGsMb85peah2', 'Alysia', 'Caistor', 'Alysia', '12/2/1991', 'acaistor3@mail.ru', 'https://avatars.dicebear.com/api/female/AoLs62xwhqVLOijqtGsMb85peah2.svg?m=10', '1/13/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (10, '1RiAr3rVYCUXecZicGJUKU8TXGg1', 'Vivianna', 'Jenking', 'Vivianna', '10/13/1972', 'vjenking4@independent.co.uk', 'https://avatars.dicebear.com/api/female/1RiAr3rVYCUXecZicGJUKU8TXGg1.svg?m=10', '1/16/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (11, 'EZRJdLjQaTXbGbWOrgZicoXRH3r2', 'Edwin', 'Zack', 'Edwin', '8/21/1956', 'ezack5@nbcnews.com', 'https://avatars.dicebear.com/api/male/EZRJdLjQaTXbGbWOrgZicoXRH3r2.svg?m=10&mood[]=happy', '5/26/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (12, 'UfNbJo5PCxZJcbWHi2cpjjFGUyh2', 'Ethel', 'Friel', 'Ethel', '6/14/1959', 'efriel6@statcounter.com', 'https://avatars.dicebear.com/api/female/UfNbJo5PCxZJcbWHi2cpjj.svg?m=10', '9/22/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (13, '9YhEmG9minWZMnDaf3gBrUXdYat2', 'Bax', 'Licence', 'Bax', '12/17/1950', 'blicence7@yelp.com', 'https://avatars.dicebear.com/api/male/9YhEmG9minWZMnDaf3gBrUXdYat.svg?m=10&mood[]=happy', '3/18/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (14, '32FYWFtBfMewmpSQikCSaJB5NQz1', 'Berny', 'Pawels', 'Berny', '9/10/1965', 'bpawels8@spiegel.de', 'https://avatars.dicebear.com/api/male/32FYWFtBfMewmpSQikCSaJB5NQz.svg?m=10&mood[]=happy', '12/5/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (15, 'YK3kSDctsnYGNC2Rpi5bdV96Rd73', 'Jody', 'Ebbutt', 'Jody', '5/3/1993', 'jebbutt9@oakley.com', 'https://avatars.dicebear.com/api/female/YK3kSDctsnYGNC2Rpi5bdV96Rd73.svg?m=10&mood[]=happy', '8/1/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (16, 'fw8EAjZc74ZqAqHrvGOLUj846Pm2', 'Jarrett', 'Yallowley', 'Jarrett', '6/6/1980', 'jyallowleya@webnode.com', 'https://avatars.dicebear.com/api/male/fw8EAjZc74ZqAqHrvGOLUj846Pm2.svg?m=10&mood[]=surprised', '6/22/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (17, '377HlPNbH0Q7dv5IabrKMpMCVr63', 'Kristel', 'Castenda', 'Kristel', '7/20/1985', 'kcastendab@salon.com', 'https://avatars.dicebear.com/api/female/377HlPNbH0Q7dv5IabrKMpMCVr63.svg?m=10&mood[]=happy', '10/8/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (18, 'zU1GyzNebHWNF2EQVQyefoB2IHl2', 'Gifford', 'Tomik', 'Gifford', '4/17/1958', 'gtomikc@toplist.cz', 'https://avatars.dicebear.com/api/male/zU1GyzNebHWNF2EQVQyefoB2IHl2.svg?m=10', '5/24/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (19, 'dXmigZCJ8iboFnGLpxpFqSSA2K82', 'Verney', 'Malimoe', 'Verney', '2/10/1985', 'vmalimoed@homestead.com', 'https://avatars.dicebear.com/api/female/dXmigZCJ8iboFnGLpxpFqSSA2K82.svg?m=10&mood[]=happy', '1/25/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (20, 'c8UuUiK2xzTDsApXIbWrv4VUlIX2', 'Hiram', 'Dencs', 'Hiram', '6/3/2007', 'hdencse@amazonaws.com', 'https://avatars.dicebear.com/api/male/c8UuUiK2xzTDsApXIbWrv4VUlIX.svg?m=10', '8/7/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (21, 'OrjxyaLbyuVpEIbfgQSchnOQQ2B3', 'Kayla', 'Polson', 'Kayla', '3/24/1967', 'kpolsonf@cocolog-nifty.com', 'https://avatars.dicebear.com/api/female/OrjxyaLbyuVpEIbfgQSchnOQQ2B3.svg?m=10', '10/15/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (22, 'm7paTH8jzkOsWP1PfkleKOAgGq43', 'Thorny', 'Delicate', 'Thorny', '6/25/2008', 'tdelicateg@whitehouse.gov', 'https://avatars.dicebear.com/api/female/m7paTH8jzkOsWP1PfkleKOAgG.svg?m=10&mood[]=happy', '2/8/2020', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (23, 'yYdYCMSQrUUOgBtzZdFtKmKnT4i1', 'Leon', 'Gytesham', 'Leon', '4/10/1958', 'lgyteshamh@github.io', 'https://avatars.dicebear.com/api/male/yYdYCMSQrUUOgBtzZdFtKmKnT4i1.svg?m=10', '5/20/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (24, 'aG8c9KNLAYSVZWQfPOiuzUVxwLm1', 'Clair', 'Prophet', 'Clair', '12/4/2001', 'cpropheti@google.ru', 'https://avatars.dicebear.com/api/female/aG8c9KNLAYSVZWQfPOiuzUVxwLm1.svg?m=10&mood[]=happy', '11/3/2019', 0);
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (25, 'g41uItTvjZaGiK4LP2lDMF7Tf2k2', 'Maxie', 'Feehely', 'Maxie', '11/5/2007', 'mfeehelyj@toplist.cz', 'https://avatars.dicebear.com/api/female/g41uItTvjZaGiK4LP2lDMF7Tf2k2.svg?m=10&mood[]=happy', '5/29/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (6, '04CwcboEqVZAHGFzOF4y18UKqSf1', 'Eolanda', 'Stanmer', 'Eolanda', '4/4/1968', 'estanmer0@walmart.com', 42, '9666aa', '2/18/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (7, '681mTpnwAEQJArsUyiDxdmHEEY92', 'Wyatan', 'Spindler', 'Wyatan', '7/22/1965', 'wspindler1@livejournal.com', 2, 'f69dea', '8/20/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (8, 'Ag5UcQDtNURNm3ga4HQLO92NIvU2', 'Allene', 'Flamank', 'Allene', '11/4/2003', 'aflamank2@etsy.com', 52, 'b2960a', '4/23/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (9, 'AoLs62xwhqVLOijqtGsMb85peah2', 'Alysia', 'Caistor', 'Alysia', '12/2/1991', 'acaistor3@mail.ru', 70, '9ff0db', '1/13/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (10, '1RiAr3rVYCUXecZicGJUKU8TXGg1', 'Vivianna', 'Jenking', 'Vivianna', '10/13/1972', 'vjenking4@independent.co.uk', 62, 'ff8e5f', '1/16/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (11, 'EZRJdLjQaTXbGbWOrgZicoXRH3r2', 'Edwin', 'Zack', 'Edwin', '8/21/1956', 'ezack5@nbcnews.com', 141, '939e4b', '1/16/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (12, 'UfNbJo5PCxZJcbWHi2cpjjFGUyh2', 'Ethel', 'Friel', 'Ethel', '6/14/1959', 'efriel6@statcounter.com', 149, '990821', '9/22/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (13, '9YhEmG9minWZMnDaf3gBrUXdYat2', 'Bax', 'Licence', 'Bax', '12/17/1950', 'blicence7@yelp.com', 139, '4b1646', '3/18/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (14, '32FYWFtBfMewmpSQikCSaJB5NQz1', 'Berny', 'Pawels', 'Berny', '9/10/1965', 'bpawels8@spiegel.de', 100, '87160e', '12/5/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (15, 'YK3kSDctsnYGNC2Rpi5bdV96Rd73', 'Jody', 'Ebbutt', 'Jody', '5/3/1993', 'jebbutt9@oakley.com', 52, 'ca86ed', '8/1/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (16, 'fw8EAjZc74ZqAqHrvGOLUj846Pm2', 'Jarrett', 'Yallowley', 'Jarrett', '6/6/1980', 'jyallowleya@webnode.com', 81, '138d68', '6/22/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (17, '377HlPNbH0Q7dv5IabrKMpMCVr63', 'Kristel', 'Castenda', 'Kristel', '7/20/1985', 'kcastendab@salon.com', 38, '2242a3', '10/8/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (18, 'zU1GyzNebHWNF2EQVQyefoB2IHl2', 'Gifford', 'Tomik', 'Gifford', '4/17/1958', 'gtomikc@toplist.cz', 85, 'c5b707', '5/24/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (19, 'dXmigZCJ8iboFnGLpxpFqSSA2K82', 'Verney', 'Malimoe', 'Verney', '2/10/1985', 'vmalimoed@homestead.com', 92, 'fc8ddb', '1/25/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (20, 'c8UuUiK2xzTDsApXIbWrv4VUlIX2', 'Hiram', 'Dencs', 'Hiram', '6/3/2007', 'hdencse@amazonaws.com', 124, 'c36efd', '8/7/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (21, 'OrjxyaLbyuVpEIbfgQSchnOQQ2B3', 'Kayla', 'Polson', 'Kayla', '3/24/1967', 'kpolsonf@cocolog-nifty.com', 39, '37424f', '10/15/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (22, 'm7paTH8jzkOsWP1PfkleKOAgGq43', 'Thorny', 'Delicate', 'Thorny', '6/25/2008', 'tdelicateg@whitehouse.gov', 131, '8d73f6', '2/8/2020', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (23, 'yYdYCMSQrUUOgBtzZdFtKmKnT4i1', 'Leon', 'Gytesham', 'Leon', '4/10/1958', 'lgyteshamh@github.io', 144, 'bdddfb', '5/20/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (24, 'aG8c9KNLAYSVZWQfPOiuzUVxwLm1', 'Clair', 'Prophet', 'Clair', '12/4/2001', 'cpropheti@google.ru', 33, '7c64aa', '11/3/2019', 0);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (25, 'g41uItTvjZaGiK4LP2lDMF7Tf2k2', 'Maxie', 'Feehely', 'Maxie', '11/5/2007', 'mfeehelyj@toplist.cz', 16, '1eac49', '5/29/2020', 0);
 
 --create an admin user
-insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, Avatar, CreateDate, UserTypeId) values (26, 'L64BuFvU9bccDMAM0aHCwvDTzJo1', 'Heidi', 'Sprouse', 'Heidi', '06/28/1991', 'heidi@heidi.com', 'https://avatars.dicebear.com/api/female/L64Bu.svg?mood[]=happy', '5/29/2020', 2);
+insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (26, 'L64BuFvU9bccDMAM0aHCwvDTzJo1', 'Heidi', 'Sprouse', 'Heidi', '06/28/1991', 'heidi@heidi.com', 45, 'd3b4d8', '5/29/2020', 2);
 
 SET IDENTITY_INSERT [User] OFF
 
