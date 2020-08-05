@@ -13,6 +13,7 @@ import "./AddEntryForm.css"
 import Errors from "../Errors";
 import { PostContext } from "../../providers/PostProvider";
 import HealthResources from "../HealthResources";
+import TextEditor from "./TextEditor"
 
 export default function AddEntryForm() {
     const { addPost } = useContext(PostContext);
@@ -64,7 +65,8 @@ export default function AddEntryForm() {
                     </FormGroup>
                     <FormGroup>
                         <h2>What's going on? <span className="font-italic text-muted">Optional</span></h2>
-                        <Input type="textarea" name="content" id="content" style={{ height: "400px" }} innerRef={content} placeholder="Write as much or as little as you want!" />
+                        <TextEditor />
+                        {/* <Input type="textarea" name="content" id="content" style={{ height: "400px" }} innerRef={content} placeholder="Write as much or as little as you want!" /> */}
                     </FormGroup>
                     <Errors errors={errors} />
                     <FormGroup className="text-right">
