@@ -25,7 +25,7 @@ export default function AddEntryForm() {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const content = useRef();
+    const [content, setContent] = useState("Type your text here!");
 
     //validates form fields and submits new post to the server
     const submitForm = e => {
@@ -65,8 +65,7 @@ export default function AddEntryForm() {
                     </FormGroup>
                     <FormGroup>
                         <h2>What's going on? <span className="font-italic text-muted">Optional</span></h2>
-                        <TextEditor />
-                        {/* <Input type="textarea" name="content" id="content" style={{ height: "400px" }} innerRef={content} placeholder="Write as much or as little as you want!" /> */}
+                        <TextEditor content={content} setContent={setContent} />
                     </FormGroup>
                     <Errors errors={errors} />
                     <FormGroup className="text-right">
