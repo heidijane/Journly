@@ -29,11 +29,12 @@ namespace Journly.Repositories
         //returns a single user by their firebase UID
         public User GetByFirebaseUserId(string firebaseUserId)
         {
+            var query = _context.User;
             return _context.User
                 .Include(u => u.UserType)
                 .Include(u => u.TherapistInfo)
                 .Include(u => u.UserRelationship)
-                .Include( u => u.Avatar)
+                .Include(u => u.Avatar)
                 .FirstOrDefault(u => u.FirebaseUserId == firebaseUserId);
         }
 

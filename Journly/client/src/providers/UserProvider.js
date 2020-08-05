@@ -94,8 +94,18 @@ export function UserProvider(props) {
                 throw new Error("Unauthorized");
             })
                 .then(resp => {
-                    sessionStorage.clear()
-                    sessionStorage.setItem("userData", JSON.stringify(resp));
+                    //in order to get the avatar data you have to get the user data again...
+                    //I originally tried just using the data sent back by the response but Avatar always came back as null
+                    //I'll look into this more later. Tried to fix on the server-side and couldn't figure it out.
+                    //The Include of the Avatar object only works some of the time but I can't figure out what is different between the two requests.
+                    //I'm sure future me will easily be able to solve this.
+                    const jsonResp = JSON.stringify(resp);
+                    getUserData(resp.firebaseUserId)
+                        .then((userData) => {
+                            sessionStorage.clear();
+                            sessionStorage.setItem("userData", JSON.stringify(userData));
+                            setIsLoggedIn(true);
+                        })
                     return resp;
                 })
         )

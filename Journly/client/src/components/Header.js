@@ -139,7 +139,7 @@ export default function Header() {
                     <UpdateUserForm toggle={updateUserModalToggle} />
                 </ModalBody>
             </Modal>
-            <Modal isOpen={avatarModal} toggle={avatarModalToggle} scrollable={true}>
+            <Modal isOpen={avatarModal} toggle={avatarModalToggle} className="modal-lg">
                 <ModalHeader toggle={avatarModalToggle}>
                     Change Your Avatar
             </ModalHeader>

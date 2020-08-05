@@ -100,6 +100,8 @@ namespace Journly.Controllers
             currentUser.LastName = newUser.LastName;
             currentUser.NickName = newUser.NickName;
             currentUser.Birthday = newUser.Birthday;
+            currentUser.AvatarId = newUser.AvatarId;
+            currentUser.FavColor = newUser.FavColor;
 
             if (currentUser.UserTypeId == 1)
             {

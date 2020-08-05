@@ -6,6 +6,7 @@
 .Avatar__Container {
     overflow-y: auto;
     min-height: 100px;
+    max-height: 350px;
 }
 
 .Avatar__Icon {

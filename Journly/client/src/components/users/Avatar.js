@@ -25,7 +25,12 @@ export default function Avatar({ avatar = null, color = "", name = null, size = 
         )
     } else {
         return (
-            <div className={"avatar avatar-" + size} style={{ backgroundColor: "#" + color }}></div>
+            <div className={"avatar avatar-" + size + (!rounded ? " notRounded" : "")} style={{ backgroundColor: "#" + color }}>
+                <img
+                    src={"/emoji/1F464.svg"}
+                    alt={(name && name + "'s avatar, ")}
+                />
+            </div>
         )
     }
 }

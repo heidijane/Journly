@@ -87,7 +87,9 @@ export default function RegisterClient() {
                 birthday: birthday,
                 email: email.current.value,
                 userTypeId: 1,
-                therapistInfo: { company: company.current.value }
+                therapistInfo: { company: company.current.value },
+                avatarId: 1,
+                favColor: "61abff"
             }
 
             register(userData, password1.current.value)
