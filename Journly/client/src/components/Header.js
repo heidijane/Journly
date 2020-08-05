@@ -28,6 +28,8 @@ import { UserContext } from "../providers/UserProvider";
 import { PostContext } from '../providers/PostProvider';
 import UpdateUserForm from './users/UpdateUserForm';
 import Avatar from './users/Avatar';
+import ChangeAvatar from './users/ChangeAvatar';
+import { AvatarContext, AvatarProvider } from '../providers/AvatarProvider';
 
 export default function Header() {
     const { isLoggedIn, logout } = useContext(UserContext);
@@ -44,6 +46,10 @@ export default function Header() {
     //modal states for the update user profile modal
     const [updateUserModal, setUpdateUserModal] = useState(false);
     const updateUserModalToggle = () => setUpdateUserModal(!updateUserModal);
+
+    //modal states for the change avatar modal
+    const [avatarModal, setAvatarModal] = useState(false);
+    const avatarModalToggle = () => setAvatarModal(!avatarModal);
 
     return (
         <>
@@ -63,7 +69,7 @@ export default function Header() {
                                             <DropdownMenu>
                                                 <DropdownItem header>Account Settings</DropdownItem>
                                                 <DropdownItem onClick={updateUserModalToggle}>Update Profile</DropdownItem>
-                                                <DropdownItem>Change Avatar</DropdownItem>
+                                                <DropdownItem onClick={avatarModalToggle}>Change Avatar</DropdownItem>
                                                 <DropdownItem divider />
                                                 <DropdownItem onClick={logout}>Logout</DropdownItem>
                                             </DropdownMenu>
@@ -131,6 +137,16 @@ export default function Header() {
             </ModalHeader>
                 <ModalBody>
                     <UpdateUserForm toggle={updateUserModalToggle} />
+                </ModalBody>
+            </Modal>
+            <Modal isOpen={avatarModal} toggle={avatarModalToggle} scrollable={true}>
+                <ModalHeader toggle={avatarModalToggle}>
+                    Change Your Avatar
+            </ModalHeader>
+                <ModalBody>
+                    <AvatarProvider>
+                        <ChangeAvatar toggle={avatarModalToggle} />
+                    </AvatarProvider>
                 </ModalBody>
             </Modal>
         </>

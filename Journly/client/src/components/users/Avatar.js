@@ -1,3 +1,15 @@
+/*
+    Avatar.js
+    Renders a user's avatar with their fav color depending on provided props.
+    
+    Props
+    * avatar - an avatar object containing avatar image and name
+    * color - the background color of the avatar, if left blank the bg will be transparent
+    * name - users name that will appear in the avatar's alt text
+    * size - determines size of avatar (small, default, medium, large, xLarge)
+    * rounded - determines if avatar is circular or not, true or false
+*/
+
 import React from "react"
 import "./Avatar.css"
 

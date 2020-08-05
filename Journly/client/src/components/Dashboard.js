@@ -6,7 +6,6 @@
     For a therapist it renders the welcome message, a list of their clients, an Add Client button, and a list of recent unread entries
 */
 
-
 import React, { useState } from "react";
 import WelcomeMessage from "./WelcomeMessage";
 import UserPostList from "./posts/UserPostList";

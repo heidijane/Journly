@@ -1,0 +1,36 @@
+/*
+    ChangeAvatar.css
+    Styles that apply to the ChangeAvatar component
+*/
+
+.Avatar__Container {
+    overflow-y: auto;
+    min-height: 100px;
+}
+
+.Avatar__Icon {
+    width: 100%;
+}
+
+/* HIDE RADIO */
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+
+[type=radio]+img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+
+[type=radio]:checked+img {
+    background: rgba(0, 0, 0, .15);
+    border-radius: 1.25em;
+    /* outline: 2px solid #f00; */
+}

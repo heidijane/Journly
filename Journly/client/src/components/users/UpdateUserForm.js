@@ -1,3 +1,9 @@
+/*
+    UpdateUserForm.js
+    Form that allows users to change their profile info like their name, b-day, etc.
+    Can be used by both clients and therapists
+*/
+
 import React, { useContext, useEffect, useState, useRef } from "react"
 import {
     Form,
