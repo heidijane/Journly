@@ -239,6 +239,13 @@ INSERT INTO [FlaggedWord] ([Id], [Word]) VALUES
 (31, 'train'), (32, 'vampire'), (33, 'pill'), (34, 'knife');
 SET IDENTITY_INSERT [FlaggedWord] OFF
 
+/****************************
+Everything below this comment is optional!
+Use only if you want the seed user and post data
+To use this seed data you will have to add the users to Google Firebase authentication
+and then replace FirebaseUserId for each user with your own
+****************************/
+
 --create some therapists
 SET IDENTITY_INSERT [User] ON
 insert into [User] (Id, FirebaseUserId, FirstName, LastName, NickName, Birthday, Email, AvatarId, FavColor, CreateDate, UserTypeId) values (1, 'Iw5dfUJIePTEkG1NSJTiq7xZOTZ2', 'Gannie', 'Dench', 'Ms. G', '1/12/1983', 'gdench0@reverbnation.com', 60, '54e1b4', '5/16/2020', 1);
