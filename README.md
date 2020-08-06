@@ -9,7 +9,7 @@ Journly allows for this sort of communication in a time when an actual notebook 
 ## Technologies
 
 Journly is built in .NET Core with C#. Entity Framework and ADO.NET Core are utilized for communicating with the SQL Server database.
-The front-end is built using React and Bootstrap 4.
+The front-end is built using React and Bootstrap 4/Reactstrap.
 Google Firebase is used for user authentication.
 
 ## Requirements
@@ -33,7 +33,7 @@ Google Firebase is used for user authentication.
 3. The second file, 02_Seed_Data.sql sets up the mood emojis, avatars, and user types. It also contains some seed user and post data. You will need to run the first half of the file, but the user data is optional. If you want to create your project without any initial users do not run the SQL commands after the comment on line 244.
 
 ### Setting up the users (only do this if you are using the user and post seed data)
-On your Google Firebase project, click on the Authentication link. You will need to add a user (there are 25 total) with an e-mail that matches the one in the database. Make sure that you have e-mail verification set to OFF before you add the seed users. Once you've added the users, replace their Firebase UID's in the SQL file with the ones matching your newly created Firebase Users.
+On your Google Firebase project, click on the Authentication link. You will need to add users (there are 25 total) that have e-mail addresses that matches the ones in the database. Make sure that you have e-mail verification set to OFF before you add the seed users. Once you've added the users, replace their Firebase UID's in the SQL file with the ones matching your newly created Firebase Users. Then you can run the SQL file.
 
 ### Install missing dependencies
 1. Navigate to the client folder in your terminal
@@ -46,3 +46,13 @@ On your Google Firebase project, click on the Authentication link. You will need
 3. Type the command `npm start`
 
 *Note: I reccommend registering as a therapist first when testing, especially if you aren't using the user seed data. This way you can click on the "Add Client" button to get your counsellor code which you can then use to register clients for testing purposes.
+
+## Credits and Dependencies
+- [OpenMoji](https://openmoji.org/) for the mood and avatar icons
+- [Moment.js](https://github.com/moment/moment made formatting dates almost intuitive
+- [React Color](https://github.com/casesandberg/react-color) for a wide variety of easy to install and customize color pickers
+- [React-Simple-WYSIWYG](https://github.com/megahertz/react-simple-wysiwyg) for a not-too-complicated exactly-what-I-needed WYSIWYG text editor
+- [Reactstrap-Date-Picker](https://github.com/megahertz/react-simple-wysiwyg) for an easily customized date input field
+
+## Thank you!
+Thank you for checking out my project! I want to thank the instruction team at Nashville Software School and also my fiancee for giving me the idea for this app.
