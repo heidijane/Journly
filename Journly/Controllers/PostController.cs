@@ -339,7 +339,10 @@ namespace Journly.Controllers
 
             post.ViewTime = DateTime.Now;
             post.TherapistId = currentUser.Id;
-            post.Comment = newPost.Comment;
+
+            //sanitize the html
+            var sanitizer = new HtmlSanitizer();
+            post.Comment = sanitizer.Sanitize(newPost.Comment);
 
             _postRepository.Update(post);
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);

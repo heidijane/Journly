@@ -9,6 +9,7 @@ import { Form, FormGroup, Input, Button } from "reactstrap"
 import { PostContext } from "../../providers/PostProvider"
 import Errors from "../Errors";
 import { useHistory, useLocation } from 'react-router-dom';
+import TextEditor from "./TextEditor"
 
 export default ({ post, toggle }) => {
 
@@ -18,20 +19,20 @@ export default ({ post, toggle }) => {
     let location = useLocation();
     const history = useHistory();
 
-    const comment = useRef();
+    const [comment, setComment] = useState(post.comment);
 
     //validates form fields and sends the comment to the server
     const saveComment = (e) => {
         e.preventDefault();
         setErrors([]); //clear out any old errors
 
-        if (comment.current.value === "") {
+        if (comment === "") {
             const error = "Please leave a comment!";
             setErrors(errors => [...errors, error]);
         } else {
             const newPost = {
                 id: post.id,
-                comment: comment.current.value
+                comment: comment
             }
             therapistUpdate(newPost)
                 .then(toggle)
@@ -47,15 +48,7 @@ export default ({ post, toggle }) => {
     return (
         <Form onSubmit={e => saveComment(e)}>
             <FormGroup>
-                <Input
-                    type="textarea"
-                    id="comment"
-                    name="comment"
-                    style={{ height: "250px" }}
-                    defaultValue={post.comment}
-                    innerRef={comment}
-                    placeholder="Add a comment..."
-                />
+                <TextEditor content={comment} setContent={setComment} />
             </FormGroup>
             <Errors errors={errors} />
             <FormGroup className="text-right">

@@ -128,7 +128,7 @@ export default function JournalPageEntry({ post }) {
                         </div>
                         {
                             post.comment &&
-                            <div>{post.comment}</div>
+                            <div className="content" dangerouslySetInnerHTML={{ __html: post.comment }}></div>
                         }
                     </div>
                 }
