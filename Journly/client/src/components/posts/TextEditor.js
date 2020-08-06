@@ -17,6 +17,11 @@ export default function TextEditor({ content, setContent }) {
         <CustomEditor
             value={content}
             onChange={updateText}
+            //prevents users from pasting rich text including images and such
+            onPaste={e => {
+                e.preventDefault();
+                document.execCommand('inserttext', false, e.clipboardData.getData('text/plain'))
+            }}
         />
     );
 }

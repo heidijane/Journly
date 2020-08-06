@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
 using Journly.Services;
+using Ganss.XSS;
 
 namespace Journly.Controllers
 {
@@ -268,6 +269,10 @@ namespace Journly.Controllers
             post.UserId = currentUser.Id;
             post.CreateDate = DateTime.Now;
 
+            //sanitize the html
+            var sanitizer = new HtmlSanitizer();
+            post.Content = sanitizer.Sanitize(post.Content);
+
             //check for flagged words
             if (_flaggedWordService.HasFlaggedWord(post.Content))
             {
@@ -295,7 +300,10 @@ namespace Journly.Controllers
             }
             //update the post object to deleted status
 
-            post.Content = newPost.Content;
+            //sanitize the html
+            var sanitizer = new HtmlSanitizer();
+            post.Content = sanitizer.Sanitize(newPost.Content);
+
             post.MoodId = newPost.MoodId;
             post.EditTime = DateTime.Now;
 

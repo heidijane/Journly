@@ -69,7 +69,7 @@ export default function JournalPageEntry({ post }) {
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
     if (post.deleted) {
-        post.content = <span className="font-italic text-muted">This entry has been deleted.</span>
+        post.content = "<i>This entry has been deleted.</i>";
     }
 
     return (
