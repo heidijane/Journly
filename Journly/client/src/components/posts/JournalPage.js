@@ -45,7 +45,7 @@ export default function JournalPage({ posts }) {
         const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
         return (
-            <div className="container mt-4">
+            <div className="container py-4">
                 {
                     currentUser.userTypeId === 1 &&
                     <h2 className="d-flex justify-content-start align-items-center">
@@ -70,7 +70,7 @@ export default function JournalPage({ posts }) {
         )
     } else {
         return (
-            <div className="container mt-4">
+            <div className="container py-4">
                 <Alert color="warning">There are no posts for this date.</Alert>
             </div>
         )

@@ -9,8 +9,8 @@ import { Alert } from "reactstrap";
 export default ({ nickname }) => {
 
     return (
-        <Alert color="success">
-            <h3 className="text-center">Welcome, {nickname}!</h3>
+        <Alert color="success" className="d-flex justify-content-center align-items-center">
+            <h2 className="mt-3">Welcome, {nickname}!</h2>
         </Alert>
     );
 }

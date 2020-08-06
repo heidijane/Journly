@@ -98,7 +98,7 @@ export default function RegisterClient() {
     }
 
     return (
-        <div className="container mt-4">
+        <div className="container py-4">
             <h1>Create a New Counselor or Therapist Account</h1>
             <hr />
             <Errors errors={errors} />

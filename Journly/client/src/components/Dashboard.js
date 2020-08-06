@@ -28,19 +28,19 @@ export default function Dashboard() {
     if (currentUser.userTypeId === 1) {
         return (
             <>
-                <div className="container mt-4">
+                <div className="container py-4">
                     <WelcomeMessage nickname={currentUser.nickName} />
-                    <h3 className="d-flex justify-content-between">
+                    <h2 className="d-flex justify-content-between align-items-center">
                         My Clients
-                    <Button color="success" className="AddClientButton" onClick={addClientModalToggle}>
+                    <Button color="success" className="AddClientButton" onClick={addClientModalToggle} style={{ height: "36px" }}>
                             <img src={"/emoji/1F9D1.svg"} alt="add client" /> Add Client
                     </Button>
-                    </h3>
+                    </h2>
                     <hr />
                     <ClientProvider>
                         <ClientList />
                     </ClientProvider>
-                    <h3>Unread Entries</h3>
+                    <h2>Unread Entries</h2>
                     <hr />
                     <UnreadEntryList limit="6" start="0" />
                 </div>
@@ -56,9 +56,9 @@ export default function Dashboard() {
         );
     } else {
         return (
-            <div className="container mt-4">
+            <div className="container py-4">
                 <WelcomeMessage nickname={currentUser.nickName} className="mb-4" />
-                <h3>My Recent Entries</h3>
+                <h2>My Recent Entries</h2>
                 <hr />
                 <UserPostList limit="3" start="0" />
                 <div className="bg-light border rounded px-0 py-3 mt-4">

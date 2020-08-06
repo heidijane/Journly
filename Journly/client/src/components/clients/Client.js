@@ -39,8 +39,8 @@ export default function Client({ client }) {
                         }
                         <Avatar avatar={client.user.avatar} color={client.user.favColor} name={client.user.nickName} size="large" />
                     </div>
-                    <h4>{client.user.nickName}</h4>
-                    <h5 className="text-muted">{client.user.firstName} {client.user.lastName}</h5>
+                    <h4 className="mt-2 mb-0 pb-0">{client.user.nickName}</h4>
+                    <h6 className="text-muted pt-0 mt-0">{client.user.firstName} {client.user.lastName}</h6>
                     <div className="mb-2"><Link to={`/entries?user=${client.user.id}&viewed=false`}>{unread} Unread</Link></div>
                 </Card>
                 <Modal isOpen={clientModal} toggle={clientModalToggle}>

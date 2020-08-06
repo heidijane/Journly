@@ -63,7 +63,7 @@ export default function ApplicationViews() {
                 {/* The "Mood Wall", a grid of recently used mood emojis by clients */}
                 <Route path="/moodwall">
                     <MoodProvider>
-                        <div className="container mt-4">
+                        <div className="container py-4">
                             <MoodWall limit="54" />
                         </div>
                     </MoodProvider>
@@ -72,7 +72,7 @@ export default function ApplicationViews() {
                 {/* Shows the current users entries if they are a client */}
                 <Route path="/myentries">
                     {isLoggedIn && currentUser.userTypeId === 0 ?
-                        <div className="container mt-4">
+                        <div className="container py-4">
                             <h3>My Journal Entries</h3>
                             <hr />
                             <UserPostList limit="0" start="0" />
@@ -117,7 +117,7 @@ export default function ApplicationViews() {
                     {isLoggedIn && currentUser.userTypeId === 1
                         ?
                         <ClientProvider>
-                            <div className="container mt-4">
+                            <div className="container py-4">
                                 <h3>My Clients</h3>
                                 <hr />
                                 <ClientList />

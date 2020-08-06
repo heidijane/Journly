@@ -16,7 +16,7 @@ export default () => {
     const history = useHistory();
 
     return (
-        <div className="container mt-4">
+        <div className="container py-4">
             <div className="row">
                 <div className="col-sm">
                     <Card>

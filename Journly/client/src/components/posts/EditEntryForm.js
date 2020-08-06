@@ -78,7 +78,7 @@ export default function EditEntryForm() {
     } else {
         return (
             <>
-                <div className="container mt-4">
+                <div className="container py-4">
                     <Form onSubmit={e => submitForm(e)}>
                         <FormGroup>
                             <h2>I'm feeling{selectedMood ? <img src={"/emoji/" + selectedMood.image + ".svg"} alt={selectedMood.name} className="selectedMood" /> : "..."}</h2>
