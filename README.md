@@ -54,6 +54,7 @@ On your Google Firebase project, click on the Authentication link. You will need
 - [React Color](https://github.com/casesandberg/react-color) for a wide variety of easy to install and customize color pickers
 - [React-Simple-WYSIWYG](https://github.com/megahertz/react-simple-wysiwyg) for a not-too-complicated exactly-what-I-needed WYSIWYG text editor
 - [Reactstrap-Date-Picker](https://github.com/megahertz/react-simple-wysiwyg) for an easily customized date input field
+- [HtmlSanitizer](https://github.com/mganss/HtmlSanitizer) for a .NET library that cleans up dirty, user-submitted HTML
 
 ## Thank you!
 Thank you for checking out my project! I want to thank the instruction team at Nashville Software School and also my fiancee for giving me the idea for this app.
