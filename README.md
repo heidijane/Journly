@@ -50,7 +50,7 @@ On your Google Firebase project, click on the Authentication link. You will need
 
 ## Credits and Dependencies
 - [OpenMoji](https://openmoji.org/) for the mood and avatar icons
-- [Moment.js](https://github.com/moment/moment made formatting dates almost intuitive
+- [Moment.js](https://github.com/moment/moment) made formatting dates almost intuitive
 - [React Color](https://github.com/casesandberg/react-color) for a wide variety of easy to install and customize color pickers
 - [React-Simple-WYSIWYG](https://github.com/megahertz/react-simple-wysiwyg) for a not-too-complicated exactly-what-I-needed WYSIWYG text editor
 - [Reactstrap-Date-Picker](https://github.com/megahertz/react-simple-wysiwyg) for an easily customized date input field
