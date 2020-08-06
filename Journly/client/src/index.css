@@ -8,7 +8,40 @@ body {
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(rgba(61, 195, 166, 0.2), rgba(61, 195, 166, 0.2)), url("./images/geometry2.png");
+  background-image: linear-gradient(rgba(183, 255, 239, 0.2), rgba(183, 255, 239, 0.2)), url("./images/geometry2.png");
+}
+
+.bodyFont {
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-weight: bold;
+}
+
+.navbar-custom {
+  background-color: #87dbd0;
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-text {
+  color: #007575;
+}
+
+.navbar-brand {
+  color: #007575;
+  font-family: Caroni, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.btn-custom {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn-custom:hover, .btn-custom:active, .btn-custom:focus {
+  background-color: #4cc8b8;
+  border-color: #46b8a8;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -47,6 +80,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.container {
+.container-body {
   background-color: white;
+  min-height: 100%;
+  /* fallback if needed */
+  min-height: calc(100vh - 56px);
+}
+
+div[contenteditable] {
+  min-height: 200px;
 }

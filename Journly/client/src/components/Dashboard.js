@@ -28,7 +28,7 @@ export default function Dashboard() {
     if (currentUser.userTypeId === 1) {
         return (
             <>
-                <div className="container py-4">
+                <div className="container container-body p-4">
                     <WelcomeMessage nickname={currentUser.nickName} />
                     <h2 className="d-flex justify-content-between align-items-center">
                         My Clients
@@ -56,14 +56,14 @@ export default function Dashboard() {
         );
     } else {
         return (
-            <div className="container py-4">
+            <div className="container container-body p-4">
                 <WelcomeMessage nickname={currentUser.nickName} className="mb-4" />
                 <h2>My Recent Entries</h2>
                 <hr />
                 <UserPostList limit="3" start="0" />
                 <div className="bg-light border rounded px-0 py-3 mt-4">
                     <MoodProvider>
-                        <MoodWall limit="21" size="small" />
+                        <MoodWall limit="20" size="small" />
                     </MoodProvider>
                 </div>
 

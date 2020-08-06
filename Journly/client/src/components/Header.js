@@ -54,20 +54,26 @@ export default function Header() {
     return (
         <>
             <div>
-                <Navbar color="success" dark expand="md" className="container">
-                    <NavbarBrand tag={RRNavLink} to="/">Journly</NavbarBrand>
+                <Navbar expand="md" light className="container navbar-custom">
+                    <NavbarBrand
+                        tag={RRNavLink}
+                        to="/"
+                        style={{ fontSize: "2.5rem", marginTop: "-3px" }}
+                    >
+                        Journly
+                    </NavbarBrand>
                     <NavbarToggler onClick={toggleNavbar} />
                     <Collapse isOpen={!collapsed} navbar>
-                        <Nav className="mr-auto" navbar>
+                        <Nav className="mr-auto d-flex justify-content-start align-items-center" navbar>
                             {isLoggedIn &&
                                 <>
                                     <NavItem>
                                         <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
-                                            <DropdownToggle caret className="btn btn-success d-flex align-items-center">
-                                                <Avatar avatar={currentUser.avatar} color={currentUser.favColor} name={currentUser.nickName} size="small" />
+                                            <DropdownToggle className="btn btn-info btn-custom d-flex align-items-center mx-1 p-1">
+                                                <Avatar avatar={currentUser.avatar} color={currentUser.favColor} name={currentUser.nickName} size="navbar" />
                                             </DropdownToggle>
                                             <DropdownMenu>
-                                                <DropdownItem header>Account Settings</DropdownItem>
+                                                <DropdownItem header className="bodyFont">Account Settings</DropdownItem>
                                                 <DropdownItem onClick={updateUserModalToggle}>Update Profile</DropdownItem>
                                                 <DropdownItem onClick={avatarModalToggle}>Change Avatar</DropdownItem>
                                                 <DropdownItem divider />
@@ -107,7 +113,7 @@ export default function Header() {
                                                         unreadCount > 0 &&
                                                         <Link to="/entries?viewed=false">
                                                             <Badge color="info" className="ml-1 px-2 py-1">
-                                                                {unreadCount}
+                                                                {unreadCount} unread
                                                             </Badge>
                                                         </Link>
                                                     }

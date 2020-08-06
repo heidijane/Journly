@@ -57,7 +57,7 @@ export default function AddEntryForm() {
 
     return (
         <>
-            <div className="container py-4">
+            <div className="container container-body p-4">
                 <Form onSubmit={e => submitForm(e)}>
                     <FormGroup>
                         <h2>I'm feeling{selectedMood ? <img src={"emoji/" + selectedMood.image + ".svg"} alt={selectedMood.name} className="selectedMood" /> : "..."}</h2>

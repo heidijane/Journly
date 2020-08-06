@@ -16,7 +16,7 @@ export default () => {
     const history = useHistory();
 
     return (
-        <div className="container py-4">
+        <div className="container container-body p-4">
             <div className="row">
                 <div className="col-sm">
                     <Card>
@@ -29,8 +29,8 @@ export default () => {
                     </Card>
                 </div>
                 <div className="col-sm">
-                    <Button color="info" block onClick={() => history.push("/registerclient")} size="lg" className="h-75">Create a new Journly account!</Button>
-                    <Button color="warning" block onClick={() => history.push("/registercounselor")} size="lg" className="h-25">Register as a Counselor or Therapist</Button>
+                    <Button color="info" block onClick={() => history.push("/registerclient")} size="lg" className="h-50">Create a new Journly account!</Button>
+                    <Button color="warning" block onClick={() => history.push("/registercounselor")} size="lg">Register as a Counselor or Therapist</Button>
                 </div>
             </div>
             <div className="bg-light border rounded px-0 py-3 my-4">

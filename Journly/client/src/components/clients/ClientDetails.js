@@ -46,15 +46,15 @@ export default function ClientDetails({ propId = null }) {
                 <div className="Avatar__Wrapper mt-3">
                     <Avatar avatar={client.avatar} color={client.favColor} name={client.nickName} size="xLarge" />
                 </div>
-                <h4>{client.nickName}</h4>
-                <h5 className="text-muted">{client.firstName} {client.lastName}</h5>
+                <h4 className="mt-2 mb-0 pb-0">{client.nickName}</h4>
+                <h5 className="text-muted pt-0 mt-0">{client.firstName} {client.lastName}</h5>
                 <div className="d-flex justify-content-between border-left" style={{}}>
                     {
                         posts.map(post => {
                             return (
                                 <div key={"post-" + post.id} className="border border-left-0 d-flex flex-column justify-content-between align-items-center p-2">
                                     <div><img src={`/emoji/${post.mood.image}.svg`} alt={post.mood.name} style={{ width: "100%" }} /></div>
-                                    <h5 className="mb-0">{moment(post.createDate).format('M/D')}</h5>
+                                    <h6 className="mb-0">{moment(post.createDate).format('M/D')}</h6>
                                     <div className="text-muted">{moment(post.createDate).format('h:mm a')}</div>
                                 </div>
                             )

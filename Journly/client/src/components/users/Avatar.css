@@ -15,6 +15,12 @@
     height: 30px;
 }
 
+.avatar.avatar-navbar {
+    width: 42px;
+    height: 42px;
+    border: 4px solid #199999;
+}
+
 .avatar.avatar-med {
     width: 75px;
     height: 75px;
