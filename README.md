@@ -17,6 +17,7 @@ Google Firebase is used for user authentication.
 - node.js
 - npm
 - SQL Server
+- Google Firebase
 
 ## Installation
 
