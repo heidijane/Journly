@@ -25,7 +25,7 @@ export default function AddEntryForm() {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const [content, setContent] = useState("Type your text here!");
+    const [content, setContent] = useState("");
 
     //validates form fields and submits new post to the server
     const submitForm = e => {
@@ -38,7 +38,7 @@ export default function AddEntryForm() {
         } else {
             const post = {
                 moodId: selectedMood.id,
-                content: (content.current.value === "" ? null : content.current.value)
+                content: (content === "" ? null : content)
             };
 
             addPost(post)

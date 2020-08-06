@@ -19,6 +19,10 @@ export default function Post({ post }) {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
+    if (post.deleted) {
+        post.content = <span className="font-italic text-muted">This entry has been deleted.</span>
+    }
+
     return (
         <Link
             to={
@@ -71,9 +75,7 @@ export default function Post({ post }) {
                     {
                         post.content
                             ?
-                            <div className="content">
-                                {!post.deleted ? truncate(post.content, 400) : <span className="font-italic text-muted">This entry has been deleted.</span>}
-                            </div>
+                            <div className="content" dangerouslySetInnerHTML={{ __html: truncate(post.content, 400) }}></div>
                             :
                             <img src={"/emoji/" + (!post.deleted ? post.mood.image : "26AA") + ".svg"} alt={post.mood.name} className="mood-large" />
                     }

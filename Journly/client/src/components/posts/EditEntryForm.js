@@ -12,6 +12,7 @@ import "./AddEntryForm.css"
 import Errors from "../Errors";
 import { PostContext } from "../../providers/PostProvider";
 import HealthResources from "../HealthResources";
+import TextEditor from "./TextEditor"
 
 export default function EditEntryForm() {
     const { editPost, getCurrentUserPostById } = useContext(PostContext);
@@ -32,6 +33,7 @@ export default function EditEntryForm() {
     useEffect(() => {
         if (post) {
             setSelectedMood(post.mood)
+            setContent(post.content)
         }
     }, [post])
 
@@ -39,7 +41,7 @@ export default function EditEntryForm() {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const content = useRef();
+    const [content, setContent] = useState("");
 
     //validate form fields and submit the edit
     const submitForm = e => {
@@ -53,7 +55,7 @@ export default function EditEntryForm() {
             const editedPost = {
                 id: post.id,
                 moodId: selectedMood.id,
-                content: (content.current.value === "" ? null : content.current.value)
+                content: (content === "" ? null : content)
             };
 
             editPost(editedPost)
@@ -84,15 +86,7 @@ export default function EditEntryForm() {
                         </FormGroup>
                         <FormGroup>
                             <h2>What's going on? <span className="font-italic text-muted">Optional</span></h2>
-                            <Input
-                                type="textarea"
-                                name="content"
-                                id="content"
-                                style={{ height: "400px" }}
-                                innerRef={content}
-                                placeholder="Write as much or as little as you want!"
-                                defaultValue={post.content}
-                            />
+                            <TextEditor content={content} setContent={setContent} />
                         </FormGroup>
                         <Errors errors={errors} />
                         <FormGroup className="text-right">

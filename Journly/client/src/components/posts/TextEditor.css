@@ -1,0 +1,29 @@
+/*
+    TextEditor.css
+    Styles that apply to the TextEditor component which renders a WYSIWYG textarea using react-simple-wysiwyg.
+*/
+
+.wysiwyg-toolbar {
+    background-color: #F8F9FA !important;
+    border-color: #DEE2E6 !important;
+    display: flex;
+    align-items: center;
+}
+
+.wysiwyg-toolbar Button {
+    width: 40px !important;
+    height: 40px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding: .25em !important;
+    border-radius: 8px;
+}
+
+.wysiwyg-toolbar .form-control {
+    display: inline-block !important;
+    width: 200px !important;
+    margin: 0 .5em 0 .5em !important;
+    height: 38px !important;
+}
+
+.wysiwyg-toolbar-divider {}

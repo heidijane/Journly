@@ -68,6 +68,10 @@ export default function JournalPageEntry({ post }) {
 
     const currentUser = (sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")) : null);
 
+    if (post.deleted) {
+        post.content = <span className="font-italic text-muted">This entry has been deleted.</span>
+    }
+
     return (
         <>
             <div className={"JournalPage" + (post.flagged && currentUser.userTypeId === 1 ? " flagged" : "")}>
@@ -87,7 +91,7 @@ export default function JournalPageEntry({ post }) {
                 </div>
                 {
                     post.content &&
-                    <div className="content">{!post.deleted ? post.content : <span className="font-italic text-muted">This entry has been deleted.</span>}</div>
+                    <div className="content" dangerouslySetInnerHTML={{ __html: post.content }}></div>
                 }
                 {
                     post.editTime !== null &&
