@@ -24,5 +24,33 @@
 
 .content {
     white-space: pre-wrap;
-    word-break: break-all;
+    word-break: break-word;
+}
+
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+.content h1 {
+    font-size: 2em;
+}
+
+.content h2 {
+    font-size: 1.75em;
+}
+
+.content h3 {
+    font-size: 1.5em;
+}
+
+.content h4 {
+    font-size: 1.25em;
+}
+
+.content h5 {
+    font-size: 1.15em;
+}
+
+.content h6 {
+    font-size: 1em;
 }

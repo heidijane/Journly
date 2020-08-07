@@ -90,3 +90,31 @@ code {
 div[contenteditable] {
   min-height: 200px;
 }
+
+div[contenteditable] h1, div[contenteditable] h2, div[contenteditable] h3, div[contenteditable] h4, div[contenteditable] h5, div[contenteditable] h6 {
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+div[contenteditable] h1 {
+  font-size: 2em;
+}
+
+div[contenteditable] h2 {
+  font-size: 1.75em;
+}
+
+div[contenteditable] h3 {
+  font-size: 1.5em;
+}
+
+div[contenteditable] h4 {
+  font-size: 1.25em;
+}
+
+div[contenteditable] h5 {
+  font-size: 1.15em;
+}
+
+div[contenteditable] h6 {
+  font-size: 1em;
+}
