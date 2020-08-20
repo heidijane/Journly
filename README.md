@@ -1,5 +1,7 @@
 # Journly
 
+[Video Demo on YouTube](https://www.youtube.com/watch?v=HgBs14NTkoM&feature=youtu.be)
+
 Journly is full-stack application that allows users to create a private journal that can only be seen by their therapist or school counselor. Users can also keep track of their moods using colorful feeling emoji.
 
 Therapists and counselors have recommended journaling for decades. It has been shown to increase mood, communication skills, and mindfulness. It is also one of the cornerstones of the self-care movement. Some people find that writing their thoughts down in a journal and then sharing it with their therapist is a great way to start conversations that would have been difficult to initiate.
@@ -57,4 +59,4 @@ On your Google Firebase project, click on the Authentication link. You will need
 - [HtmlSanitizer](https://github.com/mganss/HtmlSanitizer) for a .NET library that cleans up dirty, user-submitted HTML
 
 ## Thank you!
-Thank you for checking out my project! I want to thank the instruction team at Nashville Software School and also my fiancee for giving me the idea for this app.
+Thank you for checking out my project! I want to thank the instruction team at Nashville Software School and my fiancee, Brennan, for inspiring the initial idea for Journly!
