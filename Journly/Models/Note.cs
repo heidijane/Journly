@@ -10,7 +10,6 @@ namespace Journly.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public int TherapistId { get; set; }
 
         public User Therapist { get; set; }

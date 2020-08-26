@@ -298,7 +298,6 @@ namespace Journly.Controllers
             {
                 return Unauthorized();
             }
-            //update the post object to deleted status
 
             //sanitize the html
             var sanitizer = new HtmlSanitizer();

@@ -37,11 +37,12 @@ namespace Journly.Repositories
                         .ToList();
         }
 
-        //gets all notes by a client's user ID
-        public List<Note> GetByClientId(int id)
+        //gets all notes by therapist ID and client ID
+        public List<Note> GetByClientId(int therapistId, int clientId)
         {
             return _context.Note
-                        .Where(n => n.ClientId == id)
+                        .Where(n => n.ClientId == clientId)
+                        .Where(n => n.TherapistId == therapistId)
                         .OrderByDescending(n => n.CreateDate)
                         .ToList();
         }
