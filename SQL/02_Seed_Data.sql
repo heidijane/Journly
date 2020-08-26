@@ -545,3 +545,147 @@ UPDATE post SET Deleted = 1 WHERE Id = 78;
 UPDATE post SET Deleted = 1 WHERE Id = 56;
 UPDATE post SET Deleted = 1 WHERE Id = 100;
 UPDATE post SET Deleted = 1 WHERE Id = 123;
+
+--create some therapist notes
+SET IDENTITY_INSERT [Note] ON
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (1, 3, 9, '2020-05-27T20:23:03Z', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (2, 5, 11, '2019-08-16T23:34:00Z', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.
+
+Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (3, 5, 20, '2019-09-02T13:35:50Z', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.
+
+Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.
+
+Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (4, 1, 20, '2019-11-17T22:23:03Z', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (5, 4, 22, '2020-02-27T21:37:31Z', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (6, 4, 12, '2020-07-05T13:24:14Z', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.
+
+Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (7, 4, 11, '2020-05-08T01:12:00Z', 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.
+
+Fusce consequat. Nulla nisl. Nunc nisl.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (8, 3, 8, '2020-01-06T02:02:31Z', 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (9, 2, 23, '2019-10-28T00:22:28Z', 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (10, 1, 9, '2020-01-14T10:13:31Z', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.
+
+In congue. Etiam justo. Etiam pretium iaculis justo.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (11, 3, 23, '2020-05-12T17:17:48Z', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (12, 3, 14, '2020-07-08T04:03:45Z', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.
+
+Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.
+
+Sed ante. Vivamus tortor. Duis mattis egestas metus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (13, 5, 15, '2019-08-17T16:19:20Z', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.
+
+Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.
+
+In congue. Etiam justo. Etiam pretium iaculis justo.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (14, 1, 21, '2019-08-14T23:48:02Z', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.
+
+Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.
+
+Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (15, 5, 15, '2019-11-09T18:41:30Z', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.
+
+Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (16, 5, 8, '2020-08-22T16:16:12Z', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.
+
+Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.
+
+Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (17, 5, 23, '2020-06-12T13:14:21Z', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (18, 1, 24, '2019-08-05T14:19:20Z', 'In congue. Etiam justo. Etiam pretium iaculis justo.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (19, 3, 18, '2019-09-29T06:34:47Z', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (20, 2, 11, '2019-10-09T03:57:00Z', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.
+
+Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (21, 2, 23, '2020-08-13T20:10:47Z', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.
+
+Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (22, 5, 21, '2020-02-08T09:41:32Z', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (23, 5, 14, '2020-04-19T04:15:53Z', 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.
+
+In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (24, 2, 21, '2020-03-25T19:08:34Z', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.
+
+Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (25, 4, 16, '2019-10-24T15:36:07Z', 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
+
+Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.
+
+Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (26, 1, 9, '2019-08-02T11:49:43Z', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.
+
+Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (27, 3, 22, '2020-06-26T15:26:52Z', 'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.
+
+Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (28, 5, 17, '2020-03-30T07:44:08Z', 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.
+
+Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (29, 5, 21, '2019-08-23T13:21:44Z', 'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.
+
+Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (30, 4, 17, '2019-12-27T06:32:20Z', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.
+
+Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (31, 4, 6, '2020-02-25T05:28:22Z', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (32, 1, 11, '2020-02-23T22:29:14Z', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (33, 2, 21, '2020-03-30T00:20:08Z', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (34, 3, 11, '2020-05-20T19:22:08Z', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (35, 1, 25, '2019-12-26T23:26:51Z', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.
+
+In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.
+
+Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (36, 3, 17, '2020-06-01T05:37:14Z', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.
+
+Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (37, 5, 6, '2019-10-29T12:42:01Z', 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (38, 1, 21, '2019-10-28T15:13:05Z', 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.
+
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (39, 3, 12, '2019-12-24T00:47:24Z', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.
+
+Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
+
+Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (40, 2, 12, '2019-10-26T18:26:53Z', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.
+
+Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (41, 1, 16, '2020-01-15T03:15:15Z', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (42, 4, 22, '2020-02-21T07:22:46Z', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (43, 4, 7, '2019-10-05T18:35:40Z', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (44, 3, 15, '2019-08-20T09:31:56Z', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.
+
+Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (45, 4, 20, '2019-12-22T03:04:33Z', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.
+
+In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.
+
+Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (46, 3, 15, '2020-03-09T21:54:07Z', 'Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (47, 4, 19, '2020-07-16T23:07:15Z', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.
+
+Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.
+
+Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (48, 1, 21, '2020-08-11T14:29:20Z', 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.
+
+Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.
+
+Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (49, 3, 12, '2020-04-21T03:28:04Z', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.
+
+Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.
+
+Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 0);
+insert into Note (Id, TherapistId, ClientId, CreateDate, Content, Deleted) values (50, 5, 6, '2019-10-18T09:01:26Z', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 0);
+SET IDENTITY_INSERT [Note] OFF
