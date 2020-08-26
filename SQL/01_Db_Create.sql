@@ -8,6 +8,7 @@ USE [Journly]
 GO
 
 DROP TABLE IF EXISTS [Post];
+DROP TABLE IF EXISTS [Note];
 DROP TABLE IF EXISTS [FlaggedWord];
 DROP TABLE IF EXISTS [UserRelationship];
 DROP TABLE IF EXISTS [Therapist];
@@ -71,6 +72,16 @@ CREATE TABLE [Post] (
 )
 GO
 
+CREATE TABLE [Note] (
+  [Id] int PRIMARY KEY NOT NULL IDENTITY,
+  [TherapistId] int NOT NULL,
+  [ClientId] int NOT NULL,
+  [CreateDate] datetime NOT NULL,
+  [Content] text NOT NULL,
+  [Deleted] bit NOT NULL
+)
+GO
+
 CREATE TABLE [MoodType] (
   [Id] int PRIMARY KEY IDENTITY,
   [Name] varchar(50) NOT NULL,
@@ -113,6 +124,12 @@ ALTER TABLE [Post] ADD FOREIGN KEY ([TherapistId]) REFERENCES [User] ([Id])
 GO
 
 ALTER TABLE [Post] ADD FOREIGN KEY ([MoodId]) REFERENCES [MoodType] ([Id])
+GO
+
+ALTER TABLE [Note] ADD FOREIGN KEY ([TherapistId]) REFERENCES [User] ([Id])
+GO
+
+ALTER TABLE [Note] ADD FOREIGN KEY ([ClientId]) REFERENCES [User] ([Id])
 GO
 
 ALTER TABLE [User] ADD CONSTRAINT df_userType DEFAULT 0 FOR UserTypeId
