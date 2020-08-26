@@ -60,7 +60,5 @@ namespace Journly.Repositories
             _context.SaveChanges();
         }
 
-
-
     }
 }
